@@ -1,0 +1,282 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>DocAI Intellect - Settings</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;family=JetBrains+Mono&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+        .scale-98:active { transform: scale(0.98); }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container": "#eceef0",
+                        "primary": "#004ac6",
+                        "error-container": "#ffdad6",
+                        "primary-fixed": "#dbe1ff",
+                        "on-surface": "#191c1e",
+                        "inverse-primary": "#b4c5ff",
+                        "outline": "#737686",
+                        "on-tertiary-container": "#eef0ff",
+                        "background": "#f7f9fb",
+                        "on-primary-container": "#eeefff",
+                        "surface-tint": "#0053db",
+                        "on-primary-fixed": "#00174b",
+                        "secondary-fixed-dim": "#b7c8e1",
+                        "on-tertiary": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "secondary-fixed": "#d3e4fe",
+                        "surface-dim": "#d8dadc",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "outline-variant": "#c3c6d7",
+                        "on-tertiary-fixed-variant": "#3f465c",
+                        "on-background": "#191c1e",
+                        "inverse-on-surface": "#eff1f3",
+                        "surface-variant": "#e0e3e5",
+                        "surface-container-low": "#f2f4f6",
+                        "surface-container-high": "#e6e8ea",
+                        "on-secondary": "#ffffff",
+                        "primary-container": "#2563eb",
+                        "on-error-container": "#93000a",
+                        "secondary-container": "#d0e1fb",
+                        "on-secondary-fixed": "#0b1c30",
+                        "tertiary-fixed-dim": "#bec6e0",
+                        "tertiary-fixed": "#dae2fd",
+                        "on-error": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary": "#505f76",
+                        "surface-container-highest": "#e0e3e5",
+                        "surface": "#f7f9fb",
+                        "on-secondary-fixed-variant": "#38485d",
+                        "on-tertiary-fixed": "#131b2e",
+                        "surface-bright": "#f7f9fb",
+                        "inverse-surface": "#2d3133",
+                        "tertiary-container": "#656d84",
+                        "tertiary": "#4d556b",
+                        "on-surface-variant": "#434655",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "on-secondary-container": "#54647a",
+                        "error": "#ba1a1a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "lg": "24px",
+                        "base": "8px",
+                        "xl": "32px",
+                        "sm": "12px",
+                        "sidebar-width": "280px",
+                        "container-max": "1280px",
+                        "xs": "4px",
+                        "md": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Inter"],
+                        "headline-xl": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "code": ["jetbrainsMono"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["18px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "headline-xl": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "body-sm": ["12px", {"lineHeight": "18px", "fontWeight": "400"}],
+                        "code": ["13px", {"lineHeight": "20px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body-md min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<nav class="fixed top-0 left-0 w-full z-40 flex justify-between items-center px-lg h-16 bg-surface border-b border-outline-variant">
+<div class="flex items-center gap-md">
+<span class="font-headline-md text-headline-md font-bold text-primary">DocAI Intellect</span>
+</div>
+<div class="flex items-center gap-md">
+
+
+<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container text-label-sm overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="User Avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNsBjlzj4O0JAyxfHDMA3GSmFzla12662JUOhdaZMAHtgS5ZwAq_STBbwQz5w9jifzeIG2rkIHBwmWO667FJvBASfM9-40DKK0XZXqVdzm9iQ4nYRdx5sTUCGDpvbD-FTPzkFw8SxswJJjso-TigmvrmIXbdJvzMkU-JeeOp2dqPLz3qSr6T2no16NZoWXyKp8q6zB8ynXRY04s9tWi6IM-0e6wMQKjtcpb5R99U_4zJY4w3Ir7vfb">
+</div>
+</div>
+</nav>
+<div class="flex flex-1 pt-16">
+<!-- SideNavBar -->
+<aside class="hidden lg:flex flex-col pt-base pb-lg px-md gap-base fixed left-0 top-16 h-[calc(100vh-64px)] w-[280px] bg-surface-container-low border-r border-outline-variant">
+    <!-- <button class="mx-md mt-base mb-xs py-sm px-md bg-primary text-on-primary rounded-lg font-label-md flex items-center justify-center gap-xs shadow-sm hover:opacity-90 transition-all scale-98"><span class="material-symbols-outlined">add</span>New Analysis</button> -->
+<!-- <div class="px-md py-base">
+<h2 class="font-headline-sm text-headline-sm text-primary">Workspace</h2>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Enterprise Tier</p>
+</div> -->
+<button class="mx-md mb-base py-sm px-md bg-primary text-on-primary rounded-lg font-label-md flex items-center justify-center gap-xs shadow-sm hover:opacity-90 transition-all scale-98">
+<span class="material-symbols-outlined">add</span>
+                New Analysis
+            </button>
+<nav class="flex flex-col gap-xs px-xs">
+<a class="flex items-center gap-sm text-on-surface-variant hover:bg-surface-container-high rounded-lg px-md py-sm transition-all duration-150" href="#">
+<span class="material-symbols-outlined">chat</span>
+<span class="font-label-md">Chat</span>
+</a>
+<a class="flex items-center gap-sm text-on-surface-variant hover:bg-surface-container-high rounded-lg px-md py-sm transition-all duration-150" href="#">
+<span class="material-symbols-outlined">history</span>
+<span class="font-label-md">History</span>
+</a>
+<a class="flex items-center gap-sm text-on-surface-variant hover:bg-surface-container-high rounded-lg px-md py-sm transition-all duration-150" href="#">
+<span class="material-symbols-outlined">account_circle</span>
+<span class="font-label-md">Profile</span>
+</a>
+<!-- Active Item: Settings -->
+<a class="flex items-center gap-sm bg-secondary-container text-on-secondary-container rounded-lg px-md py-sm border-l-4 border-primary transition-all duration-150" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md">Settings</span>
+</a>
+</nav>
+<div class="mt-auto flex flex-col gap-xs px-xs">
+
+
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 lg:ml-[280px] p-lg md:p-xl overflow-y-auto">
+<div class="max-w-[container-max] mx-auto space-y-lg">
+<header>
+<h1 class="font-headline-xl text-headline-xl text-on-surface mb-xs">Document Management</h1>
+<p class="text-on-surface-variant font-body-lg">Manage your uploaded data and source files.</p>
+</header>
+<!-- Document Table Section -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden shadow-sm">
+<div class="p-md md:p-lg border-b border-outline-variant flex flex-col md:flex-row justify-between items-start md:items-center gap-md">
+<div class="flex items-center gap-md">
+<h3 class="font-headline-md text-headline-md">Recent Uploads</h3>
+<span class="bg-primary-fixed text-on-primary-fixed-variant px-sm py-xs rounded-full font-label-sm">4 Documents</span>
+</div>
+<div class="flex items-center gap-sm">
+<button class="px-md py-sm bg-primary text-on-primary rounded-lg font-label-md hover:bg-opacity-90 transition-all flex items-center gap-xs">
+<span class="material-symbols-outlined text-[18px]">upload_file</span>
+                                Upload File
+                            </button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low border-b border-outline-variant">
+<th class="px-lg py-md font-label-md text-on-surface-variant">Document Name</th>
+<th class="px-lg py-md font-label-md text-on-surface-variant">Created Date Timestamp</th>
+<th class="px-lg py-md font-label-md text-on-surface-variant">Type</th>
+<th class="px-lg py-md font-label-md text-on-surface-variant">Size</th>
+<th class="px-lg py-md font-label-md text-on-surface-variant text-right">Download Link</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-bright transition-colors group">
+<td class="px-lg py-md">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary text-[24px]">description</span>
+<span class="font-label-md text-on-surface">Q3_Financial_Forecast_v2.pdf</span>
+</div>
+</td>
+<td class="px-lg py-md font-body-md text-on-surface-variant">Oct 12, 2023 14:22:45</td>
+<td class="px-lg py-md">
+<span class="px-xs py-xs bg-surface-container text-on-surface-variant text-label-sm rounded uppercase font-bold text-[10px]">PDF</span>
+</td>
+<td class="px-lg py-md font-body-md text-on-surface-variant">4.2 MB</td>
+<td class="px-lg py-md text-right">
+<button class="material-symbols-outlined p-xs text-primary hover:bg-primary-fixed rounded-lg transition-colors">download</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-bright transition-colors group">
+<td class="px-lg py-md">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-tertiary text-[24px]">table_chart</span>
+<span class="font-label-md text-on-surface">Client_Onboarding_Data.xlsx</span>
+</div>
+</td>
+<td class="px-lg py-md font-body-md text-on-surface-variant">Oct 10, 2023 09:15:12</td>
+<td class="px-lg py-md">
+<span class="px-xs py-xs bg-surface-container text-on-surface-variant text-label-sm rounded uppercase font-bold text-[10px]">XLSX</span>
+</td>
+<td class="px-lg py-md font-body-md text-on-surface-variant">1.8 MB</td>
+<td class="px-lg py-md text-right">
+<button class="material-symbols-outlined p-xs text-primary hover:bg-primary-fixed rounded-lg transition-colors">download</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-bright transition-colors group">
+<td class="px-lg py-md">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-error text-[24px]">picture_as_pdf</span>
+<span class="font-label-md text-on-surface">Legal_Agreement_Draft_FINAL.pdf</span>
+</div>
+</td>
+<td class="px-lg py-md font-body-md text-on-surface-variant">Sep 28, 2023 16:40:00</td>
+<td class="px-lg py-md">
+<span class="px-xs py-xs bg-surface-container text-on-surface-variant text-label-sm rounded uppercase font-bold text-[10px]">PDF</span>
+</td>
+<td class="px-lg py-md font-body-md text-on-surface-variant">12.5 MB</td>
+<td class="px-lg py-md text-right">
+<button class="material-symbols-outlined p-xs text-primary hover:bg-primary-fixed rounded-lg transition-colors">download</button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-bright transition-colors group">
+<td class="px-lg py-md">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary-container text-[24px]">article</span>
+<span class="font-label-md text-on-surface">Product_Architecture_Notes.docx</span>
+</div>
+</td>
+<td class="px-lg py-md font-body-md text-on-surface-variant">Sep 25, 2023 11:05:30</td>
+<td class="px-lg py-md">
+<span class="px-xs py-xs bg-surface-container text-on-surface-variant text-label-sm rounded uppercase font-bold text-[10px]">DOCX</span>
+</td>
+<td class="px-lg py-md font-body-md text-on-surface-variant">850 KB</td>
+<td class="px-lg py-md text-right">
+<button class="material-symbols-outlined p-xs text-primary hover:bg-primary-fixed rounded-lg transition-colors">download</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</main>
+</div>
+<!-- Footer -->
+<footer class="w-full flex justify-center items-center px-lg py-lg bg-surface border-t border-outline-variant mt-auto z-40 relative">
+<span class="font-body-sm text-body-sm text-on-surface-variant">© 2026 AI Document Chat System</span>
+</footer>
+
+
+</body></html>
