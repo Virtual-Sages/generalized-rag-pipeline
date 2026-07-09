@@ -1,0 +1,105 @@
+# ==========================================================================
+# Root .gitignore for generalized-rag-pipeline
+# Covers: api-gateway (Java/Spring Boot/Maven), a Next.js frontend, and a
+# Python FastAPI service. Each subfolder may still keep its own .gitignore.
+# ==========================================================================
+
+# ----- OS -----
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ----- IDE / Editors -----
+.idea/
+*.iml
+*.iws
+*.ipr
+.vscode/
+*.swp
+*~
+
+# ----- Secrets / environment -----
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+secrets/
+
+# ==========================================================================
+# Java / Spring Boot / Maven (api-gateway)
+# ==========================================================================
+target/
+!.mvn/wrapper/maven-wrapper.jar
+.mvn/wrapper/maven-wrapper.jar
+build/
+*.class
+*.log
+*.jar
+!**/maven-wrapper.jar
+### STS / Eclipse ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+# ==========================================================================
+# Node.js / Next.js (nextJS)
+# ==========================================================================
+node_modules/
+.pnp
+.pnp.js
+.yarn/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Next.js build output
+.next/
+out/
+build/
+dist/
+
+# Testing / coverage
+coverage/
+
+# Vercel / misc
+.vercel
+*.tsbuildinfo
+next-env.d.ts
+
+# ==========================================================================
+# Python / FastAPI (python fast API)
+# ==========================================================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Packaging / build
+*.egg-info/
+.eggs/
+*.egg
+develop-eggs/
+sdist/
+wheels/
+pip-wheel-metadata/
+
+# Tooling caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.tox/
+.coverage
+.coverage.*
+htmlcov/
