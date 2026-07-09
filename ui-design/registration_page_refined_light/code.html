@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Register | DocAI Intellect</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=JetBrains+Mono&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container": "#eceef0",
+                        "primary": "#004ac6",
+                        "error-container": "#ffdad6",
+                        "primary-fixed": "#dbe1ff",
+                        "on-surface": "#191c1e",
+                        "inverse-primary": "#b4c5ff",
+                        "outline": "#737686",
+                        "on-tertiary-container": "#eef0ff",
+                        "background": "#f7f9fb",
+                        "on-primary-container": "#eeefff",
+                        "surface-tint": "#0053db",
+                        "on-primary-fixed": "#00174b",
+                        "secondary-fixed-dim": "#b7c8e1",
+                        "on-tertiary": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "secondary-fixed": "#d3e4fe",
+                        "surface-dim": "#d8dadc",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "outline-variant": "#c3c6d7",
+                        "on-tertiary-fixed-variant": "#3f465c",
+                        "on-background": "#191c1e",
+                        "inverse-on-surface": "#eff1f3",
+                        "surface-variant": "#e0e3e5",
+                        "surface-container-low": "#f2f4f6",
+                        "surface-container-high": "#e6e8ea",
+                        "on-secondary": "#ffffff",
+                        "primary-container": "#2563eb",
+                        "on-error-container": "#93000a",
+                        "secondary-container": "#d0e1fb",
+                        "on-secondary-fixed": "#0b1c30",
+                        "tertiary-fixed-dim": "#bec6e0",
+                        "tertiary-fixed": "#dae2fd",
+                        "on-error": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary": "#505f76",
+                        "surface-container-highest": "#e0e3e5",
+                        "surface": "#f7f9fb",
+                        "on-secondary-fixed-variant": "#38485d",
+                        "on-tertiary-fixed": "#131b2e",
+                        "surface-bright": "#f7f9fb",
+                        "inverse-surface": "#2d3133",
+                        "tertiary-container": "#656d84",
+                        "tertiary": "#4d556b",
+                        "on-surface-variant": "#434655",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "on-secondary-container": "#54647a",
+                        "error": "#ba1a1a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.5rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "lg": "24px",
+                        "base": "8px",
+                        "xl": "32px",
+                        "sm": "12px",
+                        "sidebar-width": "280px",
+                        "container-max": "1280px",
+                        "xs": "4px",
+                        "md": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Inter"],
+                        "headline-xl": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "code": ["jetbrainsMono"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["18px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "headline-xl": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                        "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "body-sm": ["12px", {"lineHeight": "18px", "fontWeight": "400"}],
+                        "code": ["13px", {"lineHeight": "20px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            background-color: #f7f9fb;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .strength-bar {
+            height: 4px;
+            transition: width 0.3s ease, background-color 0.3s ease;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-md bg-background">
+<!-- Background Decoration -->
+<div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
+<div class="absolute -top-[10%] -left-[10%] w-[40%] h-[40%] rounded-full bg-primary/5 blur-[120px]"></div>
+<div class="absolute top-[60%] -right-[5%] w-[30%] h-[30%] rounded-full bg-secondary/5 blur-[100px]"></div>
+</div>
+<!-- Registration Card -->
+<main class="w-full max-w-[440px] bg-surface-container-lowest border border-outline-variant rounded-lg shadow-xl p-xl space-y-lg animate-in fade-in zoom-in duration-500 z-10 relative">
+<!-- Logo Section -->
+<div class="text-center space-y-xs">
+<div class="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-primary mb-md shadow-sm">
+<span class="material-symbols-outlined text-on-primary" style="font-variation-settings: 'FILL' 1;">analytics</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface">DocAI Intellect</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Create your enterprise account</p>
+</div>
+<!-- Registration Form -->
+<form class="space-y-md" onsubmit="event.preventDefault();">
+<!-- Username -->
+<div class="space-y-xs">
+<label class="font-label-md text-label-md text-on-surface" for="username">Username</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[20px]">person</span>
+<input class="w-full pl-10 pr-4 py-sm bg-surface-container-lowest border border-outline-variant rounded-lg text-body-md focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all placeholder:text-outline/50" id="username" placeholder="johndoe" type="text"/>
+</div>
+</div>
+<!-- Email -->
+<div class="space-y-xs">
+<label class="font-label-md text-label-md text-on-surface" for="email">Email Address</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[20px]">mail</span>
+<input class="w-full pl-10 pr-4 py-sm bg-surface-container-lowest border border-outline-variant rounded-lg text-body-md focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all placeholder:text-outline/50" id="email" placeholder="name@company.com" type="email"/>
+</div>
+</div>
+<!-- Password -->
+<div class="space-y-xs">
+<label class="font-label-md text-label-md text-on-surface" for="password">Password</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[20px]">lock</span>
+<input class="w-full pl-10 pr-4 py-sm bg-surface-container-lowest border border-outline-variant rounded-lg text-body-md focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all placeholder:text-outline/50" id="password" oninput="updateStrength(this.value)" placeholder="••••••••" type="password"/>
+</div>
+<!-- Password Strength Indicator -->
+<div class="space-y-xs mt-base">
+<div class="flex gap-1 h-1">
+<div class="strength-bar flex-1 bg-surface-container-high rounded-full" id="strength-1"></div>
+<div class="strength-bar flex-1 bg-surface-container-high rounded-full" id="strength-2"></div>
+<div class="strength-bar flex-1 bg-surface-container-high rounded-full" id="strength-3"></div>
+<div class="strength-bar flex-1 bg-surface-container-high rounded-full" id="strength-4"></div>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant" id="strength-text">Enter a password</p>
+</div>
+</div>
+<!-- Confirm Password -->
+<div class="space-y-xs">
+<label class="font-label-md text-label-md text-on-surface" for="confirm-password">Confirm Password</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[20px]">lock_reset</span>
+<input class="w-full pl-10 pr-4 py-sm bg-surface-container-lowest border border-outline-variant rounded-lg text-body-md focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all placeholder:text-outline/50" id="confirm-password" placeholder="••••••••" type="password"/>
+</div>
+</div>
+<!-- Action Button -->
+<button class="w-full bg-primary hover:bg-primary/90 text-on-primary font-label-md text-label-md py-sm rounded-lg shadow-sm transition-all active:scale-[0.98] mt-lg flex items-center justify-center gap-sm" type="submit">
+                Register
+                <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</form>
+<!-- Footer Link -->
+<div class="text-center pt-md">
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                Already have an account? 
+                <a class="text-primary font-semibold hover:underline decoration-2 underline-offset-4" href="#">Login</a>
+</p>
+</div>
+</main>
+<script>
+        function updateStrength(password) {
+            const bars = [
+                document.getElementById('strength-1'),
+                document.getElementById('strength-2'),
+                document.getElementById('strength-3'),
+                document.getElementById('strength-4')
+            ];
+            const text = document.getElementById('strength-text');
+            
+            let strength = 0;
+            if (password.length > 0) strength += 1;
+            if (password.length > 7) strength += 1;
+            if (/[A-Z]/.test(password) && /[0-9]/.test(password)) strength += 1;
+            if (/[^A-Za-z0-9]/.test(password)) strength += 1;
+
+            const configs = [
+                { label: 'Enter a password', color: 'bg-surface-container-high' },
+                { label: 'Weak', color: 'bg-error' },
+                { label: 'Fair', color: 'bg-orange-500' },
+                { label: 'Good', color: 'bg-primary' },
+                { label: 'Strong', color: 'bg-green-600' }
+            ];
+
+            const current = configs[strength];
+            text.innerText = current.label;
+
+            bars.forEach((bar, index) => {
+                if (index < strength) {
+                    bar.className = `strength-bar flex-1 ${current.color} rounded-full`;
+                } else {
+                    bar.className = 'strength-bar flex-1 bg-surface-container-high rounded-full';
+                }
+            });
+        }
+    </script>
+</body></html>
