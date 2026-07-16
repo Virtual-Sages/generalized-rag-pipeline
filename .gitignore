@@ -94,6 +94,7 @@ develop-eggs/
 sdist/
 wheels/
 pip-wheel-metadata/
+package-lock.json
 
 # Tooling caches
 .pytest_cache/
