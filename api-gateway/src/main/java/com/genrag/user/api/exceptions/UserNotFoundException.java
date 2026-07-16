@@ -1,9 +1,7 @@
 package com.genrag.user.api.exceptions;
 
-import java.util.UUID;
-
 public class UserNotFoundException extends RuntimeException {
-    public UserNotFoundException(UUID id) {
+    public UserNotFoundException() {
         super("User not found");
     }
 }

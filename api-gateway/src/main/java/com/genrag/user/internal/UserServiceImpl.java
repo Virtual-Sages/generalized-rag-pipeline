@@ -61,6 +61,6 @@ public class UserServiceImpl implements UserService {
         return userRepository
             .findById(id)
             .map(UserMapper::toDto)
-            .orElseThrow(() -> new UserNotFoundException(id));
+            .orElseThrow(UserNotFoundException::new);
     }
 }
