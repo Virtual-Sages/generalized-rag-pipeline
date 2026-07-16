@@ -1,5 +1,5 @@
 package com.genrag.user.api;
 
-public record UserDto() {
-    // TODO
-}
+import java.util.UUID;
+
+public record UserDto(UUID id, String username, String email) {}
