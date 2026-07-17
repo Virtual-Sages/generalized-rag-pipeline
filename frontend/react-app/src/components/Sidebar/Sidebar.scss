@@ -1,10 +1,12 @@
+@use 'sass:color';
+
 // SCSS Variables based on Tailwind configuration
 $surface-container-lowest: #ffffff;
 $outline-variant: #c3c6d7;
 $primary: #004ac6; // Button & Active Border blue
 $on-primary: #ffffff; // Button text white
 $primary-container: #2563eb;
-$secondary-container: #dce5fd; // Adjusted to match the specific light blue active background
+$secondary-container: #d0e1fb; // Adjusted to match the specific light blue active background
 $on-secondary-container: #54647a; // Active text/icon color
 $on-surface-variant: #434655; // Inactive text/icon color
 $surface-container-high: #e6e8ea;
@@ -127,6 +129,7 @@ $desktop: 1175px;
   margin-bottom: 0;
   border-radius: 8px;
   font-weight: 500;
+  justify-content: center; // Center content on mobile
 
   @media (min-width: $tablet) {
     margin-bottom: 16px; 
@@ -178,7 +181,7 @@ $desktop: 1175px;
     }
     
     &:hover {
-      background-color: darken($secondary-container, 3%);
+      background-color: color.adjust($secondary-container, $lightness: -3%);
     }
   }
 }
