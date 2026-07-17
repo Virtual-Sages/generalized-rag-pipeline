@@ -1,10 +1,11 @@
 import './App.css'
+import Sidebar from './components/Sidebar/Sidebar'
 
 function App() {
   return (
     <>
       <div>
-        Generalized Rag Pipeline
+       <Sidebar />
       </div>
     </>
   )
