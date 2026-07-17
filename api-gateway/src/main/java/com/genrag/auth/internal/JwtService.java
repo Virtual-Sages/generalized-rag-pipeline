@@ -14,7 +14,9 @@ import org.springframework.stereotype.Service;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
+import io.jsonwebtoken.io.DecodingException;
 import io.jsonwebtoken.security.Keys;
+import io.jsonwebtoken.security.WeakKeyException;
 
 @Service
 public class JwtService {
@@ -34,10 +36,21 @@ public class JwtService {
         @Value("${genrag.jwt.access-ttl}") Duration accessTtl,
         @Value("${genrag.jwt.refresh-ttl}") Duration refreshTtl
     ) {
-        this.accessKey = Keys.hmacShaKeyFor(Decoders.BASE64.decode(accessSecret));
-        this.refreshKey = Keys.hmacShaKeyFor(Decoders.BASE64.decode(refreshSecret));
+        this.accessKey = hmacEncryptor(accessSecret, "JWT_ACCESS_TOKEN_SECRET");
+        this.refreshKey = hmacEncryptor(refreshSecret, "JWT_REFRESH_TOKEN_SECRET");
         this.accessTtl = accessTtl;
         this.refreshTtl = refreshTtl;
+    }
+
+    private static SecretKey hmacEncryptor(String secret, String key) {
+        if (secret == null || secret.isBlank()) {
+            throw new IllegalStateException(key + " is not set as an environment variable.");
+        }
+        try {
+            return Keys.hmacShaKeyFor(Decoders.BASE64.decode(secret));
+        } catch (DecodingException | WeakKeyException e) {
+            throw new IllegalStateException(key + " is invalid. Error: ", e);
+        }
     }
 
     public String generateAccessToken(UUID userId) {
