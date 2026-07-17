@@ -15,6 +15,6 @@ public record RegisterRequest(
     String email,
 
     @NotBlank
-    @Size(min = 5)
+    @Size(min = 5, max = 30)
     String password
 ) {}
