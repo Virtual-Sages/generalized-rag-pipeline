@@ -1,21 +1,5 @@
+@use '../../styles/abstracts' as *;
 @use 'sass:color';
-
-// SCSS Variables based on Tailwind configuration
-$surface-container-lowest: #ffffff;
-$outline-variant: #c3c6d7;
-$primary: #004ac6; // Button & Active Border blue
-$on-primary: #ffffff; // Button text white
-$primary-container: #2563eb;
-$secondary-container: #d0e1fb; // Adjusted to match the specific light blue active background
-$on-secondary-container: #54647a; // Active text/icon color
-$on-surface-variant: #434655; // Inactive text/icon color
-$surface-container-high: #e6e8ea;
-
-$font-inter: 'Inter', sans-serif;
-
-// Breakpoints
-$tablet: 768px;
-$desktop: 1175px;
 
 /* 1. Base / Mobile State: Horizontal Bottom Navigation */
 .sidebar {
@@ -24,24 +8,24 @@ $desktop: 1175px;
   position: fixed;
   bottom: 0;
   left: 0;
-  top: auto; 
+  top: auto;
   width: 100%;
-  height: 72px; 
+  height: 72px;
   background-color: $surface-container-lowest;
   border-top: 1px solid $outline-variant;
   border-right: none;
   padding: 0 8px;
   z-index: 30;
-  font-family: $font-inter;
+  font-family: $font-body;
   box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
   transition: all 0.3s ease;
 
   /* 2. Tablet State: Collapsed Vertical Sidebar (Icon-only) */
-  @media (min-width: $tablet) {
+  @include respond-to($tablet) {
     flex-direction: column;
-    top: 64px; 
+    top: 64px;
     bottom: auto;
-    width: 80px; 
+    width: 80px;
     height: calc(100vh - 64px);
     border-top: none;
     border-right: 1px solid $outline-variant;
@@ -50,8 +34,8 @@ $desktop: 1175px;
   }
 
   /* 3. Desktop State: Full Expanded Sidebar */
-  @media (min-width: $desktop) {
-    width: 280px;
+  @include respond-to($desktop) {
+    width: $sidebar-width;
     padding: 24px 16px; // Slightly increased side padding for standard spacing
   }
 }
@@ -63,10 +47,10 @@ $desktop: 1175px;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  gap: 4px; 
+  gap: 4px;
   overflow: visible;
-  
-  @media (min-width: $tablet) {
+
+  @include respond-to($tablet) {
     flex-direction: column;
     justify-content: flex-start;
     align-items: stretch; // Allows items to fill width
@@ -74,11 +58,11 @@ $desktop: 1175px;
     overflow-y: auto;
     overflow-x: hidden;
   }
-  
+
   // Custom Scrollbar styles
   &::-webkit-scrollbar { width: 6px; }
   &::-webkit-scrollbar-track { background: transparent; }
-  &::-webkit-scrollbar-thumb { background: #e0e3e5; border-radius: 10px; }
+  &::-webkit-scrollbar-thumb { background: $surface-variant; border-radius: 10px; }
 }
 
 // Global base for buttons and links
@@ -90,13 +74,13 @@ $desktop: 1175px;
   border-radius: 8px;
   font-size: 14px;
   font-weight: 500;
-  white-space: nowrap; 
-  padding: 12px; 
-  
+  white-space: nowrap;
+  padding: 12px;
+
   .icon {
     width: 24px;
     height: 24px;
-    flex-shrink: 0; 
+    flex-shrink: 0;
     color: inherit; // Ensures SVG takes on the text color
   }
 
@@ -104,14 +88,14 @@ $desktop: 1175px;
     display: none;
     opacity: 0;
 
-    @media (min-width: $desktop) {
+    @include respond-to($desktop) {
       display: block;
       opacity: 1;
       width: auto;
     }
   }
 
-  @media (min-width: $desktop) {
+  @include respond-to($desktop) {
     justify-content: flex-start;
     padding: 12px 16px; // Taller padding to match image_f25b2a.png
   }
@@ -131,8 +115,8 @@ $desktop: 1175px;
   font-weight: 500;
   justify-content: center; // Center content on mobile
 
-  @media (min-width: $tablet) {
-    margin-bottom: 16px; 
+  @include respond-to($tablet) {
+    margin-bottom: 16px;
   }
 
   &:hover { background-color: $primary-container; }
@@ -150,8 +134,8 @@ $desktop: 1175px;
   text-decoration: none;
   transition: all 0.15s ease-in-out;
   border-bottom: 4px solid transparent; // Mobile invisible border
-  
-  @media (min-width: $tablet) {
+
+  @include respond-to($tablet) {
     border-bottom: none;
     border-left: 4px solid transparent; // Desktop/Tablet invisible border
   }
@@ -172,14 +156,14 @@ $desktop: 1175px;
       color: $on-secondary-container;
     }
 
-    @media (min-width: $tablet) {
+    @include respond-to($tablet) {
       border-bottom: none;
       // To perfectly match the rounded inner/outer border in the image:
-      border-left: 4px solid $primary; 
+      border-left: 4px solid $primary;
       border-top-left-radius: 8px;
       border-bottom-left-radius: 8px;
     }
-    
+
     &:hover {
       background-color: color.adjust($secondary-container, $lightness: -3%);
     }
