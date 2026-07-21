@@ -1,0 +1,72 @@
+// =============================================================================
+// Typography mixins
+// Type scale from the reference design (family / size / line-height / weight).
+// Usage: `.title { @include headline-md; }`
+// =============================================================================
+@use 'variables' as *;
+
+@mixin body-sm {
+  font-family: $font-body;
+  font-size: 12px;
+  line-height: 18px;
+  font-weight: 400;
+}
+
+@mixin body-md {
+  font-family: $font-body;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+}
+
+@mixin body-lg {
+  font-family: $font-body;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+}
+
+@mixin label-sm {
+  font-family: $font-body;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+}
+
+@mixin label-md {
+  font-family: $font-body;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+}
+
+@mixin headline-md {
+  font-family: $font-body;
+  font-size: 18px;
+  line-height: 28px;
+  font-weight: 600;
+}
+
+@mixin headline-lg {
+  font-family: $font-body;
+  font-size: 24px;
+  line-height: 32px;
+  letter-spacing: -0.01em;
+  font-weight: 600;
+}
+
+@mixin headline-xl {
+  font-family: $font-body;
+  font-size: 36px;
+  line-height: 44px;
+  letter-spacing: -0.02em;
+  font-weight: 700;
+}
+
+@mixin code {
+  font-family: $font-code;
+  font-size: 13px;
+  line-height: 20px;
+  font-weight: 400;
+}

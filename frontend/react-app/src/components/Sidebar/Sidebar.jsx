@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import './Sidebar.scss';
 
-import addIcon from '../../../assets/icons/plus.svg';
-import chatIcon from '../../../assets/icons/message-square.svg';
-import historyIcon from '../../../assets/icons/history.svg';
-import profileIcon from '../../../assets/icons/user-circle.svg';
-import settingsIcon from '../../../assets/icons/settings.svg';
+import addIcon from '../../assets/icons/plus.svg';
+import chatIcon from '../../assets/icons/message-square.svg';
+import historyIcon from '../../assets/icons/history.svg';
+import profileIcon from '../../assets/icons/user-circle.svg';
+import settingsIcon from '../../assets/icons/settings.svg';
 
 const Sidebar = () => {
   // Initialize state with 'Chat' as the default active item
