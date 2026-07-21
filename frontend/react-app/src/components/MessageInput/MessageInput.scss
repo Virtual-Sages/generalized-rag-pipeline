@@ -1,0 +1,160 @@
+@use '../../styles/abstracts' as *;
+@use 'sass:color';
+
+.message-input-wrapper {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 72px;
+  z-index: 20;
+  padding: $space-sm $space-md calc(#{$space-md} + env(safe-area-inset-bottom));
+  font-family: $font-body;
+  background: linear-gradient(180deg, rgba(247, 249, 251, 0) 0%, $background 40%);
+  backdrop-filter: blur(2px);
+
+  @media (min-width: $tablet) {
+    left: 80px;
+    right: auto;
+    width: calc(100% - 80px);
+    bottom: 0;
+    padding: $space-md $space-lg calc(#{$space-lg} + env(safe-area-inset-bottom));
+  }
+
+  @media (min-width: $desktop) {
+    left: 280px;
+    width: calc(100% - 280px);
+  }
+}
+
+.message-input-container {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  width: min(100%, 800px);
+  background-color: $surface-container-lowest;
+  border: 1px solid $outline-variant;
+  border-radius: $radius-xl;
+  padding: $space-base $space-sm;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+  &:focus-within {
+    border-color: $primary;
+    box-shadow: 0 4px 15px rgba(0, 74, 198, 0.1);
+  }
+}
+
+// Left Add Button
+.btn-add-attachment {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  color: $on-surface-variant;
+  transition: background-color 0.2s ease;
+  flex-shrink: 0; // Prevents icon from squishing on tiny screens
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+
+  .icon {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+// Text Input Field
+.chat-input {
+  // flex: 1 allows the input to organically grow/shrink based on screen width
+  flex: 1; 
+  border: none;
+  background: transparent;
+  padding: $space-base $space-sm;
+  font-size: 14px; // Slightly smaller font on mobile
+  color: $on-surface;
+  outline: none;
+  min-width: 0; // Prevents text input from overflowing flex container
+  
+  &::placeholder {
+    color: $outline;
+    // Prevent placeholder from breaking layout on very small screens
+    text-overflow: ellipsis; 
+  }
+
+  @media (min-width: $tablet) {
+    padding: $space-sm $space-md;
+    font-size: 16px;
+  }
+}
+
+// Right Send Button
+.btn-send {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: $primary;
+  border: none;
+  cursor: pointer;
+  padding: $space-base;
+  border-radius: $radius;
+  margin-left: $space-base;
+  transition: background-color 0.2s ease, transform 0.1s ease, opacity 0.2s ease;
+  flex-shrink: 0; // Prevents button from squishing
+
+  .icon {
+    width: 20px;
+    height: 20px;
+    transform: translateX(1px);
+  }
+
+  &:not(:disabled) {
+    .icon {
+      color: $on-primary;
+      filter: brightness(0) invert(1);
+    }
+  }
+
+  &:hover:not(:disabled) {
+    background-color: $primary-container;
+  }
+
+  &:active:not(:disabled) {
+    transform: scale(0.95);
+  }
+
+  &:disabled {
+    background-color: $outline-variant;
+    cursor: not-allowed;
+    opacity: 0.6;
+
+    .icon {
+      filter: grayscale(1);
+    }
+  }
+}
+
+// Footer Disclaimer Text
+.message-footer {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  margin-top: 12px; // Space between input and text
+  color: #737686; // Matches your $outline variable
+  font-size: 11px; // Smaller on mobile to prevent wrapping issues
+  width: 100%;
+
+  @media (min-width: 768px) { // Tablet breakpoint
+    font-size: 12px;
+    margin-top: 12px;
+  }
+}
