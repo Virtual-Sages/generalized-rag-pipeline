@@ -3,6 +3,7 @@ import { createBrowserRouter } from "react-router-dom";
 import MainLayout from "../layouts/MainLayout";
 import ProtectedRoute from "./ProtectedRoute";
 import Auth from "../pages/Auth/Auth";
+import ChatPage from "../pages/Chat/ChatPage";
 
 const router = createBrowserRouter([
     {
@@ -17,10 +18,10 @@ const router = createBrowserRouter([
             </ProtectedRoute>
         ),
         children: [
-            // {
-            //     index: true,
-            //     element:,
-            // },
+            {
+                index: true,
+                element:<ChatPage />,
+            },
             //   {
             //     path: "chat-history",
             //     element: ,
