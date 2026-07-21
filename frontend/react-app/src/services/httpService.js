@@ -1,6 +1,5 @@
 import axios from "axios";
 import NotificationService from "./NotificationService";
-import { toast } from "react-toastify";
 
 const base_url = import.meta.env.VITE_BASE_URL;
 
