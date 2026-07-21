@@ -1,25 +1,15 @@
 import './App.css'
-<<<<<<< Updated upstream
-import Sidebar from './components/Sidebar/Sidebar'
-=======
-import Navbar from './components/layout/Navbar/Navbar'
-import Sidebar from './components/layout/Sidebar/Sidebar'
-import MessageInput from './components/MessageInput/MessageInput'
-import ChatPage from './pages/Chat/ChatPage'
->>>>>>> Stashed changes
+
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { RouterProvider } from 'react-router-dom';
+import router from './routes/AppRoutes';
 
 function App() {
   return (
     <>
-      <div>
-<<<<<<< Updated upstream
-       <Sidebar />
-=======
-        <Navbar />
-        <Sidebar />
-        <ChatPage />
->>>>>>> Stashed changes
-      </div>
+      <RouterProvider router={router} />
+      <ToastContainer />
     </>
   )
 }

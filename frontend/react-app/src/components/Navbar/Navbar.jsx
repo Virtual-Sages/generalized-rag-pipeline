@@ -1,16 +1,21 @@
 import "./style.scss";
 
-import fileIcon from "../../../assets/icons/file-text.svg";
-import profileIcon from "../../../assets/icons/user-circle.svg";
-import avatarImage from "../../../assets/user.jpg";
+import fileIcon from "../../assets/icons/file-text.svg";
+import profileIcon from "../../assets/icons/user-circle.svg";
+import avatarImage from "../../assets/user.jpg";
+import AuthService from "../../services/authServices";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+    const navigate = useNavigate();
+
     const handleProfileClick = () => {
         // console.log("Profile button pressed");
     };
 
-    const handleLogoutClick = () => {
-        // console.log("Logout button pressed");
+    const handleLogoutClick = (e) => {
+        e.preventDefault();
+        AuthService.logout(navigate);
     };
 
     return (

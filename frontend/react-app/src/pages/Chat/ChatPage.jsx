@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import WelcomeScreen from '../../components/hardcoded/WelcomeScreen/WelcomeScreen'
+import WelcomeScreen from '../../components/WelcomeScreen/WelcomeScreen'
 import MessageInput from '../../components/MessageInput/MessageInput';
 import './ChatPage.scss';
 
