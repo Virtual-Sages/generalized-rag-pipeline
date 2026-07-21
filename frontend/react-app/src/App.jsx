@@ -1,14 +1,15 @@
 import './App.css'
-import Navbar from './components/Navbar/Navbar'
-import Sidebar from './components/Sidebar/Sidebar'
+
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { RouterProvider } from 'react-router-dom';
+import router from './routes/AppRoutes';
 
 function App() {
   return (
     <>
-      <div>
-        <Navbar />
-        <Sidebar />
-      </div>
+      <RouterProvider router={router} />
+      <ToastContainer />
     </>
   )
 }
