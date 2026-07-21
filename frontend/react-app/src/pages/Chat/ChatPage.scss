@@ -1,0 +1,74 @@
+@use '../../styles/abstracts' as *;
+
+.chat-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: $background;
+  padding: calc(#{$header-height} + 12px) 16px 140px;
+
+  @media (min-width: $tablet) {
+    padding-left: 96px;
+    padding-right: 24px;
+  }
+
+  @media (min-width: $desktop) {
+    padding-left: 296px;
+    padding-right: 24px;
+  }
+}
+
+.chat-content {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  overflow-y: auto;
+  min-height: 0;
+  padding: 8px 0 0;
+}
+
+.messages-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: min(100%, 800px);
+  margin: 0 auto;
+}
+
+.message-wrapper {
+  display: flex;
+  width: 100%;
+
+  &.user {
+    justify-content: flex-end;
+
+    .message-bubble {
+      background-color: $surface-container-lowest;
+      border: 1px solid $outline-variant;
+    }
+  }
+
+  &.ai {
+    justify-content: flex-start;
+
+    .message-bubble {
+      background-color: #eef0ff;
+      border: none;
+    }
+  }
+}
+
+.message-bubble {
+  max-width: min(90%, 560px);
+  width: fit-content;
+  padding: 12px 14px;
+  border-radius: 16px;
+  font-family: $font-body;
+  font-size: clamp(0.9rem, 1.4vw, 1rem);
+  line-height: 1.5;
+  color: $on-surface;
+  word-break: break-word;
+}
