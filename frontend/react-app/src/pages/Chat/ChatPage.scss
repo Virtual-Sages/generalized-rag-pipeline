@@ -40,10 +40,12 @@
 
 .message-wrapper {
   display: flex;
+  flex-direction: column;
   width: 100%;
+  gap: $space-base;
 
   &.user {
-    justify-content: flex-end;
+    align-items: flex-end;
 
     .message-bubble {
       background-color: $surface-container-lowest;
@@ -52,12 +54,53 @@
   }
 
   &.ai {
-    justify-content: flex-start;
+    align-items: flex-start;
 
     .message-bubble {
       background-color: #eef0ff;
       border: none;
     }
+  }
+}
+
+.message-meta {
+  display: flex;
+  align-items: center;
+  gap: $space-sm;
+  margin-bottom: $space-xs;
+}
+
+.message-author {
+  @include label-sm;
+  color: $on-surface;
+}
+
+.message-time {
+  @include body-sm;
+  color: $on-surface-variant;
+}
+
+.message-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  border-radius: $radius-full;
+
+  .material-symbols-outlined {
+    font-size: 14px;
+  }
+
+  &.user {
+    background-color: $secondary-fixed;
+    color: $on-surface;
+  }
+
+  &.ai {
+    background-color: $primary-container;
+    color: $on-primary;
   }
 }
 
