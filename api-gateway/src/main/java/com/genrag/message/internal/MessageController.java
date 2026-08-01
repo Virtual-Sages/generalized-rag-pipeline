@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import jakarta.validation.Valid;
+
 import java.util.UUID;
 
 @RestController
@@ -34,11 +36,7 @@ public class MessageController {
     @PostMapping
     public ResponseEntity<MessageResponse> sendMessage(
             @AuthenticationPrincipal(errorOnInvalidType = true) UUID userId,
-            @RequestBody MessageRequest request) {
-        try {
-            return ResponseEntity.ok(messageService.sendMessage(userId, request));
-        } catch (RuntimeException e) {
-            throw e;
-        }
+            @Valid @RequestBody MessageRequest request) {
+        return ResponseEntity.ok(messageService.sendMessage(userId, request));
     }
 }
