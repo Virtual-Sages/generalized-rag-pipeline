@@ -1,5 +1,7 @@
 package com.genrag.message.api;
 
 public enum MessageRole {
-    // TODO
+    USER,
+    ASSISTANT,
+    SYSTEM
 }
