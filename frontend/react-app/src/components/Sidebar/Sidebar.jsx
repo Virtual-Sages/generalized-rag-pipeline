@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import './Sidebar.scss';
 
 import addIcon from '../../assets/icons/plus.svg';
@@ -6,15 +5,35 @@ import chatIcon from '../../assets/icons/message-square.svg';
 import historyIcon from '../../assets/icons/history.svg';
 import profileIcon from '../../assets/icons/user-circle.svg';
 import settingsIcon from '../../assets/icons/settings.svg';
+import PAGE_CONSTANTS from '../../constants/pages';
 
-const Sidebar = () => {
-  // Initialize state with 'Chat' as the default active item
-  const [activeItem, setActiveItem] = useState('Chat');
+const SIDEBAR_MENU_ITEMS = [
+    {
+        name: PAGE_CONSTANTS.CHAT,
+        label: 'Chat',
+        icon: chatIcon
+    },
+    {
+        name: PAGE_CONSTANTS.CHAT_HISTORY,
+        label: 'History',
+        icon: historyIcon
+    },
+    {
+        name: PAGE_CONSTANTS.PROFILE,
+        label: 'Profile',
+        icon: profileIcon
+    },
+    {
+        name: PAGE_CONSTANTS.SETTINGS,
+        label: 'Settings',
+        icon: settingsIcon
+    }
+];
 
+const Sidebar = ({ currentPage, setCurrentPage }) => {
   // Function to handle navigation clicks
-  const handleNavClick = (e, itemName) => {
-    e.preventDefault(); // Prevents the page from jumping to top due to href="#"
-    setActiveItem(itemName);
+  const handleNavClick = (name) => {
+    setCurrentPage(name)
   };
 
   return (
@@ -25,41 +44,21 @@ const Sidebar = () => {
           <span>New Analysis</span>
         </button>
 
-        <a 
-          href="#" 
-          className={`nav-item ${activeItem === 'Chat' ? 'active' : ''}`}
-          onClick={(e) => handleNavClick(e, 'Chat')}
-        >
-          <img src={chatIcon} alt="Chat" className="icon" />
-          <span>Chat</span>
-        </a>
-
-        <a 
-          href="#" 
-          className={`nav-item ${activeItem === 'History' ? 'active' : ''}`}
-          onClick={(e) => handleNavClick(e, 'History')}
-        >
-          <img src={historyIcon} alt="History" className="icon" />
-          <span>History</span>
-        </a>
-
-        <a 
-          href="#" 
-          className={`nav-item ${activeItem === 'Profile' ? 'active' : ''}`}
-          onClick={(e) => handleNavClick(e, 'Profile')}
-        >
-          <img src={profileIcon} alt="Profile" className="icon" />
-          <span>Profile</span>
-        </a>
-
-        <a 
-          href="#" 
-          className={`nav-item ${activeItem === 'Settings' ? 'active' : ''}`}
-          onClick={(e) => handleNavClick(e, 'Settings')}
-        >
-          <img src={settingsIcon} alt="Settings" className="icon" />
-          <span>Settings</span>
-        </a>
+        {
+            SIDEBAR_MENU_ITEMS.map((item) => {
+                return (
+                    <button
+                        type='button'
+                        key={ item.name }
+                        className={ `nav-item ${currentPage === item.name ? 'active' : ''}` }
+                        onClick={() => handleNavClick(item.name)}
+                    >
+                        <img src={ item.icon } alt={ item.label } className="icon" />
+                        <span>{ item.label }</span>
+                    </button>
+                )
+            })
+        }
       </nav>
     </aside>
   );

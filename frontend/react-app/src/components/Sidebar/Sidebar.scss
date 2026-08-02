@@ -130,6 +130,12 @@
 // Navigation Links
 .nav-item {
   @extend %flex-item-base;
+  // Button resets — these sit above the border-bottom below on purpose, so the
+  // shorthand clears the UA border without wiping the active-state highlight.
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
   color: $on-surface-variant;
   text-decoration: none;
   transition: all 0.15s ease-in-out;
