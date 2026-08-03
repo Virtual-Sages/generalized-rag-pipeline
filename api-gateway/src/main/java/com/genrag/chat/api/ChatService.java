@@ -8,5 +8,5 @@ import java.util.UUID;
 
 public interface ChatService {
     List<ChatItemDto> getChats(UUID userId);
-    ChatMessagesDto getChatMessages(String chatId);
+    ChatMessagesDto getChatMessages(UUID userId, String chatId);
 }

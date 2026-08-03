@@ -34,9 +34,10 @@ public class ChatController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ChatMessagesDto> getChatMessages(@PathVariable String id) {
+    public ResponseEntity<ChatMessagesDto> getChatMessages(@PathVariable String id,
+        @AuthenticationPrincipal(errorOnInvalidType = true) UUID userId) {
        try{
-            return ResponseEntity.ok(chatService.getChatMessages(id));
+            return ResponseEntity.ok(chatService.getChatMessages(userId, id));
        } catch (RuntimeException e) {
             throw e;
        }

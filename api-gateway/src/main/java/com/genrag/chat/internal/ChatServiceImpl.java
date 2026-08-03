@@ -28,9 +28,9 @@ public class ChatServiceImpl implements ChatService {
     }
 
     @Override
-    public ChatMessagesDto getChatMessages(String id) {
+    public ChatMessagesDto getChatMessages(UUID userId, String id) {
         UUID chatId = UUID.fromString(id);
-        List<MessageDto> messages = messageService.getMessages(chatId);
+        List<MessageDto> messages = messageService.getMessages(userId, chatId);
 
         return new ChatMessagesDto(messages);
     }
