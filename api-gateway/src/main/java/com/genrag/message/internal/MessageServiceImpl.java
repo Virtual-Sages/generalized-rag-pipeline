@@ -57,15 +57,17 @@ public class MessageServiceImpl implements MessageService {
         ChatEntity chat = resolveChat(user, request);
 
         // 1. Save the USER message
-        MessageEntity userMessage = messageRepository.save(
-                new MessageEntity(chat, MessageRole.USER, request.content()));
+        MessageEntity userMessage = new MessageEntity(chat, MessageRole.USER, request.content());
+        userMessage.setCreatedAt(Instant.now());
+        userMessage = messageRepository.save(userMessage);
 
         // 2. Call AI Service and get the response
         String assistantReply = queryAiService(request.content());
 
         // 3. Save the ASSISTANT message
-        MessageEntity assistantMessage = messageRepository.save(
-                new MessageEntity(chat, MessageRole.ASSISTANT, assistantReply));
+        MessageEntity assistantMessage = new MessageEntity(chat, MessageRole.ASSISTANT, assistantReply);
+        assistantMessage.setCreatedAt(Instant.now());
+        assistantMessage = messageRepository.save(assistantMessage);
 
         // touch chat
         if (request.chatId() != null) {
