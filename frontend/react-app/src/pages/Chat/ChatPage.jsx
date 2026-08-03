@@ -1,13 +1,20 @@
 import React, { useState } from 'react';
 import WelcomeScreen from '../../components/WelcomeScreen/WelcomeScreen'
 import MessageInput from '../../components/MessageInput/MessageInput';
+import TypingIndicator from '../../components/TypingIndicator/TypingIndicator';
+import ChatService from '../../services/chatService';
 import './ChatPage.scss';
+
+const formatTime = (timestamp) =>
+  new Date(timestamp).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
 
 const ChatPage = () => {
   const [hasStartedChat, setHasStartedChat] = useState(false);
   const [messages, setMessages] = useState([]);
+  const [chatId, setChatId] = useState(null);
+  const [isAiTyping, setIsAiTyping] = useState(false);
 
-  const handleSendMessage = (newMessageText) => {
+  const handleSendMessage = async (newMessageText) => {
     if (!newMessageText.trim()) return;
 
     // 1. Hide the WelcomeScreen permanently for this session
@@ -16,17 +23,33 @@ const ChatPage = () => {
     }
 
     setMessages((prevMessages) => [
-      ...prevMessages, 
-      { id: Date.now(), text: newMessageText, sender: 'user' }
+      ...prevMessages,
+      { id: Date.now(), text: newMessageText, sender: 'user', timestamp: new Date().toISOString() }
     ]);
 
-    // Optional: Simulate an AI response after a delay
-    setTimeout(() => {
+    setIsAiTyping(true);
+
+    try {
+      const assistantMessage = await ChatService.sendMessage(chatId, newMessageText);
+
+      if (!chatId) {
+        setChatId(assistantMessage.chatId);
+      }
+
       setMessages((prevMessages) => [
         ...prevMessages,
-        { id: Date.now() + 1, text: "I am analyzing your request...", sender: 'ai' }
+        {
+          id: assistantMessage.id,
+          text: assistantMessage.content,
+          sender: 'ai',
+          timestamp: assistantMessage.createdAt
+        }
       ]);
-    }, 1500);
+    } catch {
+      // makeHttpRequest's interceptor already shows an error toast; nothing further needed here.
+    } finally {
+      setIsAiTyping(false);
+    }
   };
 
   return (
@@ -38,11 +61,31 @@ const ChatPage = () => {
           <div className="messages-list">
             {messages.map((msg) => (
               <div key={msg.id} className={`message-wrapper ${msg.sender}`}>
+                <div className="message-meta">
+                  {msg.sender === 'user' ? (
+                    <>
+                      <span className="message-time">{formatTime(msg.timestamp)}</span>
+                      <span className="message-author">You</span>
+                      <span className="message-avatar user">
+                        <span className="material-symbols-outlined">person</span>
+                      </span>
+                    </>
+                  ) : (
+                    <>
+                      <span className="message-avatar ai">
+                        <span className="material-symbols-outlined">smart_toy</span>
+                      </span>
+                      <span className="message-author">AI Assistant</span>
+                      <span className="message-time">{formatTime(msg.timestamp)}</span>
+                    </>
+                  )}
+                </div>
                 <div className="message-bubble">
                   {msg.text}
                 </div>
               </div>
             ))}
+            {isAiTyping && <TypingIndicator />}
           </div>
         )}
       </div>
