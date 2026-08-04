@@ -1,10 +1,12 @@
 package com.genrag.auth.internal.ExceptionHandlers;
 
+import java.util.List;
 import java.util.Map;
 
 import com.genrag.auth.internal.AuthController;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -37,16 +39,30 @@ class AuthExceptionHandler {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     ResponseEntity<Map<String, String>> handleValidation(MethodArgumentNotValidException e) {
-        Map<String, String> fieldErrors = new java.util.HashMap<>();
-        e
-            .getBindingResult()
-            .getFieldErrors()
-            .forEach(
-                fe -> fieldErrors.putIfAbsent(
-                    fe.getField(), 
-                    fe.getDefaultMessage()
-                )
+        List<FieldError> allFieldErrors = e.getBindingResult().getFieldErrors();
+        String errorMessage = "Bad request";
+
+        boolean hasMissingField = allFieldErrors
+            .stream()
+            .anyMatch(err -> {
+                    Object value = err.getRejectedValue();
+                    return value == null || (value instanceof String fieldValue && fieldValue.isBlank());       // new way (check instance of -> assign it -> check is blank)
+                }
             );
-        return ResponseEntity.badRequest().body(fieldErrors);
+
+        if(hasMissingField) {
+            errorMessage = "All the given fields are required";
+        } else {
+            errorMessage = allFieldErrors
+                .stream()
+                .filter(err -> err.getDefaultMessage() != null)
+                .map(err -> err.getField() + " " + err.getDefaultMessage())
+                .findFirst()
+                .orElse(errorMessage);
+        }
+
+        return ResponseEntity
+            .status(HttpStatus.BAD_REQUEST)
+            .body(Map.of("error", errorMessage));
     }
 }
