@@ -1,0 +1,53 @@
+@use '../../styles/abstracts' as *;
+
+.dt-grid {
+    width: 100%;
+
+    .ag-header-cell-text {
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+}
+
+.dt-cell--right {
+    justify-content: flex-end;
+    text-align: right;
+}
+
+.dt-cell--center {
+    justify-content: center;
+    text-align: center;
+}
+
+.dt-serial {
+    @include code;
+    color: $on-surface-variant;
+}
+
+.dt-link {
+    @include body-md;
+    font-weight: 600;
+    color: $primary;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    text-align: left;
+
+    &:hover {
+        text-decoration: underline;
+        text-decoration-thickness: 2px;
+        text-underline-offset: 4px;
+    }
+}
+
+.dt-datetime {
+    color: $on-surface-variant;
+    white-space: nowrap;
+
+    &__time {
+        font-size: 12px;
+        opacity: 0.6;
+        margin-left: $space-xs;
+    }
+}

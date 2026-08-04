@@ -1,0 +1,54 @@
+@use '../../styles/abstracts' as *;
+
+// Sidebar and Navbar are position: fixed, so nothing reserves space for them —
+// each page offsets itself. These values mirror ChatPage.scss; if the sidebar
+// width ever changes, both files need updating.
+.chat-history {
+    min-height: 100vh;
+    width: 100%;
+    background-color: $background;
+    padding: calc(#{$header-height} + 12px) $space-md $space-xl;
+
+    @include respond-to($tablet) {
+        padding-left: 96px;
+        padding-right: $space-lg;
+    }
+
+    @include respond-to($desktop) {
+        padding-left: 296px;
+        padding-right: $space-lg;
+    }
+
+    &__header {
+        margin-bottom: $space-lg;
+    }
+
+    &__title {
+        @include headline-lg;
+        color: $on-surface;
+        margin: 0;
+    }
+
+    &__subtitle {
+        @include body-md;
+        color: $on-surface-variant;
+        margin: $space-xs 0 0;
+    }
+
+    // The card owns the outer border and radius — tableTheme sets
+    // wrapperBorder: false so the grid doesn't draw its own on top.
+    &__card {
+        background: $surface-container-lowest;
+        border: 1px solid $outline-variant;
+        border-radius: $radius-xl;
+        overflow: hidden;
+    }
+
+    &__loading {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 240px;
+        color: $primary; // Spinner draws its arc from currentColor
+    }
+}

@@ -4,6 +4,7 @@ import MainLayout from "../layouts/MainLayout";
 import ProtectedRoute from "./ProtectedRoute";
 import Auth from "../pages/Auth/Auth";
 import ChatPage from "../pages/Chat/ChatPage";
+// import ChatHistory from "../pages/ChatHistory/ChatHistory";
 
 const router = createBrowserRouter([
     {
@@ -22,10 +23,10 @@ const router = createBrowserRouter([
                 index: true,
                 element:<ChatPage />,
             },
-            //   {
+            // {
             //     path: "chat-history",
-            //     element: ,
-            //   },
+            //     element: <ChatHistory />,
+            // },
             //   {
             //     path: "profile",
             //     element: ,
