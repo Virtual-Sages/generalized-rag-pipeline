@@ -20,12 +20,17 @@ public class LocalStorageService implements StorageService{
         this.storageLocation = Paths.get(storageLocation);
     }
 
+    /**
+     * Stores an uploaded file in the configured storage location.
+     *
+     * @param file the file to be stored
+     * @param extension the file extension, such as ".pdf" or ".txt"
+     * @param id the unique identifier used as the file name
+     * @throws RuntimeException if the file cannot be stored
+     */
     @Override
     public void upload(MultipartFile file, String extension, String id){
         try {
-            System.out.println("========== UPLOAD SERVICE HIT ==========");
-            System.out.println("Filename: " + file.getOriginalFilename());
-            System.out.println("Content Type: " + file.getContentType());
             // Create the complete target path
             Path target = storageLocation.resolve(
                 id + extension
@@ -53,6 +58,15 @@ public class LocalStorageService implements StorageService{
         }
     }
 
+    /**
+     * Retrieves a stored file as a Spring Resource.
+     *
+     * @param id the unique identifier of the document
+     * @param extension the file extension, such as ".pdf" or ".txt"
+     * @return the stored file as a Resource
+     * @throws RuntimeException if the file does not exist, is not readable,
+     *                          or the file path is invalid
+     */
     @Override
     public Resource download(String id, String extension){
         try{
@@ -76,6 +90,13 @@ public class LocalStorageService implements StorageService{
         }
     }
 
+    /**
+     * Checks whether a stored document exists in the configured storage location.
+     *
+     * @param id the unique identifier of the document
+     * @param extension the file extension of the document
+     * @return true if the file exists, otherwise false
+     */
     @Override
     public boolean exists(String id, String extension){
         Path target = storageLocation.resolve(
@@ -85,6 +106,14 @@ public class LocalStorageService implements StorageService{
         return Files.exists(target);
     }
 
+    /**
+     * Checks whether the specified content type is supported for document storage.
+     *
+     * The supported formats are PDF and plain text.
+     *
+     * @param contentType the MIME type of the uploaded file
+     * @return true if the content type is PDF or plain text, otherwise false
+     */
     @Override
     public boolean isAllowedFormat(String contentType){
 
@@ -92,6 +121,13 @@ public class LocalStorageService implements StorageService{
             || "text/plain".equalsIgnoreCase(contentType);
     }
 
+    /**
+     * Extracts the file extension from the specified file name.
+     *
+     * @param fileName the original file name
+     * @return the file extension including the dot, such as ".pdf" or ".txt",
+     *         or an empty string if no extension is present
+     */
     @Override
     public String getExtension(String fileName) {
         int lastDot = fileName.lastIndexOf('.');
