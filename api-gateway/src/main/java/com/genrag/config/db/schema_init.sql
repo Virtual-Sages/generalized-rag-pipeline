@@ -34,7 +34,7 @@ CREATE INDEX IF NOT EXISTS idx_messages_chat_created ON messages (chat_id, creat
 CREATE TABLE IF NOT EXISTS documents (
     id           UUID         PRIMARY KEY DEFAULT gen_random_uuid(),
     user_id      UUID         NOT NULL REFERENCES users(id) ON DELETE CASCADE,
-    filename     VARCHAR(255) NOT NULL,
+    file_name     VARCHAR(255) NOT NULL,
     file_path    VARCHAR(512) NOT NULL,
     content_type VARCHAR(100) NOT NULL,
     size_bytes   BIGINT       NOT NULL,
