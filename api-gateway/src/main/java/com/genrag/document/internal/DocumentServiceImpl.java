@@ -30,6 +30,13 @@ public class DocumentServiceImpl implements DocumentService {
         this.userRepository = userRepository;
     }
 
+    /**
+     * Retrieves all documents belonging to the specified user.
+     *
+     * @param userId the unique identifier of the user
+     * @return a list of documents belonging to the user, ordered by most recently updated
+     * @throws RuntimeException if the documents cannot be retrieved
+     */
     @Override
     public List<DocumentItem> getDocuments(UUID userId) {
         try {
@@ -40,6 +47,19 @@ public class DocumentServiceImpl implements DocumentService {
         }
     }
 
+    /**
+     * Uploads and stores a document for the specified user.
+     *
+     * The document must not be empty, must have an allowed file format,
+     * and must not exceed the maximum file size limit.
+     *
+     * @param file the document to upload
+     * @param userId the unique identifier of the user uploading the document
+     * @return the uploaded document details
+     * @throws IllegalArgumentException if the file is empty, the format is not allowed,
+     *                                  the file exceeds the size limit, or the user is not found
+     * @throws RuntimeException if the document cannot be uploaded
+     */
     @Override
     public DocumentItem upload(MultipartFile file, UUID userId) {
         try {
@@ -49,7 +69,7 @@ public class DocumentServiceImpl implements DocumentService {
 
             String fileName = file.getOriginalFilename();
             String contentType = file.getContentType();
-            Long sizeBytes = file.getSize();
+            long sizeBytes = file.getSize();
 
             if (contentType == null || !storageService.isAllowedFormat(contentType)) {
                 throw new IllegalArgumentException("File format is not allowed.");
@@ -81,6 +101,16 @@ public class DocumentServiceImpl implements DocumentService {
         }
     }
 
+    /**
+     * Retrieves a stored document by its identifier.
+     *
+     * @param id the unique identifier of the document
+     * @return the document as a Spring {@link Resource}
+     * @throws IllegalArgumentException if the document ID is invalid,
+     *                                  the document does not exist,
+     *                                  or the stored file cannot be found
+     * @throws RuntimeException if the document cannot be downloaded
+     */
     @Override
     public Resource download(String id) {
         try {
