@@ -1,0 +1,152 @@
+@use '../../styles/abstracts' as *;
+
+.upload-guidelines {
+  margin: 0 0 $space-md;
+  padding-left: $space-md;
+  color: $on-surface-variant;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.upload-file-input {
+  display: none;
+}
+
+.upload-dropzone {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 120px;
+  padding: $space-md;
+  border: 2px dashed $outline-variant;
+  border-radius: $radius;
+  color: $on-surface-variant;
+  font-size: 14px;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+
+  &:hover,
+  &.active {
+    border-color: $primary;
+    background-color: $primary-fixed;
+  }
+}
+
+.upload-selected-file {
+  display: flex;
+  align-items: center;
+  gap: $space-sm;
+  padding: $space-sm $space-md;
+  border: 1px solid $outline-variant;
+  border-radius: $radius;
+  background-color: $surface-container-low;
+}
+
+.upload-file-icon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.upload-file-info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  flex: 1;
+}
+
+.upload-file-name {
+  font-size: 14px;
+  color: $on-surface;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.upload-file-size {
+  font-size: 12px;
+  color: $on-surface-variant;
+}
+
+.upload-file-clear {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  border: none;
+  background: transparent;
+  border-radius: 50%;
+  font-size: 18px;
+  color: $on-surface-variant;
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+}
+
+.upload-error {
+  margin: $space-sm 0 0;
+  color: $error;
+  font-size: 13px;
+}
+
+.upload-progress {
+  margin-top: $space-md;
+  height: 6px;
+  border-radius: $radius-full;
+  background-color: $surface-container-high;
+  overflow: hidden;
+}
+
+.upload-progress-bar {
+  height: 100%;
+  background-color: $primary;
+  transition: width 0.15s ease;
+}
+
+.upload-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: $space-sm;
+  margin-top: $space-lg;
+}
+
+.btn-cancel,
+.btn-upload {
+  padding: $space-base $space-md;
+  border-radius: $radius;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease, opacity 0.2s ease;
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+}
+
+.btn-cancel {
+  border: 1px solid $outline-variant;
+  background: transparent;
+  color: $on-surface;
+
+  &:hover:not(:disabled) {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+}
+
+.btn-upload {
+  border: none;
+  background-color: $primary;
+  color: $on-primary;
+
+  &:hover:not(:disabled) {
+    background-color: $primary-container;
+  }
+}
