@@ -55,13 +55,27 @@ api.interceptors.response.use(
     }
 );
 
-const makeHttpRequest = async ({ method, url, data = {}, params = {} }) => {
+// TODO: Need to de-couple NotificationService from this service. It should be the responsibility of the caller to handle notifications.
+// SRP Violation: This service is doing too much by handling both HTTP requests and notifications.
+// It should only handle HTTP requests, and the caller should handle notifications based on the response.
+const makeHttpRequest = async ({
+    method,
+    url,
+    data = {},
+    params = {},
+    headers,
+    onUploadProgress,
+    signal,
+}) => {
     try {
         const res = await api({
             method,
             url,
             data,
             params,
+            headers,
+            onUploadProgress,
+            signal,
         });
 
         if (res?.data?.message) {
