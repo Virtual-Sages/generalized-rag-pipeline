@@ -1,11 +1,18 @@
-import React, { useState } from 'react';
-import './MessageInput.scss'; 
+import { useState } from 'react';
+import './MessageInput.scss';
 
 import addIcon from '../../assets/icons/plus.svg';
 import sendIcon from '../../assets/icons/send.svg';
+import UploadDocumentModal from '../UploadDocumentModal/UploadDocumentModal';
 
-const MessageInput = ({ onSendMessage }) => {
+/**
+ * Chat message composer with a send form and a "+" button that opens the document upload modal.
+ * @param {(message: string) => void} onSendMessage
+ * @param {(document: object) => void} [onDocumentUploaded] - Called after a document is successfully uploaded.
+ */
+const MessageInput = ({ onSendMessage, onDocumentUploaded }) => {
   const [message, setMessage] = useState('');
+  const [isUploadOpen, setIsUploadOpen] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -15,13 +22,24 @@ const MessageInput = ({ onSendMessage }) => {
     }
   };
 
+  const handleDocumentUploaded = (document) => {
+    console.log('Document uploaded:', document);
+    onDocumentUploaded?.(document);
+  };
+
   return (
     <div className="message-input-wrapper">
       <form className="message-input-container" onSubmit={handleSubmit}>
-        <button type="button" className="btn-add-attachment">
-          <img src={addIcon} alt="Add attachment" className="icon" />
+        <button
+          type="button"
+          className="btn-add-attachment"
+          aria-label="Upload document"
+          title="Upload document"
+          onClick={() => setIsUploadOpen(true)}
+        >
+          <img src={addIcon} alt="" className="icon" />
         </button>
-        
+
         <input 
           type="text" 
           className="chat-input" 
@@ -43,6 +61,12 @@ const MessageInput = ({ onSendMessage }) => {
       <div className="message-footer">
         <span>AI Document Chat System can make mistakes. Check important information.</span>
       </div>
+
+      <UploadDocumentModal
+        isOpen={isUploadOpen}
+        onClose={() => setIsUploadOpen(false)}
+        onUploaded={handleDocumentUploaded}
+      />
     </div>
   );
 };
