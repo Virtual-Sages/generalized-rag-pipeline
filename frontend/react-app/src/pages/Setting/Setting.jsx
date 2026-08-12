@@ -1,8 +1,9 @@
 import { useState, useEffect, useCallback } from "react";
 import DataTable from "../../components/DataTable";
 import Spinner from "../../components/Spinner/Spinner";
-import DocumentService from "../../services/DocumentService";
+import DocumentService from "../../services/documentService";
 import NotificationService from "../../services/notificationService";
+import UploadDocumentModal from "../../components/UploadDocumentModal/UploadDocumentModal";
 import { DocumentsTableConfig } from "./tableConfig";
 import uploadIcon from "../../assets/icons/upload-file.svg";
 import "./Setting.scss";
@@ -10,25 +11,26 @@ import "./Setting.scss";
 const Settings = () => {
     const [uploadedDocuments, setUploadedDocuments] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [isUploadOpen, setIsUploadOpen] = useState(false);
+
+    const fetchUploadedDocuments = useCallback(async () => {
+        try {
+            const foundDocuments = await DocumentService.getUploadedDocument();
+            setUploadedDocuments(foundDocuments);
+        } catch {
+            NotificationService.error("Error loading uploaded documents");
+        } finally {
+            setIsLoading(false);
+        }
+    }, []);
 
     useEffect(() => {
-        const controller = new AbortController();
-
-        const loadUploadedDocuments = async () => {
-            try {
-                const foundDocuments = await DocumentService.getUploadedDocument();
-                setUploadedDocuments(foundDocuments);
-            } catch {
-                NotificationService.error("Error loading uploaded documents");
-            } finally {
-                setIsLoading(false);
-            }
+        const fetchOnMount = async () => {
+            await fetchUploadedDocuments();
         };
 
-        loadUploadedDocuments();
-
-        return () => controller.abort();    // multi request cleanup, just in case
-    }, []);
+        fetchOnMount();
+    }, [ fetchUploadedDocuments ]);
 
     const handleCellAction = useCallback(async ({ action, row }) => {
         if (action === "download") {
@@ -40,9 +42,9 @@ const Settings = () => {
         }
     }, []);
 
-    const uploadDocument = () => {
-        console.log("Upload document");
-    };
+    const handleDocumentUploaded = useCallback(() => {
+        fetchUploadedDocuments();
+    }, [ fetchUploadedDocuments ]);
 
     return (
         <section className="chat-history">
@@ -65,7 +67,7 @@ const Settings = () => {
                     <button
                         type="button"
                         className="settings__upload-btn"
-                        onClick={ uploadDocument }
+                        onClick={ () => setIsUploadOpen(true) }
                     >
                         <img
                             src={ uploadIcon }
@@ -91,6 +93,12 @@ const Settings = () => {
                     )
                 }
             </div>
+
+            <UploadDocumentModal
+                isOpen={ isUploadOpen }
+                onClose={ () => setIsUploadOpen(false) }
+                onUploaded={ handleDocumentUploaded }
+            />
         </section>
     );
 }
