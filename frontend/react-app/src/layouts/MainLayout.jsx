@@ -4,13 +4,14 @@ import Sidebar from '../components/Sidebar/Sidebar'
 import ChatPage from '../pages/Chat/ChatPage'
 import ChatHistory from '../pages/ChatHistory/ChatHistory'
 import PAGE_CONSTANTS from '../constants/pages'
+import Settings from '../pages/Setting/Setting'
 // import { Outlet } from 'react-router-dom'
 
 const PAGES = {
     [PAGE_CONSTANTS.CHAT]: ChatPage,
     [PAGE_CONSTANTS.CHAT_HISTORY]: ChatHistory,
     [PAGE_CONSTANTS.PROFILE]: ChatPage,
-    [PAGE_CONSTANTS.SETTINGS]: ChatPage
+    [PAGE_CONSTANTS.SETTINGS]: Settings
 };
 
 function MainLayout() {

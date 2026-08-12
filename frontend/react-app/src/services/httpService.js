@@ -55,13 +55,19 @@ api.interceptors.response.use(
     }
 );
 
-const makeHttpRequest = async ({ method, url, data = {}, params = {} }) => {
+const makeHttpRequest = async ({ method, url, data = {}, params = {}, responseType }) => {
     try {
         const res = await api({
             method,
             url,
             data,
             params,
+            ...(
+                responseType &&
+                {
+                    responseType
+                }
+            ),      // existance check included
         });
 
         if (res?.data?.message) {

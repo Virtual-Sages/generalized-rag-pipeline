@@ -1,5 +1,12 @@
 @use '../../styles/abstracts' as *;
 
+// Kept in this file on purpose: the url() is relative to wherever it is
+// written, so defining it here keeps the path resolving against DataTable/.
+@mixin mask-icon($file) {
+    -webkit-mask: url('../../assets/icons/#{$file}') no-repeat center / contain;
+    mask: url('../../assets/icons/#{$file}') no-repeat center / contain;
+}
+
 .dt-grid {
     width: 100%;
 
@@ -38,6 +45,87 @@
         text-decoration: underline;
         text-decoration-thickness: 2px;
         text-underline-offset: 4px;
+    }
+}
+
+.dt-file {
+    display: flex;
+    align-items: center;
+    gap: $space-sm;
+    overflow: hidden;
+    // The renderer's root is block-level inside the cell, so without this it
+    // shrinks to its own height and rides the top edge instead of centring.
+    height: 100%;
+
+    // Masked rather than an <img> so the glyph can take a CSS colour —
+    // an <img> can't be tinted. Same trick as the logout icon in Navbar.
+    // Each modifier swaps both the glyph and the colour; @mixin keeps the
+    // two mask properties (prefixed + standard) in sync.
+    &__icon {
+        @include mask-icon('file-description.svg');
+        width: 20px;
+        height: 20px;
+        flex-shrink: 0;
+        background-color: $primary;
+
+        &--pdf {
+            @include mask-icon('file-pdf.svg');
+            background-color: $error;
+        }
+
+        &--sheet {
+            @include mask-icon('file-spreadsheet.svg');
+            background-color: $tertiary;
+        }
+
+        &--doc {
+            @include mask-icon('file-doc.svg');
+            background-color: $primary-container;
+        }
+
+        &--text {
+            @include mask-icon('file-description.svg');
+            background-color: $on-surface-variant;
+        }
+    }
+
+    &__name {
+        @include label-md;
+        color: $on-surface;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+}
+
+.dt-download {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    height: 100%;
+
+    &__btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: $space-xs;
+        border: none;
+        border-radius: $radius;
+        background: none;
+        cursor: pointer;
+        transition: background-color 150ms ease;
+
+        &:hover {
+            background-color: $primary-fixed;
+        }
+    }
+
+    // Masked like .dt-file__icon so the glyph takes a CSS colour
+    &__icon {
+        @include mask-icon('download.svg');
+        width: 20px;
+        height: 20px;
+        background-color: $primary;
     }
 }
 

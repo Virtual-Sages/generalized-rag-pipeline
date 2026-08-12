@@ -1,0 +1,78 @@
+@use '../../styles/abstracts' as *;
+
+.settings {
+    // Sits inside .chat-history__card, above the table.
+    &__card-header {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: $space-md;
+        padding: $space-md;
+        border-bottom: 1px solid $outline-variant;
+
+        @include respond-to($tablet) {
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            padding: $space-lg;
+        }
+    }
+
+    &__card-heading {
+        display: flex;
+        align-items: center;
+        gap: $space-md;
+    }
+
+    &__card-title {
+        @include headline-md;
+        color: $on-surface;
+        margin: 0;
+    }
+
+    &__count {
+        @include label-sm;
+        background-color: $primary-fixed;
+        color: $on-primary-fixed-variant;
+        padding: $space-xs $space-sm;
+        border-radius: $radius-full;
+    }
+
+    &__upload-btn {
+        @include label-md;
+        display: inline-flex;
+        align-items: center;
+        gap: $space-xs;
+        padding: $space-sm $space-md;
+        background-color: $primary;
+        color: $on-primary;
+        border: none;
+        border-radius: $radius;
+        cursor: pointer;
+        transition: background-color 0.15s ease-in-out, transform 0.1s ease;
+
+        &:hover { background-color: $primary-container; }
+        &:active { transform: scale(0.98); }
+    }
+
+    // Icons load through <img>, so currentColor can't reach the stroke —
+    // invert flips the dark stroke to white, same trick as .btn-new-analysis.
+    &__upload-icon {
+        width: 18px;
+        height: 18px;
+        filter: invert(1);
+    }
+}
+
+.type-tag {
+    padding: 4px;                  /* px-xs / py-xs */
+    background-color: #eceef0;     /* surface-container */
+    color: #434655;                /* on-surface-variant */
+    font-size: 10px;               /* text-[10px] overrides text-label-sm's 12px */
+    line-height: 16px;             /* from text-label-sm */
+    letter-spacing: 0.05em;        /* from text-label-sm */
+    font-weight: 700;              /* font-bold overrides text-label-sm's 600 */
+    text-transform: uppercase;
+    border-radius: 0.25rem;        /* rounded → borderRadius.DEFAULT */
+    font-family: Inter, sans-serif;
+}
