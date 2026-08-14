@@ -37,7 +37,8 @@ const Settings = () => {
             try {
                 await DocumentService.downloadDocument(row);
             } catch {
-                // console.log("An error occured");
+                // Will be replaced with a full fledge logger later on
+                console.error("An error occured");
             }
         }
     }, []);
