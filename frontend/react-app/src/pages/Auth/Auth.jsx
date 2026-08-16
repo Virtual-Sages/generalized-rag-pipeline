@@ -12,6 +12,8 @@ import Spinner from "../../components/Spinner/Spinner";
 import { EMAIL_REGEX } from "../../validations/regex";
 import makeHttpRequest from "../../services/httpService";
 import { useNavigate } from 'react-router-dom';
+import NotificationService from '../../services/notificationService';
+import getErrorMessage from '../../utils/errorUtils';
 
 export default function Auth() {
   const navigate = useNavigate();
@@ -141,10 +143,22 @@ export default function Auth() {
         data
       });
 
+      console.log(response);
+
       localStorage.setItem("token", response?.accessToken);
-      navigate("/");
+
+      NotificationService.success(
+        isLogin
+          ? "Signed in successfully."
+          : "Account created successfully."
+      );
+      navigate("/", { replace: true });
     } catch (error) {
-      console.log(error);
+      console.error("Authentication failed:", error);
+
+      const message = await getErrorMessage(error);
+
+      NotificationService.error(message);
     } finally {
       setIsLoading(false);
     }
@@ -163,7 +177,7 @@ export default function Auth() {
               <p>Enterprise Document Intelligence</p>
             </div>
           </div>
-          <form className="auth-form">
+          <form className="auth-form" onSubmit={handleSubmit}>
             <div className="field">
               <label htmlFor="username">Username</label>
               <div className="input-wrap">
@@ -298,10 +312,9 @@ export default function Auth() {
               <label htmlFor="remember">Stay signed in for 30 days</label>
             </div>} */}
             <button
-              type="button"
+              type="submit"
               className="submit-btn"
               disabled={isLoading}
-              onClick={handleSubmit}
             >
               {isLoading ? (
                 <>
