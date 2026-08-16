@@ -17,7 +17,6 @@ import getErrorMessage from '../../utils/errorUtils';
 
 export default function Auth() {
   const navigate = useNavigate();
-
   const [isLogin, setIsLogin] = useState(true);
   // const [remember, setRemember] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -143,10 +142,7 @@ export default function Auth() {
         data
       });
 
-      console.log(response);
-
       localStorage.setItem("token", response?.accessToken);
-
       NotificationService.success(
         isLogin
           ? "Signed in successfully."
