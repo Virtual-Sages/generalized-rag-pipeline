@@ -6,6 +6,7 @@ import NotificationService from "../../services/notificationService";
 import UploadDocumentModal from "../../components/UploadDocumentModal/UploadDocumentModal";
 import { DocumentsTableConfig } from "./tableConfig";
 import uploadIcon from "../../assets/icons/upload-file.svg";
+import getErrorMessage from "../../utils/errorUtils";
 import "./Setting.scss";
 
 const Settings = () => {
@@ -17,8 +18,12 @@ const Settings = () => {
         try {
             const foundDocuments = await DocumentService.getUploadedDocument();
             setUploadedDocuments(foundDocuments);
-        } catch {
-            NotificationService.error("Error loading uploaded documents");
+        } catch(error) {
+            console.log("Document fetching error", error);
+
+            const message = await getErrorMessage(error);
+
+            NotificationService.error(message);
         } finally {
             setIsLoading(false);
         }
@@ -36,9 +41,12 @@ const Settings = () => {
         if (action === "download") {
             try {
                 await DocumentService.downloadDocument(row);
-            } catch {
-                // Will be replaced with a full fledge logger later on
-                console.error("An error occured");
+            } catch(error) {
+                console.error("Document download failed:", error);
+                
+                const message = await getErrorMessage(error);
+        
+                NotificationService.error(message);
             }
         }
     }, []);

@@ -6,6 +6,7 @@ import { validateDocument, formatFileSize } from '../../utils/fileValidation';
 import { DOCUMENT_ACCEPT_ATTR } from '../../constants/documentUpload';
 import fileIcon from '../../assets/icons/file-text.svg';
 import './UploadDocumentModal.scss';
+import getErrorMessage from '../../utils/errorUtils';
 
 const initialState = {
   selectedFile: null,
@@ -80,11 +81,14 @@ const UploadDocumentModal = ({ isOpen, onClose, onUploaded }) => {
       setState(initialState);
       onClose();
     } catch (error) {
-      console.error('Document upload failed:', error);
+      console.log("Document uploading error", error);
+      
+      const message = await getErrorMessage(error);
+      
       setState((prev) => ({
         ...prev,
         isUploading: false,
-        error: 'Upload failed. Please try again.',
+        error: message,
       }));
     }
   };
