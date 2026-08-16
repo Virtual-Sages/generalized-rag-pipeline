@@ -5,6 +5,7 @@ import profileIcon from "../../assets/icons/user-circle.svg";
 import avatarImage from "../../assets/user.jpg";
 import AuthService from "../../services/authServices";
 import { useNavigate } from "react-router-dom";
+import NotificationService from "../../services/notificationService";
 
 const Navbar = () => {
     const navigate = useNavigate();
@@ -16,6 +17,7 @@ const Navbar = () => {
     const handleLogoutClick = (e) => {
         e.preventDefault();
         AuthService.logout(navigate);
+        NotificationService.success("Logged out successfully");
     };
 
     return (
