@@ -174,7 +174,7 @@ const UploadDocumentModal = ({ isOpen, onClose, onUploaded }) => {
           type="button"
           className="btn-upload"
           onClick={handleUpload}
-          disabled={!state.selectedFile || !!state.error || state.isUploading}
+          disabled={!state.selectedFile || state.isUploading}
         >
           {state.isUploading ? 'Uploading...' : 'Upload'}
         </button>
