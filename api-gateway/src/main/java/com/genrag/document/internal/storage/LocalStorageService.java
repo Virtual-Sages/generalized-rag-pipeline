@@ -1,6 +1,7 @@
 package com.genrag.document.internal.storage;
 
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.core.io.UrlResource;
 import org.springframework.core.io.Resource;
 
 import java.io.IOException;
@@ -10,14 +11,51 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 
-import org.springframework.core.io.UrlResource;
+import java.net.URISyntaxException;
 import java.net.MalformedURLException;
 
 public class LocalStorageService implements StorageService{
     private final Path storageLocation;
 
-    public LocalStorageService(String storageLocation){
-        this.storageLocation = Paths.get(storageLocation);
+    /**
+     * Resolves the storage location from the location of this class on disk,
+     * so it is identical regardless of the directory the application is
+     * launched from or where the repository is cloned.
+     *
+     * @throws IllegalStateException if the storage location cannot be resolved
+     *                               or created
+     */
+    public LocalStorageService(){
+        try{
+            Path codeSource = Paths.get(
+                LocalStorageService.class.getProtectionDomain()
+                .getCodeSource()
+                .getLocation()
+                .toURI()
+            );
+
+            // target/classes -> target -> api-gateway
+            Path moduleRoot = codeSource.getParent().getParent();
+
+            if (!Files.isDirectory(moduleRoot.resolve("src/main/resources"))) {
+                throw new IllegalStateException(
+                    "Could not locate src/main/resources. Class loaded from: " + codeSource
+                    + ", resolved module root: " + moduleRoot
+                );
+            }
+
+            this.storageLocation = moduleRoot
+                    .resolve("src/main/resources/uploads/documents")
+                    .normalize();
+
+                // Create the storage directory once, at startup
+                Files.createDirectories(this.storageLocation);
+
+                System.out.println("Storage location: " + this.storageLocation);
+
+        } catch (URISyntaxException | IOException e) {
+            throw new IllegalStateException("Failed to resolve storage location", e);
+        }
     }
 
     /**
@@ -36,12 +74,8 @@ public class LocalStorageService implements StorageService{
                 id + extension
             );
 
-            // Create the parent directory if it doesn't exist
-            Files.createDirectories(target.getParent());
-
             // Read the uploaded file and store the complete file on disk
             try (var in = file.getInputStream()) {
-
                 Files.copy(
                         in,
                         target,
@@ -65,7 +99,7 @@ public class LocalStorageService implements StorageService{
      * @param extension the file extension, such as ".pdf" or ".txt"
      * @return the stored file as a Resource
      * @throws RuntimeException if the file does not exist, is not readable,
-     *                          or the file path is invalid
+     * or the file path is invalid
      */
     @Override
     public Resource download(String id, String extension){

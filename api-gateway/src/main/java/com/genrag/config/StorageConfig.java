@@ -7,8 +7,6 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import com.genrag.document.internal.storage.StorageService;
 import com.genrag.document.internal.storage.LocalStorageService;
 
-import org.springframework.beans.factory.annotation.Value;
-
 @Configuration
 public class StorageConfig {
 
@@ -18,9 +16,7 @@ public class StorageConfig {
         havingValue = "LOCAL",
         matchIfMissing = true
     )
-    public StorageService localStorageService(
-        @Value("${storage.location}") String storageLocation
-    ) {
-        return new LocalStorageService(storageLocation);
+    public StorageService localStorageService() {
+        return new LocalStorageService();
     }
 }
