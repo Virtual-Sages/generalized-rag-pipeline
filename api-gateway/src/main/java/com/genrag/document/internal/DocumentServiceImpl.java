@@ -82,10 +82,11 @@ public class DocumentServiceImpl implements DocumentService {
             UserEntity user = userRepository.findById(userId)
                     .orElseThrow(() -> new IllegalArgumentException("User not found"));
 
+            String filePath = storageService.getStoragePath();
             DocumentEntity document = new DocumentEntity(
                     user,
                     fileName,
-                    "resources/uploads/documents",
+                    filePath,
                     contentType,
                     sizeBytes,
                     DocumentStatus.UPLOADED);
@@ -105,7 +106,7 @@ public class DocumentServiceImpl implements DocumentService {
      * Retrieves a stored document by its identifier for the specified user.
      *
      * @param id the unique identifier of the document
-     * @param userid the unique identifier of the user requesting the document
+     * @param userId the unique identifier of the user requesting the document
      * @return the document as a Spring {@link Resource}
      * @throws IllegalArgumentException if the document ID is invalid,
      *                                  the document does not exist,
@@ -114,9 +115,9 @@ public class DocumentServiceImpl implements DocumentService {
      * @throws RuntimeException if the document cannot be downloaded
      */
     @Override
-    public Resource download(String id, UUID userid) {
+    public Resource download(String id, UUID userId) {
         try {
-            UserEntity user = userRepository.findById(userid).
+            UserEntity user = userRepository.findById(userId).
                     orElseThrow(() -> new IllegalArgumentException("User not found"));
             UUID documentId = UUID.fromString(id);
             DocumentEntity document = documentRepository.findById(documentId)
