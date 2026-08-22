@@ -17,7 +17,15 @@ public class LocalStorageService implements StorageService{
     private final Path storageLocation;
 
     public LocalStorageService(String storageLocation){
-        this.storageLocation = Paths.get(storageLocation);
+        Path location = Paths.get(storageLocation).normalize();
+
+        if (!location.isAbsolute()) {
+            throw new IllegalArgumentException(
+                "storage.location must be an absolute path, but was: " + storageLocation
+            );
+        }
+
+        this.storageLocation = location;
     }
 
     /**
