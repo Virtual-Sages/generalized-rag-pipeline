@@ -45,8 +45,8 @@ public class DocumentController {
 
     @GetMapping("/{id}/download")
     public ResponseEntity<Resource> download(
-        @PathVariable String id
+        @PathVariable String id, @AuthenticationPrincipal(errorOnInvalidType = true) UUID userId
     ){
-        return ResponseEntity.ok(documentService.download(id));
+        return ResponseEntity.ok(documentService.download(id, userId));
     }
 }

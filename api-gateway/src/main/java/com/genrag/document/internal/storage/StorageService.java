@@ -49,4 +49,11 @@ public interface StorageService {
      * @return the file extension including the dot, such as ".pdf" or ".txt"
      */
     public String getExtension(String fileName);
+
+    /**
+     * Returns the storage path recorded against a stored document.
+     *
+     * @return the storage path, such as "uploads/documents"
+     */
+    public String getStoragePath();
 }

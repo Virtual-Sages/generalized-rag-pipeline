@@ -82,10 +82,11 @@ public class DocumentServiceImpl implements DocumentService {
             UserEntity user = userRepository.findById(userId)
                     .orElseThrow(() -> new IllegalArgumentException("User not found"));
 
+            String filePath = storageService.getStoragePath();
             DocumentEntity document = new DocumentEntity(
                     user,
                     fileName,
-                    "resources/uploads/documents",
+                    filePath,
                     contentType,
                     sizeBytes,
                     DocumentStatus.UPLOADED);
@@ -102,22 +103,30 @@ public class DocumentServiceImpl implements DocumentService {
     }
 
     /**
-     * Retrieves a stored document by its identifier.
+     * Retrieves a stored document by its identifier for the specified user.
      *
      * @param id the unique identifier of the document
+     * @param userId the unique identifier of the user requesting the document
      * @return the document as a Spring {@link Resource}
      * @throws IllegalArgumentException if the document ID is invalid,
      *                                  the document does not exist,
+     *                                  the user is not the owner of the document,
      *                                  or the stored file cannot be found
      * @throws RuntimeException if the document cannot be downloaded
      */
     @Override
-    public Resource download(String id) {
+    public Resource download(String id, UUID userId) {
         try {
+            UserEntity user = userRepository.findById(userId).
+                    orElseThrow(() -> new IllegalArgumentException("User not found"));
             UUID documentId = UUID.fromString(id);
-
             DocumentEntity document = documentRepository.findById(documentId)
                     .orElseThrow(() -> new IllegalArgumentException("Document not found"));
+
+            if (!document.getUser().getId().equals(user.getId())) {
+                throw new IllegalArgumentException("User is not the owner of this document");
+            }
+
             String fileName = document.getFileName();
             String extension = storageService.getExtension(fileName);
 

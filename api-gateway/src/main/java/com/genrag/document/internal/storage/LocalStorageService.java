@@ -17,7 +17,15 @@ public class LocalStorageService implements StorageService{
     private final Path storageLocation;
 
     public LocalStorageService(String storageLocation){
-        this.storageLocation = Paths.get(storageLocation);
+        Path location = Paths.get(storageLocation).normalize();
+
+        if (!location.isAbsolute()) {
+            throw new IllegalArgumentException(
+                "storage.location must be an absolute path, but was: " + storageLocation
+            );
+        }
+
+        this.storageLocation = location;
     }
 
     /**
@@ -137,5 +145,28 @@ public class LocalStorageService implements StorageService{
         }
 
         return fileName.substring(lastDot);
+    }
+
+    /**
+     * Returns the configured storage location, starting from the "uploads" folder.
+     *
+     * The absolute prefix is stripped so the value does not depend on where the
+     * repository is cloned or which machine the application runs on.
+     *
+     * @return the storage path relative to the "uploads" folder, such as
+     *         "uploads/documents"
+     * @throws IllegalStateException if the configured storage location does not
+     *                               contain an "uploads" folder
+     */
+    @Override
+    public String getStoragePath(){
+        String path = storageLocation.toString().replace('\\', '/');
+        int index = path.indexOf("/uploads");
+
+        if(index < 0){
+            throw new IllegalStateException("storage.location must contain an 'uploads' folder, but was: " + path); 
+        }
+
+        return path.substring(index + 1);
     }
 }

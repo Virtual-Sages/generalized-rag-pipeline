@@ -30,7 +30,8 @@ public interface DocumentService {
      * Downloads a document by its identifier.
      *
      * @param id the document identifier
+     * @param userId the user identifier
      * @return the document resource
      */
-    Resource download(String id);
+    Resource download(String id, UUID userId);
 }
