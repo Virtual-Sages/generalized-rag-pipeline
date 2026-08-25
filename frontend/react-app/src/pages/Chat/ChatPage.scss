@@ -3,23 +3,34 @@
 .chat-page {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  // Fills the bounded .app-shell column. `min-height: 0` overrides the flex
+  // default of `auto`, which would let .chat-content grow past the column
+  // instead of clipping and scrolling inside it.
+  flex: 1;
+  min-height: 0;
   width: 100%;
   box-sizing: border-box;
   background-color: $background;
-  padding: calc(#{$header-height} + 12px) 16px 140px;
+  // The composer sits in normal flow at the end of this column, so the only
+  // thing to reserve for is the sidebar's fixed bottom bar, which floats over
+  // this area on mobile. From $tablet up it is a left rail and the bottom
+  // reservation goes away.
+  padding: calc(#{$header-height} + 12px) 16px $mobile-nav-height;
 
   @media (min-width: $tablet) {
-    padding-left: 96px;
+    padding-left: calc(#{$sidebar-width-collapsed} + #{$space-md});
     padding-right: 24px;
+    padding-bottom: 0;
   }
 
   @media (min-width: $desktop) {
-    padding-left: 296px;
+    padding-left: calc(#{$sidebar-width} + #{$space-md});
     padding-right: 24px;
   }
 }
 
+// The only scrolling region on the page — the navbar, sidebar, composer and
+// footer all stay put while this moves.
 .chat-content {
   flex: 1;
   display: flex;
@@ -27,7 +38,8 @@
   align-items: flex-start;
   overflow-y: auto;
   min-height: 0;
-  padding: 8px 0 0;
+  padding: 8px 0 $space-md;
+  @include thin-scrollbar;
 }
 
 .messages-list {

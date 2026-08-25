@@ -78,7 +78,14 @@ $space-lg: 24px;
 $space-xl: 32px;
 
 $sidebar-width: 280px;
+// The sidebar is icon-only between $tablet and $desktop, and collapses into a
+// fixed bottom bar below $tablet. Anything that has to sit clear of it (pages,
+// the chat composer, the footer) measures itself against these.
+$sidebar-width-collapsed: 80px;
+$mobile-nav-height: 72px;
 $header-height: 64px;
+// 12px padding + 18px line-height (body-sm) + 12px padding + 1px border-top.
+$footer-height: 43px;
 $container-max: 1280px;
 
 // -----------------------------------------------------------------------------

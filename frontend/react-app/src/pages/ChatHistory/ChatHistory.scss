@@ -1,21 +1,34 @@
 @use '../../styles/abstracts' as *;
 
 // Sidebar and Navbar are position: fixed, so nothing reserves space for them —
-// each page offsets itself. These values mirror ChatPage.scss; if the sidebar
-// width ever changes, both files need updating.
+// each page offsets itself off the shared sidebar widths. Footer.scss uses the
+// same constants without the $space-md gutter, so its border sits flush against
+// the rail while this content clears it.
 .chat-history {
-    min-height: 100vh;
+    // .app-shell is height-bounded so the footer can't scroll, which makes this
+    // section the page's own scroller — shared by History and Settings. The grid
+    // runs domLayout: "autoHeight" and never scrolls internally, so the page
+    // header and the card scroll together here, passing under the fixed navbar.
+    // `min-height: 0` overrides the flex default of `auto`, which would let a
+    // long table grow the column instead of clipping inside it.
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
     width: 100%;
+    @include thin-scrollbar;
     background-color: $background;
-    padding: calc(#{$header-height} + 12px) $space-md $space-xl;
+    // The extra bottom space on mobile clears the sidebar's fixed bottom bar,
+    // which floats over this area; from $tablet up it is a left rail instead.
+    padding: calc(#{$header-height} + 12px) $space-md calc(#{$mobile-nav-height} + #{$space-xl});
 
     @include respond-to($tablet) {
-        padding-left: 96px;
+        padding-left: calc(#{$sidebar-width-collapsed} + #{$space-md});
         padding-right: $space-lg;
+        padding-bottom: $space-xl;
     }
 
     @include respond-to($desktop) {
-        padding-left: 296px;
+        padding-left: calc(#{$sidebar-width} + #{$space-md});
         padding-right: $space-lg;
     }
 

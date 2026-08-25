@@ -1,33 +1,33 @@
 @use '../../styles/abstracts' as *;
 @use 'sass:color';
 
+// Sits in normal flow at the bottom of .chat-page's column. It used to be
+// `position: fixed`, which pinned it to the viewport while the footer stayed
+// pinned to the document — the two then slid past each other on a long chat.
+// The bounded shell means the page never scrolls, so the composer holds its
+// place without being taken out of flow, and it inherits the sidebar offset
+// from .chat-page instead of restating it at every breakpoint.
 .message-input-wrapper {
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 72px;
-  z-index: 20;
-  padding: $space-sm $space-md calc(#{$space-md} + env(safe-area-inset-bottom));
+  width: 100%;
+  padding: $space-sm 0 calc(#{$space-sm} + env(safe-area-inset-bottom));
   font-family: $font-body;
-  background: linear-gradient(180deg, rgba(247, 249, 251, 0) 0%, $background 40%);
-  backdrop-filter: blur(2px);
+  background-color: $background;
+  position: relative;
 
-  @media (min-width: $tablet) {
-    left: 80px;
-    right: auto;
-    width: calc(100% - 80px);
-    bottom: 0;
-    padding: $space-md $space-lg calc(#{$space-lg} + env(safe-area-inset-bottom));
+  // The message list is clipped by .chat-content's bottom edge, which lands
+  // here rather than at the footer — so the composer, not the footer, owns the
+  // scrim that softens it.
+  &::before {
+    @include scroll-fade;
   }
 
-  @media (min-width: $desktop) {
-    left: 280px;
-    width: calc(100% - 280px);
+  @media (min-width: $tablet) {
+    padding: $space-md 0 calc(#{$space-md} + env(safe-area-inset-bottom));
   }
 }
 
