@@ -38,7 +38,15 @@ CREATE TABLE IF NOT EXISTS documents (
     file_path    VARCHAR(512) NOT NULL,
     content_type VARCHAR(100) NOT NULL,
     size_bytes   BIGINT       NOT NULL,
-    status       VARCHAR(30)  NOT NULL CHECK (status IN ('PROCESSING', 'UPLOADED', 'INDEXED', 'FAILED')),
+    status       VARCHAR(30)  NOT NULL CHECK (status IN (
+                     'UPLOADING', 'UPLOADED', 'UPLOADING_FAILED',
+                     'READY_FOR_PROCESSING', 'ACCESS_FAILED',
+                     'PARSING', 'PARSED', 'PARSING_FAILED',
+                     'CHUNKING', 'CHUNKED', 'CHUNKING_FAILED',
+                     'EMBEDDING', 'EMBEDDED', 'EMBEDDING_FAILED',
+                     'INDEXING', 'INDEXED', 'INDEXING_FAILED',
+                     'PROCESSED'
+                 )),
     created_at   TIMESTAMPTZ  NOT NULL DEFAULT now(),
     updated_at   TIMESTAMPTZ  NOT NULL DEFAULT now()
 );

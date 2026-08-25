@@ -150,7 +150,7 @@ public class MessageServiceImpl implements MessageService {
     private String queryAiService(String query) {
         try {
             ResponseEntity<AiQueryResponse> response = restTemplate.postForEntity(
-                    aiServiceUrl, new AiQueryRequest(query), AiQueryResponse.class);
+                    aiServiceUrl + "/query", new AiQueryRequest(query), AiQueryResponse.class);
 
             AiQueryResponse body = response.getBody();
             if (response.getStatusCode().is2xxSuccessful()
