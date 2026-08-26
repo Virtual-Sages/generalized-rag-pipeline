@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -178,12 +179,27 @@ public class DocumentServiceImpl implements DocumentService {
      * accepted. {@code FAILED} is user-visible only and is rejected here,
      * mirroring the CHECK constraint on the {@code documents} table.
      *
+     * <p>The write is then guarded by the state machine on
+     * {@link DocumentStatus}: it lands only if the document's current status
+     * may legally transition to the reported one. That blocks two things at
+     * once - a late report overwriting a document that has already finished,
+     * and a report arriving out of order within a run. The guard is part of
+     * the UPDATE, so concurrent reports cannot both slip through.
+     *
+     * <p>An illegal transition is dropped, not rejected. A stale report is a
+     * fire-and-forget reporter behaving correctly against a pipeline that has
+     * moved on, so it is logged rather than raised. Leaving a terminal status
+     * is deliberately impossible here - a reprocess must reset the document
+     * through the Orchestrator, so the AI Service cannot revive a finished
+     * document by reporting against it.
+     *
      * @param documentId the document to update
      * @param status     the new internal status
      * @throws IllegalArgumentException if the document does not exist or
      *                                  if {@code status} is not an internal status
      */
     @Override
+    @Transactional
     public void updateStatus(UUID documentId, DocumentStatus status) {
         List<DocumentStatus> internalStatuses = DocumentStatus.getInternalStatuses();
         if (!internalStatuses.contains(status)) {
@@ -195,8 +211,15 @@ public class DocumentServiceImpl implements DocumentService {
                 .orElseThrow(() -> new IllegalArgumentException(
                         "Document not found: " + documentId));
 
-        document.setStatus(status);
-        documentRepository.save(document);
+        int updated = documentRepository.updateStatusIfAllowed(
+                documentId, status, DocumentStatus.allowedPredecessorsOf(status));
+
+        if (updated == 0) {
+            DocumentStatus current = document.getStatus();
+            log.warn("Document {} is {}{}; ignoring illegal transition to {}",
+                    documentId, current, current.isTerminal() ? " (terminal)" : "", status);
+            return;
+        }
 
         log.info("Document {} status updated to {}", documentId, status);
     }
