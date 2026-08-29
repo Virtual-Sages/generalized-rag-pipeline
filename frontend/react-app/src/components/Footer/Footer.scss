@@ -1,0 +1,48 @@
+@use '../../styles/abstracts' as *;
+
+// The sidebar is `position: fixed`, so nothing in the flow reserves its width and
+// a full-bleed footer would slide underneath it — that is the overlap the
+// reference designs papered over with a `z-40` on some pages and nothing on
+// others. Offsetting by exactly the rail width instead (not the wider page
+// gutter) keeps the top border flush with the sidebar's edge and centres the
+// text on the content column rather than on the viewport.
+.app-footer {
+  margin-top: auto; // Sticky footer: drops to the bottom edge on short pages.
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: $footer-height;
+  padding: $space-sm $space-md;
+  // Same surface as the sidebar panel, so the top border lands against the same
+  // white-on-off-white step its right border does and reads with equal weight.
+  // On $background the identical 1px $outline-variant rule has the page colour
+  // on both sides and visually flattens out.
+  background-color: $surface-container-lowest;
+  // $outline-variant is #c3c6d7 — the same rule the sidebar and navbar draw.
+  border-top: 1px solid $outline-variant;
+  // Positioned so the scrim below can hang above the border, and so the footer
+  // paints over the scrolling siblings it sits in front of.
+  position: relative;
+
+  // Fades the page scroller's last rows out rather than letting the border
+  // slice them off. $offset must match the border-top width above — without it
+  // the scrim paints straight over the border and bleaches it. Chat has the
+  // composer in between and suppresses this; see .app-shell--chat.
+  &::before {
+    @include scroll-fade($offset: 1px);
+  }
+
+  @include respond-to($tablet) {
+    margin-left: $sidebar-width-collapsed;
+  }
+
+  @include respond-to($desktop) {
+    margin-left: $sidebar-width;
+  }
+}
+
+.app-footer__text {
+  @include body-sm;
+  color: $on-surface-variant;
+  text-align: center;
+}

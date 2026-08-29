@@ -1,0 +1,37 @@
+@use '../styles/abstracts' as *;
+
+// The app shell: a height-bounded column holding the active page above the
+// footer. Bounding it is what makes the footer immovable — the document itself
+// never scrolls, so every page owns an inner scrolling region instead (see
+// .chat-content and .chat-history) and the footer simply sits below it.
+// Horizontal offsets stay with the pages and the footer, because the fixed
+// Sidebar reserves no space of its own and the two need different insets:
+// pages add a gutter, the footer must sit flush against the rail.
+.app-shell {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  height: 100dvh; // Ignores the mobile browser chrome that 100vh counts in.
+  overflow: hidden;
+  // No bottom reservation: below $tablet the footer takes the very bottom of the
+  // viewport and the sidebar's bottom bar is fixed *above* it, so clearing that
+  // bar is the pages' job (they hold the padding) rather than the shell's.
+}
+
+// Modal locks `document.body`, but the bounded shell means body is no longer
+// the scrolling element — without this the table behind an open dialog still
+// scrolls. Any new page-level scroll region needs listing here too.
+body.has-modal-open {
+  .chat-content,
+  .chat-history {
+    overflow: hidden;
+  }
+}
+
+// On chat the composer sits between the scroller and the footer, so the footer's
+// scrim lands on the composer's disclaimer line and fades it out instead of
+// softening any scrolling content. The message list's own bottom edge is already
+// covered by the composer's scrim, so the footer simply drops its own here.
+.app-shell--chat .app-footer::before {
+  content: none;
+}

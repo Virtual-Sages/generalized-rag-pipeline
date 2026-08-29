@@ -18,6 +18,9 @@ const Modal = ({ isOpen, onClose, title, children, closeOnBackdrop = true, dismi
 
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
+    // .app-shell is height-bounded, so `body` is no longer the scrolling
+    // element — the class lets the lock reach the page's own scroll region.
+    document.body.classList.add('has-modal-open');
     dialogRef.current?.focus();
 
     const handleKeyDown = (e) => {
@@ -32,6 +35,7 @@ const Modal = ({ isOpen, onClose, title, children, closeOnBackdrop = true, dismi
 
     return () => {
       document.body.style.overflow = previousOverflow;
+      document.body.classList.remove('has-modal-open');
       document.removeEventListener('keydown', handleKeyDown);
     };
   }, [isOpen, onClose, dismissible]);
