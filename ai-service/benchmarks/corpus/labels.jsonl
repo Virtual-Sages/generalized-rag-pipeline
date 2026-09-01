@@ -1,0 +1,60 @@
+{"query": "why does my build of the vector extension fail on the newest postgres", "relevant_ids": ["setup-pgvector-version"], "difficulty": "hard"}
+{"query": "the CREATE EXTENSION statement says vector is not available, what did I miss", "relevant_ids": ["setup-extension-enable"], "difficulty": "hard"}
+{"query": "which compiler prompt do I need to compile the extension on windows", "relevant_ids": ["setup-pgvector-build"], "difficulty": "medium"}
+{"query": "how do I start the python api locally", "relevant_ids": ["setup-uvicorn"], "difficulty": "medium"}
+{"query": "commands to make an isolated python environment and install dependencies", "relevant_ids": ["setup-venv"], "difficulty": "easy"}
+{"query": "how can I check the service responds before writing any real code", "relevant_ids": ["setup-smoke-test"], "difficulty": "medium"}
+{"query": "connection refused when talking to the database", "relevant_ids": ["setup-postgres-service"], "difficulty": "hard"}
+{"query": "what login and database name does the gateway expect by default", "relevant_ids": ["setup-role-and-db"], "difficulty": "medium"}
+{"query": "in what order do the two sql scripts have to be run", "relevant_ids": ["setup-chunks-table"], "difficulty": "hard"}
+{"query": "how are database schema changes applied in this project", "relevant_ids": ["setup-base-tables"], "difficulty": "medium"}
+{"query": "what stops the same chunk position being written twice for one document", "relevant_ids": ["schema-chunks-columns"], "difficulty": "medium"}
+{"query": "the 768 in the schema is not final, what depends on it", "relevant_ids": ["schema-dimension-placeholder"], "difficulty": "easy"}
+{"query": "why must the similarity index be created after loading data", "relevant_ids": ["schema-ivfflat-index", "rag-ivfflat-vs-hnsw"], "difficulty": "medium"}
+{"query": "how are duplicate signups prevented", "relevant_ids": ["schema-users-table"], "difficulty": "medium"}
+{"query": "how is a conversation replayed in the right order", "relevant_ids": ["schema-chats-messages"], "difficulty": "medium"}
+{"query": "which column tracks whether a file has been indexed yet", "relevant_ids": ["schema-documents-table"], "difficulty": "medium"}
+{"query": "what happens if writing the file to disk fails after the row is saved", "relevant_ids": ["arch-upload-validation"], "difficulty": "hard"}
+{"query": "can I upload a word document or a spreadsheet", "relevant_ids": ["arch-allowed-formats"], "difficulty": "medium"}
+{"query": "why are stored files not named after what the user called them", "relevant_ids": ["arch-local-storage"], "difficulty": "medium"}
+{"query": "how long do the login credentials stay valid", "relevant_ids": ["arch-jwt-tokens"], "difficulty": "medium"}
+{"query": "where is the bearer token actually checked", "relevant_ids": ["arch-auth-filter"], "difficulty": "medium"}
+{"query": "can someone find out which conversations exist by guessing ids", "relevant_ids": ["arch-ownership-checks"], "difficulty": "hard"}
+{"query": "what does the user see when the backend model is down", "relevant_ids": ["arch-ai-call-fallback"], "difficulty": "hard"}
+{"query": "is it a problem that the remote call happens while the transaction is open", "relevant_ids": ["arch-transaction-boundary"], "difficulty": "medium"}
+{"query": "difference between the two timeout settings on the http client", "relevant_ids": ["arch-timeout-config"], "difficulty": "medium"}
+{"query": "there seem to be two different maximum upload sizes", "relevant_ids": ["arch-upload-size-limits"], "difficulty": "hard"}
+{"query": "how does the app recover the real client ip behind a proxy", "relevant_ids": ["arch-cors-and-cookies"], "difficulty": "hard"}
+{"query": "what would it take to move uploads to cloud object storage", "relevant_ids": ["arch-storage-provider"], "difficulty": "medium"}
+{"query": "why is each feature split into two packages", "relevant_ids": ["arch-module-layout"], "difficulty": "medium"}
+{"query": "what pages does the product have", "relevant_ids": ["frontend-screens"], "difficulty": "easy"}
+{"query": "how can two passages with no words in common still be considered similar", "relevant_ids": ["rag-what-embeddings-are"], "difficulty": "medium"}
+{"query": "does it matter whether I rank by dot product or euclidean distance", "relevant_ids": ["rag-cosine-similarity", "rag-normalization"], "difficulty": "hard"}
+{"query": "my scores rank fine but the threshold I picked stopped working", "relevant_ids": ["rag-normalization"], "difficulty": "hard"}
+{"query": "I forgot to add query: and passage: in front of the text, does that matter", "relevant_ids": ["rag-asymmetric-prefixes"], "difficulty": "easy"}
+{"query": "is a bigger vector always better", "relevant_ids": ["rag-dimension-tradeoff"], "difficulty": "medium"}
+{"query": "how much disk will a million chunks need", "relevant_ids": ["rag-storage-math"], "difficulty": "medium"}
+{"query": "the right answer comes back but never at the top", "relevant_ids": ["rag-reranking", "rag-recall-at-k"], "difficulty": "hard"}
+{"query": "searching for an exact error code returns nothing useful", "relevant_ids": ["rag-hybrid-search"], "difficulty": "hard"}
+{"query": "encoding is slow, one request at a time", "relevant_ids": ["rag-batching-throughput"], "difficulty": "medium"}
+{"query": "the end of my long passages seems to be missing from the results", "relevant_ids": ["rag-sequence-truncation"], "difficulty": "hard"}
+{"query": "first request after deploy takes forever, later ones are fine", "relevant_ids": ["rag-cold-start"], "difficulty": "hard"}
+{"query": "should I run more uvicorn workers to go faster", "relevant_ids": ["rag-worker-memory"], "difficulty": "medium"}
+{"query": "can I shrink the index without retraining anything", "relevant_ids": ["rag-quantization"], "difficulty": "hard"}
+{"query": "is the top of the public leaderboard the right model for us", "relevant_ids": ["rag-mteb-caveat"], "difficulty": "medium"}
+{"query": "we have some documents in german, will the english model cope", "relevant_ids": ["rag-multilingual-models", "edge-german"], "difficulty": "medium"}
+{"query": "scanned pdfs give strange results after character recognition", "relevant_ids": ["rag-ocr-noise", "edge-ocr-noisy"], "difficulty": "medium"}
+{"query": "questions about a specific cell in a spreadsheet never match", "relevant_ids": ["rag-tables-linearized"], "difficulty": "medium"}
+{"query": "do I need a special model to search a codebase", "relevant_ids": ["rag-code-embeddings"], "difficulty": "medium"}
+{"query": "the model accepts 8000 tokens so can I stop splitting documents", "relevant_ids": ["rag-context-vs-chunk"], "difficulty": "medium"}
+{"query": "is it cheaper to pay per token or run it ourselves", "relevant_ids": ["rag-cost-model"], "difficulty": "medium"}
+{"query": "we want to switch models without downtime", "relevant_ids": ["rag-versioning-vectors"], "difficulty": "hard"}
+{"query": "the nightly job crashed halfway, is it safe to run it again", "relevant_ids": ["rag-idempotent-ingest"], "difficulty": "medium"}
+{"query": "every model scores the same on my test questions", "relevant_ids": ["rag-eval-set-design"], "difficulty": "hard"}
+{"query": "which of the candidates has the longest input limit", "relevant_ids": ["edge-table-linear"], "difficulty": "hard"}
+{"query": "what happens when the list of inputs is empty", "relevant_ids": ["edge-code-python"], "difficulty": "medium"}
+{"query": "wrapping the distance in an expression stops the index being used", "relevant_ids": ["edge-code-sql"], "difficulty": "medium"}
+{"query": "job failed with out of memory partway through, what should we do", "relevant_ids": ["edge-json-blob", "edge-chat-log"], "difficulty": "hard"}
+{"query": "someone needs a decision on the column width this week", "relevant_ids": ["edge-email"], "difficulty": "hard"}
+{"query": "benchmark numbers comparing processor and accelerator throughput", "relevant_ids": ["edge-csv-row"], "difficulty": "medium"}
+{"query": "el indice aproximado agrupa los vectores en listas", "relevant_ids": ["edge-spanish"], "difficulty": "easy"}

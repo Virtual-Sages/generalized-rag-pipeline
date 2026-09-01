@@ -1,0 +1,5863 @@
+{
+  "environment": {
+    "timestamp_utc": "2026-08-19T17:43:09+00:00",
+    "python": "3.14.6",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "processor": "Intel64 Family 6 Model 154 Stepping 3, GenuineIntel",
+    "cpu_count_logical": 16,
+    "ram_total_gb": 15.6,
+    "seed": 1234,
+    "torch": "2.11.0+cu128",
+    "cuda_available": true,
+    "gpu_name": "NVIDIA GeForce RTX 3050 Laptop GPU",
+    "gpu_vram_gb": 4.0,
+    "sentence_transformers": "6.0.0"
+  },
+  "dataset": {
+    "passages": 65,
+    "queries": 60,
+    "content_types": [
+      "chat-log",
+      "code",
+      "config-doc",
+      "csv",
+      "email",
+      "java-doc",
+      "json",
+      "markdown",
+      "multilingual",
+      "ocr-text",
+      "prose",
+      "sql-doc",
+      "table-linearized"
+    ]
+  },
+  "config": {
+    "repeat": 3,
+    "warmup_batches": 3,
+    "throughput_batch_sizes": [
+      1,
+      8,
+      32,
+      64
+    ],
+    "prefixes_applied": false
+  },
+  "runs": [
+    {
+      "model": "bge-small",
+      "hf_id": "BAAI/bge-small-en-v1.5",
+      "device": "cuda",
+      "prefixes_applied": false,
+      "query_prefix": "",
+      "passage_prefix": "",
+      "dim": 384,
+      "registry_dim": 384,
+      "max_seq_tokens_reported": 512,
+      "max_seq_tokens_registry": 512,
+      "params_millions": 33,
+      "licence": "MIT",
+      "notes": "Instruction on the query side only; passages are encoded bare.",
+      "load_seconds": 5.76,
+      "vectors_unit_norm": true,
+      "quality": {
+        "recall@1": 0.6333333333333333,
+        "recall@3": 0.8666666666666667,
+        "recall@5": 0.9166666666666666,
+        "mrr@5": 0.7497222222222223,
+        "mrr_by_difficulty": {
+          "easy": 0.54,
+          "hard": 0.7182539682539683,
+          "medium": 0.7999999999999999
+        }
+      },
+      "latency_single": {
+        "samples": 30,
+        "p50_ms": 17.247,
+        "p95_ms": 29.842,
+        "mean_ms": 18.925,
+        "min_ms": 9.639
+      },
+      "throughput_by_batch": {
+        "1": {
+          "texts_per_second": 72.6,
+          "total_seconds": 0.896
+        },
+        "8": {
+          "texts_per_second": 285.9,
+          "total_seconds": 0.227
+        },
+        "32": {
+          "texts_per_second": 366.3,
+          "total_seconds": 0.177
+        },
+        "64": {
+          "texts_per_second": 342.6,
+          "total_seconds": 0.19
+        }
+      },
+      "peak_vram_mb": 293.3,
+      "rss_delta_mb": 611.3,
+      "storage_projection": {
+        "bytes_per_vector": 1536,
+        "mb_per_10k_chunks": 14.6,
+        "mb_per_100k_chunks": 146.5,
+        "gb_per_1m_chunks": 1.43
+      },
+      "per_query": [
+        {
+          "query": "why does my build of the vector extension fail on the newest postgres",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "setup-pgvector-version"
+          ],
+          "first_hit_rank": 3,
+          "top5": [
+            "setup-extension-enable",
+            "setup-pgvector-build",
+            "setup-pgvector-version",
+            "edge-json-blob",
+            "rag-versioning-vectors"
+          ]
+        },
+        {
+          "query": "the CREATE EXTENSION statement says vector is not available, what did I miss",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "setup-extension-enable"
+          ],
+          "first_hit_rank": 2,
+          "top5": [
+            "setup-pgvector-build",
+            "setup-extension-enable",
+            "setup-pgvector-version",
+            "edge-json-blob",
+            "rag-versioning-vectors"
+          ]
+        },
+        {
+          "query": "which compiler prompt do I need to compile the extension on windows",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "setup-pgvector-build"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "setup-pgvector-build",
+            "setup-pgvector-version",
+            "setup-extension-enable",
+            "edge-json-blob",
+            "edge-csv-row"
+          ]
+        },
+        {
+          "query": "how do I start the python api locally",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "setup-uvicorn"
+          ],
+          "first_hit_rank": 2,
+          "top5": [
+            "setup-venv",
+            "setup-uvicorn",
+            "setup-smoke-test",
+            "setup-postgres-service",
+            "edge-json-blob"
+          ]
+        },
+        {
+          "query": "commands to make an isolated python environment and install dependencies",
+          "difficulty": "easy",
+          "relevant_ids": [
+            "setup-venv"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "setup-venv",
+            "setup-pgvector-version",
+            "setup-extension-enable",
+            "setup-pgvector-build",
+            "edge-json-blob"
+          ]
+        },
+        {
+          "query": "how can I check the service responds before writing any real code",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "setup-smoke-test"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "setup-smoke-test",
+            "arch-ai-call-fallback",
+            "setup-postgres-service",
+            "arch-ownership-checks",
+            "edge-csv-row"
+          ]
+        },
+        {
+          "query": "connection refused when talking to the database",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "setup-postgres-service"
+          ],
+          "first_hit_rank": 2,
+          "top5": [
+            "setup-pgvector-version",
+            "setup-postgres-service",
+            "edge-json-blob",
+            "arch-transaction-boundary",
+            "arch-ai-call-fallback"
+          ]
+        },
+        {
+          "query": "what login and database name does the gateway expect by default",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "setup-role-and-db"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "setup-role-and-db",
+            "arch-cors-and-cookies",
+            "setup-postgres-service",
+            "setup-base-tables",
+            "arch-ai-call-fallback"
+          ]
+        },
+        {
+          "query": "in what order do the two sql scripts have to be run",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "setup-chunks-table"
+          ],
+          "first_hit_rank": 2,
+          "top5": [
+            "setup-postgres-service",
+            "setup-chunks-table",
+            "setup-pgvector-version",
+            "setup-extension-enable",
+            "setup-base-tables"
+          ]
+        },
+        {
+          "query": "how are database schema changes applied in this project",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "setup-base-tables"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "setup-base-tables",
+            "schema-users-table",
+            "schema-dimension-placeholder",
+            "schema-chunks-columns",
+            "rag-versioning-vectors"
+          ]
+        },
+        {
+          "query": "what stops the same chunk position being written twice for one document",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "schema-chunks-columns"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "schema-chunks-columns",
+            "rag-idempotent-ingest",
+            "edge-json-blob",
+            "rag-tables-linearized",
+            "edge-code-sql"
+          ]
+        },
+        {
+          "query": "the 768 in the schema is not final, what depends on it",
+          "difficulty": "easy",
+          "relevant_ids": [
+            "schema-dimension-placeholder"
+          ],
+          "first_hit_rank": 2,
+          "top5": [
+            "edge-email",
+            "schema-dimension-placeholder",
+            "schema-chunks-columns",
+            "rag-idempotent-ingest",
+            "rag-storage-math"
+          ]
+        },
+        {
+          "query": "why must the similarity index be created after loading data",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "rag-ivfflat-vs-hnsw",
+            "schema-ivfflat-index"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "schema-ivfflat-index",
+            "edge-code-sql",
+            "rag-normalization",
+            "rag-cosine-similarity",
+            "schema-chunks-columns"
+          ]
+        },
+        {
+          "query": "how are duplicate signups prevented",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "schema-users-table"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "schema-users-table",
+            "arch-jwt-tokens",
+            "arch-auth-filter",
+            "rag-versioning-vectors",
+            "rag-idempotent-ingest"
+          ]
+        },
+        {
+          "query": "how is a conversation replayed in the right order",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "schema-chats-messages"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "schema-chats-messages",
+            "rag-recall-at-k",
+            "rag-reranking",
+            "arch-ai-call-fallback",
+            "arch-ownership-checks"
+          ]
+        },
+        {
+          "query": "which column tracks whether a file has been indexed yet",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "schema-documents-table"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "schema-documents-table",
+            "schema-ivfflat-index",
+            "schema-chunks-columns",
+            "edge-email",
+            "arch-upload-validation"
+          ]
+        },
+        {
+          "query": "what happens if writing the file to disk fails after the row is saved",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "arch-upload-validation"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "arch-upload-validation",
+            "rag-idempotent-ingest",
+            "schema-documents-table",
+            "edge-json-blob",
+            "schema-chunks-columns"
+          ]
+        },
+        {
+          "query": "can I upload a word document or a spreadsheet",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "arch-allowed-formats"
+          ],
+          "first_hit_rank": 2,
+          "top5": [
+            "arch-upload-validation",
+            "arch-allowed-formats",
+            "edge-json-blob",
+            "schema-documents-table",
+            "arch-local-storage"
+          ]
+        },
+        {
+          "query": "why are stored files not named after what the user called them",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "arch-local-storage"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "arch-local-storage",
+            "arch-storage-provider",
+            "arch-upload-validation",
+            "arch-allowed-formats",
+            "arch-ownership-checks"
+          ]
+        },
+        {
+          "query": "how long do the login credentials stay valid",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "arch-jwt-tokens"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "arch-jwt-tokens",
+            "arch-auth-filter",
+            "setup-role-and-db",
+            "schema-users-table",
+            "rag-sequence-truncation"
+          ]
+        },
+        {
+          "query": "where is the bearer token actually checked",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "arch-auth-filter"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "arch-auth-filter",
+            "setup-smoke-test",
+            "arch-jwt-tokens",
+            "arch-cors-and-cookies",
+            "setup-role-and-db"
+          ]
+        },
+        {
+          "query": "can someone find out which conversations exist by guessing ids",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "arch-ownership-checks"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "arch-ownership-checks",
+            "schema-chats-messages",
+            "rag-eval-set-design",
+            "arch-ai-call-fallback",
+            "rag-reranking"
+          ]
+        },
+        {
+          "query": "what does the user see when the backend model is down",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "arch-ai-call-fallback"
+          ],
+          "first_hit_rank": 2,
+          "top5": [
+            "rag-cold-start",
+            "arch-ai-call-fallback",
+            "arch-jwt-tokens",
+            "rag-versioning-vectors",
+            "edge-csv-row"
+          ]
+        },
+        {
+          "query": "is it a problem that the remote call happens while the transaction is open",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "arch-transaction-boundary"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "arch-transaction-boundary",
+            "arch-ai-call-fallback",
+            "arch-ownership-checks",
+            "setup-smoke-test",
+            "rag-cold-start"
+          ]
+        },
+        {
+          "query": "difference between the two timeout settings on the http client",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "arch-timeout-config"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "arch-timeout-config",
+            "arch-transaction-boundary",
+            "arch-upload-size-limits",
+            "rag-cold-start",
+            "arch-jwt-tokens"
+          ]
+        },
+        {
+          "query": "there seem to be two different maximum upload sizes",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "arch-upload-size-limits"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "arch-upload-size-limits",
+            "arch-allowed-formats",
+            "rag-dimension-tradeoff",
+            "arch-upload-validation",
+            "rag-storage-math"
+          ]
+        },
+        {
+          "query": "how does the app recover the real client ip behind a proxy",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "arch-cors-and-cookies"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "arch-cors-and-cookies",
+            "setup-uvicorn",
+            "arch-ai-call-fallback",
+            "arch-auth-filter",
+            "arch-ownership-checks"
+          ]
+        },
+        {
+          "query": "what would it take to move uploads to cloud object storage",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "arch-storage-provider"
+          ],
+          "first_hit_rank": 2,
+          "top5": [
+            "arch-upload-validation",
+            "arch-storage-provider",
+            "arch-upload-size-limits",
+            "arch-allowed-formats",
+            "edge-json-blob"
+          ]
+        },
+        {
+          "query": "why is each feature split into two packages",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "arch-module-layout"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "arch-module-layout",
+            "edge-json-blob",
+            "arch-upload-size-limits",
+            "edge-ocr-noisy",
+            "rag-code-embeddings"
+          ]
+        },
+        {
+          "query": "what pages does the product have",
+          "difficulty": "easy",
+          "relevant_ids": [
+            "frontend-screens"
+          ],
+          "first_hit_rank": 6,
+          "top5": [
+            "rag-storage-math",
+            "schema-documents-table",
+            "edge-email",
+            "edge-german",
+            "edge-code-python"
+          ]
+        },
+        {
+          "query": "how can two passages with no words in common still be considered similar",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "rag-what-embeddings-are"
+          ],
+          "first_hit_rank": 7,
+          "top5": [
+            "rag-cosine-similarity",
+            "rag-eval-set-design",
+            "edge-ocr-noisy",
+            "rag-hybrid-search",
+            "rag-reranking"
+          ]
+        },
+        {
+          "query": "does it matter whether I rank by dot product or euclidean distance",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "rag-cosine-similarity",
+            "rag-normalization"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "rag-cosine-similarity",
+            "rag-normalization",
+            "rag-recall-at-k",
+            "edge-code-sql",
+            "rag-hybrid-search"
+          ]
+        },
+        {
+          "query": "my scores rank fine but the threshold I picked stopped working",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "rag-normalization"
+          ],
+          "first_hit_rank": 3,
+          "top5": [
+            "rag-eval-set-design",
+            "rag-hybrid-search",
+            "rag-normalization",
+            "rag-recall-at-k",
+            "rag-quantization"
+          ]
+        },
+        {
+          "query": "I forgot to add query: and passage: in front of the text, does that matter",
+          "difficulty": "easy",
+          "relevant_ids": [
+            "rag-asymmetric-prefixes"
+          ],
+          "first_hit_rank": 5,
+          "top5": [
+            "edge-code-python",
+            "rag-eval-set-design",
+            "edge-ocr-noisy",
+            "rag-recall-at-k",
+            "rag-asymmetric-prefixes"
+          ]
+        },
+        {
+          "query": "is a bigger vector always better",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "rag-dimension-tradeoff"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "rag-dimension-tradeoff",
+            "rag-quantization",
+            "rag-normalization",
+            "rag-ivfflat-vs-hnsw",
+            "rag-storage-math"
+          ]
+        },
+        {
+          "query": "how much disk will a million chunks need",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "rag-storage-math"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "rag-storage-math",
+            "edge-json-blob",
+            "arch-upload-size-limits",
+            "edge-email",
+            "schema-chunks-columns"
+          ]
+        },
+        {
+          "query": "the right answer comes back but never at the top",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "rag-recall-at-k",
+            "rag-reranking"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "rag-recall-at-k",
+            "rag-eval-set-design",
+            "rag-reranking",
+            "rag-hybrid-search",
+            "arch-ai-call-fallback"
+          ]
+        },
+        {
+          "query": "searching for an exact error code returns nothing useful",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "rag-hybrid-search"
+          ],
+          "first_hit_rank": 4,
+          "top5": [
+            "edge-json-blob",
+            "arch-ai-call-fallback",
+            "setup-pgvector-version",
+            "rag-hybrid-search",
+            "rag-code-embeddings"
+          ]
+        },
+        {
+          "query": "encoding is slow, one request at a time",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "rag-batching-throughput"
+          ],
+          "first_hit_rank": 8,
+          "top5": [
+            "edge-json-blob",
+            "rag-cost-model",
+            "rag-cold-start",
+            "edge-csv-row",
+            "rag-sequence-truncation"
+          ]
+        },
+        {
+          "query": "the end of my long passages seems to be missing from the results",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "rag-sequence-truncation"
+          ],
+          "first_hit_rank": 2,
+          "top5": [
+            "edge-ocr-noisy",
+            "rag-sequence-truncation",
+            "rag-context-vs-chunk",
+            "rag-asymmetric-prefixes",
+            "rag-eval-set-design"
+          ]
+        },
+        {
+          "query": "first request after deploy takes forever, later ones are fine",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "rag-cold-start"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "rag-cold-start",
+            "edge-json-blob",
+            "arch-jwt-tokens",
+            "setup-pgvector-version",
+            "arch-timeout-config"
+          ]
+        },
+        {
+          "query": "should I run more uvicorn workers to go faster",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "rag-worker-memory"
+          ],
+          "first_hit_rank": 2,
+          "top5": [
+            "setup-uvicorn",
+            "rag-worker-memory",
+            "edge-csv-row",
+            "edge-chat-log",
+            "rag-cold-start"
+          ]
+        },
+        {
+          "query": "can I shrink the index without retraining anything",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "rag-quantization"
+          ],
+          "first_hit_rank": 3,
+          "top5": [
+            "rag-normalization",
+            "rag-dimension-tradeoff",
+            "rag-quantization",
+            "rag-asymmetric-prefixes",
+            "schema-ivfflat-index"
+          ]
+        },
+        {
+          "query": "is the top of the public leaderboard the right model for us",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "rag-mteb-caveat"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "rag-mteb-caveat",
+            "rag-eval-set-design",
+            "rag-reranking",
+            "rag-recall-at-k",
+            "rag-normalization"
+          ]
+        },
+        {
+          "query": "we have some documents in german, will the english model cope",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "edge-german",
+            "rag-multilingual-models"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "edge-german",
+            "rag-multilingual-models",
+            "rag-ocr-noise",
+            "rag-sequence-truncation",
+            "rag-code-embeddings"
+          ]
+        },
+        {
+          "query": "scanned pdfs give strange results after character recognition",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "edge-ocr-noisy",
+            "rag-ocr-noise"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "rag-ocr-noise",
+            "rag-asymmetric-prefixes",
+            "arch-allowed-formats",
+            "edge-json-blob",
+            "schema-chunks-columns"
+          ]
+        },
+        {
+          "query": "questions about a specific cell in a spreadsheet never match",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "rag-tables-linearized"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "rag-tables-linearized",
+            "schema-dimension-placeholder",
+            "rag-eval-set-design",
+            "edge-code-sql",
+            "rag-asymmetric-prefixes"
+          ]
+        },
+        {
+          "query": "do I need a special model to search a codebase",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "rag-code-embeddings"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "rag-code-embeddings",
+            "rag-asymmetric-prefixes",
+            "edge-table-linear",
+            "rag-reranking",
+            "rag-versioning-vectors"
+          ]
+        },
+        {
+          "query": "the model accepts 8000 tokens so can I stop splitting documents",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "rag-context-vs-chunk"
+          ],
+          "first_hit_rank": 30,
+          "top5": [
+            "rag-sequence-truncation",
+            "edge-json-blob",
+            "arch-upload-size-limits",
+            "schema-chunks-columns",
+            "edge-spanish"
+          ]
+        },
+        {
+          "query": "is it cheaper to pay per token or run it ourselves",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "rag-cost-model"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "rag-cost-model",
+            "arch-jwt-tokens",
+            "rag-cold-start",
+            "arch-auth-filter",
+            "rag-worker-memory"
+          ]
+        },
+        {
+          "query": "we want to switch models without downtime",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "rag-versioning-vectors"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "rag-versioning-vectors",
+            "rag-cold-start",
+            "edge-csv-row",
+            "rag-quantization",
+            "rag-reranking"
+          ]
+        },
+        {
+          "query": "the nightly job crashed halfway, is it safe to run it again",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "rag-idempotent-ingest"
+          ],
+          "first_hit_rank": 5,
+          "top5": [
+            "edge-json-blob",
+            "setup-uvicorn",
+            "edge-csv-row",
+            "edge-chat-log",
+            "rag-idempotent-ingest"
+          ]
+        },
+        {
+          "query": "every model scores the same on my test questions",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "rag-eval-set-design"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "rag-eval-set-design",
+            "rag-normalization",
+            "rag-asymmetric-prefixes",
+            "rag-versioning-vectors",
+            "rag-reranking"
+          ]
+        },
+        {
+          "query": "which of the candidates has the longest input limit",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "edge-table-linear"
+          ],
+          "first_hit_rank": 3,
+          "top5": [
+            "rag-sequence-truncation",
+            "arch-upload-size-limits",
+            "edge-table-linear",
+            "rag-context-vs-chunk",
+            "edge-csv-row"
+          ]
+        },
+        {
+          "query": "what happens when the list of inputs is empty",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "edge-code-python"
+          ],
+          "first_hit_rank": 15,
+          "top5": [
+            "arch-upload-validation",
+            "rag-asymmetric-prefixes",
+            "rag-idempotent-ingest",
+            "arch-ai-call-fallback",
+            "schema-chunks-columns"
+          ]
+        },
+        {
+          "query": "wrapping the distance in an expression stops the index being used",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "edge-code-sql"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "edge-code-sql",
+            "rag-normalization",
+            "schema-ivfflat-index",
+            "rag-cosine-similarity",
+            "rag-tables-linearized"
+          ]
+        },
+        {
+          "query": "job failed with out of memory partway through, what should we do",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "edge-chat-log",
+            "edge-json-blob"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "edge-json-blob",
+            "edge-csv-row",
+            "rag-worker-memory",
+            "arch-ai-call-fallback",
+            "setup-pgvector-version"
+          ]
+        },
+        {
+          "query": "someone needs a decision on the column width this week",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "edge-email"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "edge-email",
+            "schema-dimension-placeholder",
+            "rag-storage-math",
+            "rag-tables-linearized",
+            "edge-code-sql"
+          ]
+        },
+        {
+          "query": "benchmark numbers comparing processor and accelerator throughput",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "edge-csv-row"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "edge-csv-row",
+            "rag-worker-memory",
+            "rag-quantization",
+            "rag-batching-throughput",
+            "rag-ivfflat-vs-hnsw"
+          ]
+        },
+        {
+          "query": "el indice aproximado agrupa los vectores en listas",
+          "difficulty": "easy",
+          "relevant_ids": [
+            "edge-spanish"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "edge-spanish",
+            "schema-ivfflat-index",
+            "rag-ivfflat-vs-hnsw",
+            "rag-normalization",
+            "rag-quantization"
+          ]
+        }
+      ]
+    },
+    {
+      "model": "bge-base",
+      "hf_id": "BAAI/bge-base-en-v1.5",
+      "device": "cuda",
+      "prefixes_applied": false,
+      "query_prefix": "",
+      "passage_prefix": "",
+      "dim": 768,
+      "registry_dim": 768,
+      "max_seq_tokens_reported": 512,
+      "max_seq_tokens_registry": 512,
+      "params_millions": 109,
+      "licence": "MIT",
+      "notes": "768 wide, so it matches the dimension the schema already assumes.",
+      "load_seconds": 5.59,
+      "vectors_unit_norm": true,
+      "quality": {
+        "recall@1": 0.7666666666666667,
+        "recall@3": 0.9333333333333333,
+        "recall@5": 0.95,
+        "mrr@5": 0.8486111111111111,
+        "mrr_by_difficulty": {
+          "easy": 0.9,
+          "hard": 0.8174603174603176,
+          "medium": 0.8602941176470589
+        }
+      },
+      "latency_single": {
+        "samples": 30,
+        "p50_ms": 10.77,
+        "p95_ms": 22.41,
+        "mean_ms": 12.966,
+        "min_ms": 8.499
+      },
+      "throughput_by_batch": {
+        "1": {
+          "texts_per_second": 56.7,
+          "total_seconds": 1.146
+        },
+        "8": {
+          "texts_per_second": 136.9,
+          "total_seconds": 0.475
+        },
+        "32": {
+          "texts_per_second": 129.8,
+          "total_seconds": 0.501
+        },
+        "64": {
+          "texts_per_second": 115.9,
+          "total_seconds": 0.561
+        }
+      },
+      "peak_vram_mb": 738.3,
+      "rss_delta_mb": 4.0,
+      "storage_projection": {
+        "bytes_per_vector": 3072,
+        "mb_per_10k_chunks": 29.3,
+        "mb_per_100k_chunks": 293.0,
+        "gb_per_1m_chunks": 2.86
+      },
+      "per_query": [
+        {
+          "query": "why does my build of the vector extension fail on the newest postgres",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "setup-pgvector-version"
+          ],
+          "first_hit_rank": 3,
+          "top5": [
+            "setup-extension-enable",
+            "setup-pgvector-build",
+            "setup-pgvector-version",
+            "edge-email",
+            "rag-versioning-vectors"
+          ]
+        },
+        {
+          "query": "the CREATE EXTENSION statement says vector is not available, what did I miss",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "setup-extension-enable"
+          ],
+          "first_hit_rank": 2,
+          "top5": [
+            "setup-pgvector-build",
+            "setup-extension-enable",
+            "edge-email",
+            "setup-pgvector-version",
+            "setup-chunks-table"
+          ]
+        },
+        {
+          "query": "which compiler prompt do I need to compile the extension on windows",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "setup-pgvector-build"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "setup-pgvector-build",
+            "setup-pgvector-version",
+            "setup-extension-enable",
+            "edge-email",
+            "edge-chat-log"
+          ]
+        },
+        {
+          "query": "how do I start the python api locally",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "setup-uvicorn"
+          ],
+          "first_hit_rank": 2,
+          "top5": [
+            "setup-venv",
+            "setup-uvicorn",
+            "setup-smoke-test",
+            "setup-pgvector-build",
+            "edge-csv-row"
+          ]
+        },
+        {
+          "query": "commands to make an isolated python environment and install dependencies",
+          "difficulty": "easy",
+          "relevant_ids": [
+            "setup-venv"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "setup-venv",
+            "setup-pgvector-build",
+            "setup-pgvector-version",
+            "edge-csv-row",
+            "setup-uvicorn"
+          ]
+        },
+        {
+          "query": "how can I check the service responds before writing any real code",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "setup-smoke-test"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "setup-smoke-test",
+            "arch-ai-call-fallback",
+            "setup-postgres-service",
+            "setup-uvicorn",
+            "arch-transaction-boundary"
+          ]
+        },
+        {
+          "query": "connection refused when talking to the database",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "setup-postgres-service"
+          ],
+          "first_hit_rank": 2,
+          "top5": [
+            "arch-transaction-boundary",
+            "setup-postgres-service",
+            "setup-pgvector-version",
+            "arch-ai-call-fallback",
+            "setup-role-and-db"
+          ]
+        },
+        {
+          "query": "what login and database name does the gateway expect by default",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "setup-role-and-db"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "setup-role-and-db",
+            "setup-base-tables",
+            "setup-postgres-service",
+            "arch-cors-and-cookies",
+            "schema-users-table"
+          ]
+        },
+        {
+          "query": "in what order do the two sql scripts have to be run",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "setup-chunks-table"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "setup-chunks-table",
+            "setup-postgres-service",
+            "setup-base-tables",
+            "setup-extension-enable",
+            "edge-code-sql"
+          ]
+        },
+        {
+          "query": "how are database schema changes applied in this project",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "setup-base-tables"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "setup-base-tables",
+            "setup-extension-enable",
+            "schema-dimension-placeholder",
+            "edge-email",
+            "rag-versioning-vectors"
+          ]
+        },
+        {
+          "query": "what stops the same chunk position being written twice for one document",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "schema-chunks-columns"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "schema-chunks-columns",
+            "rag-idempotent-ingest",
+            "edge-email",
+            "edge-code-sql",
+            "rag-batching-throughput"
+          ]
+        },
+        {
+          "query": "the 768 in the schema is not final, what depends on it",
+          "difficulty": "easy",
+          "relevant_ids": [
+            "schema-dimension-placeholder"
+          ],
+          "first_hit_rank": 2,
+          "top5": [
+            "edge-email",
+            "schema-dimension-placeholder",
+            "setup-pgvector-version",
+            "schema-documents-table",
+            "edge-chat-log"
+          ]
+        },
+        {
+          "query": "why must the similarity index be created after loading data",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "rag-ivfflat-vs-hnsw",
+            "schema-ivfflat-index"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "schema-ivfflat-index",
+            "edge-code-sql",
+            "rag-normalization",
+            "rag-cosine-similarity",
+            "edge-email"
+          ]
+        },
+        {
+          "query": "how are duplicate signups prevented",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "schema-users-table"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "schema-users-table",
+            "rag-versioning-vectors",
+            "rag-idempotent-ingest",
+            "arch-ownership-checks",
+            "schema-chunks-columns"
+          ]
+        },
+        {
+          "query": "how is a conversation replayed in the right order",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "schema-chats-messages"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "schema-chats-messages",
+            "rag-recall-at-k",
+            "edge-ocr-noisy",
+            "rag-reranking",
+            "rag-asymmetric-prefixes"
+          ]
+        },
+        {
+          "query": "which column tracks whether a file has been indexed yet",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "schema-documents-table"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "schema-documents-table",
+            "edge-email",
+            "schema-ivfflat-index",
+            "rag-storage-math",
+            "edge-code-sql"
+          ]
+        },
+        {
+          "query": "what happens if writing the file to disk fails after the row is saved",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "arch-upload-validation"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "arch-upload-validation",
+            "rag-idempotent-ingest",
+            "rag-tables-linearized",
+            "schema-documents-table",
+            "arch-local-storage"
+          ]
+        },
+        {
+          "query": "can I upload a word document or a spreadsheet",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "arch-allowed-formats"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "arch-allowed-formats",
+            "schema-documents-table",
+            "rag-storage-math",
+            "edge-email",
+            "arch-upload-validation"
+          ]
+        },
+        {
+          "query": "why are stored files not named after what the user called them",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "arch-local-storage"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "arch-local-storage",
+            "schema-documents-table",
+            "arch-upload-validation",
+            "arch-storage-provider",
+            "arch-ownership-checks"
+          ]
+        },
+        {
+          "query": "how long do the login credentials stay valid",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "arch-jwt-tokens"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "arch-jwt-tokens",
+            "schema-users-table",
+            "arch-auth-filter",
+            "arch-transaction-boundary",
+            "setup-role-and-db"
+          ]
+        },
+        {
+          "query": "where is the bearer token actually checked",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "arch-auth-filter"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "arch-auth-filter",
+            "setup-smoke-test",
+            "arch-jwt-tokens",
+            "arch-ownership-checks",
+            "schema-documents-table"
+          ]
+        },
+        {
+          "query": "can someone find out which conversations exist by guessing ids",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "arch-ownership-checks"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "arch-ownership-checks",
+            "schema-chats-messages",
+            "rag-eval-set-design",
+            "rag-reranking",
+            "rag-asymmetric-prefixes"
+          ]
+        },
+        {
+          "query": "what does the user see when the backend model is down",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "arch-ai-call-fallback"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "arch-ai-call-fallback",
+            "rag-cold-start",
+            "setup-postgres-service",
+            "edge-email",
+            "setup-smoke-test"
+          ]
+        },
+        {
+          "query": "is it a problem that the remote call happens while the transaction is open",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "arch-transaction-boundary"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "arch-transaction-boundary",
+            "arch-ownership-checks",
+            "rag-cold-start",
+            "arch-ai-call-fallback",
+            "rag-idempotent-ingest"
+          ]
+        },
+        {
+          "query": "difference between the two timeout settings on the http client",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "arch-timeout-config"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "arch-timeout-config",
+            "arch-transaction-boundary",
+            "arch-upload-size-limits",
+            "rag-cold-start",
+            "arch-cors-and-cookies"
+          ]
+        },
+        {
+          "query": "there seem to be two different maximum upload sizes",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "arch-upload-size-limits"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "arch-upload-size-limits",
+            "arch-allowed-formats",
+            "arch-upload-validation",
+            "edge-email",
+            "rag-sequence-truncation"
+          ]
+        },
+        {
+          "query": "how does the app recover the real client ip behind a proxy",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "arch-cors-and-cookies"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "arch-cors-and-cookies",
+            "arch-ownership-checks",
+            "arch-ai-call-fallback",
+            "arch-auth-filter",
+            "arch-timeout-config"
+          ]
+        },
+        {
+          "query": "what would it take to move uploads to cloud object storage",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "arch-storage-provider"
+          ],
+          "first_hit_rank": 2,
+          "top5": [
+            "arch-upload-validation",
+            "arch-storage-provider",
+            "arch-allowed-formats",
+            "arch-upload-size-limits",
+            "schema-documents-table"
+          ]
+        },
+        {
+          "query": "why is each feature split into two packages",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "arch-module-layout"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "arch-module-layout",
+            "edge-csv-row",
+            "rag-versioning-vectors",
+            "rag-code-embeddings",
+            "rag-dimension-tradeoff"
+          ]
+        },
+        {
+          "query": "what pages does the product have",
+          "difficulty": "easy",
+          "relevant_ids": [
+            "frontend-screens"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "frontend-screens",
+            "edge-email",
+            "edge-csv-row",
+            "rag-storage-math",
+            "rag-asymmetric-prefixes"
+          ]
+        },
+        {
+          "query": "how can two passages with no words in common still be considered similar",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "rag-what-embeddings-are"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "rag-what-embeddings-are",
+            "rag-eval-set-design",
+            "edge-ocr-noisy",
+            "rag-asymmetric-prefixes",
+            "rag-reranking"
+          ]
+        },
+        {
+          "query": "does it matter whether I rank by dot product or euclidean distance",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "rag-cosine-similarity",
+            "rag-normalization"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "rag-cosine-similarity",
+            "rag-normalization",
+            "edge-code-sql",
+            "rag-recall-at-k",
+            "rag-quantization"
+          ]
+        },
+        {
+          "query": "my scores rank fine but the threshold I picked stopped working",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "rag-normalization"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "rag-normalization",
+            "rag-recall-at-k",
+            "rag-eval-set-design",
+            "rag-reranking",
+            "rag-hybrid-search"
+          ]
+        },
+        {
+          "query": "I forgot to add query: and passage: in front of the text, does that matter",
+          "difficulty": "easy",
+          "relevant_ids": [
+            "rag-asymmetric-prefixes"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "rag-asymmetric-prefixes",
+            "rag-hybrid-search",
+            "rag-context-vs-chunk",
+            "rag-eval-set-design",
+            "edge-ocr-noisy"
+          ]
+        },
+        {
+          "query": "is a bigger vector always better",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "rag-dimension-tradeoff"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "rag-dimension-tradeoff",
+            "rag-normalization",
+            "rag-quantization",
+            "rag-ivfflat-vs-hnsw",
+            "rag-cosine-similarity"
+          ]
+        },
+        {
+          "query": "how much disk will a million chunks need",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "rag-storage-math"
+          ],
+          "first_hit_rank": 2,
+          "top5": [
+            "edge-json-blob",
+            "rag-storage-math",
+            "edge-chat-log",
+            "arch-upload-size-limits",
+            "edge-email"
+          ]
+        },
+        {
+          "query": "the right answer comes back but never at the top",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "rag-recall-at-k",
+            "rag-reranking"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "rag-recall-at-k",
+            "rag-asymmetric-prefixes",
+            "rag-eval-set-design",
+            "rag-reranking",
+            "edge-ocr-noisy"
+          ]
+        },
+        {
+          "query": "searching for an exact error code returns nothing useful",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "rag-hybrid-search"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "rag-hybrid-search",
+            "arch-ai-call-fallback",
+            "setup-pgvector-version",
+            "rag-idempotent-ingest",
+            "edge-json-blob"
+          ]
+        },
+        {
+          "query": "encoding is slow, one request at a time",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "rag-batching-throughput"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "rag-batching-throughput",
+            "rag-cost-model",
+            "rag-cold-start",
+            "edge-csv-row",
+            "rag-sequence-truncation"
+          ]
+        },
+        {
+          "query": "the end of my long passages seems to be missing from the results",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "rag-sequence-truncation"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "rag-sequence-truncation",
+            "rag-asymmetric-prefixes",
+            "rag-context-vs-chunk",
+            "edge-ocr-noisy",
+            "rag-eval-set-design"
+          ]
+        },
+        {
+          "query": "first request after deploy takes forever, later ones are fine",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "rag-cold-start"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "rag-cold-start",
+            "setup-uvicorn",
+            "setup-smoke-test",
+            "arch-timeout-config",
+            "setup-postgres-service"
+          ]
+        },
+        {
+          "query": "should I run more uvicorn workers to go faster",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "rag-worker-memory"
+          ],
+          "first_hit_rank": 2,
+          "top5": [
+            "setup-uvicorn",
+            "rag-worker-memory",
+            "edge-csv-row",
+            "edge-chat-log",
+            "edge-json-blob"
+          ]
+        },
+        {
+          "query": "can I shrink the index without retraining anything",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "rag-quantization"
+          ],
+          "first_hit_rank": 3,
+          "top5": [
+            "rag-normalization",
+            "rag-dimension-tradeoff",
+            "rag-quantization",
+            "edge-email",
+            "edge-json-blob"
+          ]
+        },
+        {
+          "query": "is the top of the public leaderboard the right model for us",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "rag-mteb-caveat"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "rag-mteb-caveat",
+            "rag-recall-at-k",
+            "rag-reranking",
+            "rag-eval-set-design",
+            "edge-email"
+          ]
+        },
+        {
+          "query": "we have some documents in german, will the english model cope",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "edge-german",
+            "rag-multilingual-models"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "edge-german",
+            "rag-multilingual-models",
+            "rag-reranking",
+            "rag-code-embeddings",
+            "arch-allowed-formats"
+          ]
+        },
+        {
+          "query": "scanned pdfs give strange results after character recognition",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "edge-ocr-noisy",
+            "rag-ocr-noise"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "rag-ocr-noise",
+            "rag-batching-throughput",
+            "rag-asymmetric-prefixes",
+            "rag-reranking",
+            "edge-csv-row"
+          ]
+        },
+        {
+          "query": "questions about a specific cell in a spreadsheet never match",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "rag-tables-linearized"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "rag-tables-linearized",
+            "edge-code-sql",
+            "edge-email",
+            "schema-dimension-placeholder",
+            "rag-asymmetric-prefixes"
+          ]
+        },
+        {
+          "query": "do I need a special model to search a codebase",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "rag-code-embeddings"
+          ],
+          "first_hit_rank": 4,
+          "top5": [
+            "edge-table-linear",
+            "rag-versioning-vectors",
+            "rag-reranking",
+            "rag-code-embeddings",
+            "edge-email"
+          ]
+        },
+        {
+          "query": "the model accepts 8000 tokens so can I stop splitting documents",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "rag-context-vs-chunk"
+          ],
+          "first_hit_rank": 7,
+          "top5": [
+            "rag-sequence-truncation",
+            "edge-json-blob",
+            "rag-cost-model",
+            "edge-email",
+            "arch-upload-size-limits"
+          ]
+        },
+        {
+          "query": "is it cheaper to pay per token or run it ourselves",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "rag-cost-model"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "rag-cost-model",
+            "rag-cold-start",
+            "rag-worker-memory",
+            "arch-jwt-tokens",
+            "rag-hybrid-search"
+          ]
+        },
+        {
+          "query": "we want to switch models without downtime",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "rag-versioning-vectors"
+          ],
+          "first_hit_rank": 2,
+          "top5": [
+            "rag-cold-start",
+            "rag-versioning-vectors",
+            "edge-csv-row",
+            "edge-email",
+            "rag-reranking"
+          ]
+        },
+        {
+          "query": "the nightly job crashed halfway, is it safe to run it again",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "rag-idempotent-ingest"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "rag-idempotent-ingest",
+            "edge-chat-log",
+            "setup-uvicorn",
+            "edge-json-blob",
+            "edge-csv-row"
+          ]
+        },
+        {
+          "query": "every model scores the same on my test questions",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "rag-eval-set-design"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "rag-eval-set-design",
+            "edge-csv-row",
+            "edge-table-linear",
+            "rag-reranking",
+            "rag-asymmetric-prefixes"
+          ]
+        },
+        {
+          "query": "which of the candidates has the longest input limit",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "edge-table-linear"
+          ],
+          "first_hit_rank": 11,
+          "top5": [
+            "rag-sequence-truncation",
+            "rag-context-vs-chunk",
+            "edge-chat-log",
+            "rag-batching-throughput",
+            "rag-asymmetric-prefixes"
+          ]
+        },
+        {
+          "query": "what happens when the list of inputs is empty",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "edge-code-python"
+          ],
+          "first_hit_rank": 7,
+          "top5": [
+            "rag-asymmetric-prefixes",
+            "rag-batching-throughput",
+            "arch-ai-call-fallback",
+            "arch-upload-validation",
+            "edge-chat-log"
+          ]
+        },
+        {
+          "query": "wrapping the distance in an expression stops the index being used",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "edge-code-sql"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "edge-code-sql",
+            "rag-normalization",
+            "rag-asymmetric-prefixes",
+            "rag-dimension-tradeoff",
+            "schema-ivfflat-index"
+          ]
+        },
+        {
+          "query": "job failed with out of memory partway through, what should we do",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "edge-chat-log",
+            "edge-json-blob"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "edge-json-blob",
+            "edge-chat-log",
+            "rag-idempotent-ingest",
+            "edge-csv-row",
+            "rag-worker-memory"
+          ]
+        },
+        {
+          "query": "someone needs a decision on the column width this week",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "edge-email"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "edge-email",
+            "schema-dimension-placeholder",
+            "rag-storage-math",
+            "rag-tables-linearized",
+            "rag-context-vs-chunk"
+          ]
+        },
+        {
+          "query": "benchmark numbers comparing processor and accelerator throughput",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "edge-csv-row"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "edge-csv-row",
+            "rag-worker-memory",
+            "rag-batching-throughput",
+            "edge-chat-log",
+            "rag-ivfflat-vs-hnsw"
+          ]
+        },
+        {
+          "query": "el indice aproximado agrupa los vectores en listas",
+          "difficulty": "easy",
+          "relevant_ids": [
+            "edge-spanish"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "edge-spanish",
+            "rag-ivfflat-vs-hnsw",
+            "schema-ivfflat-index",
+            "rag-quantization",
+            "rag-normalization"
+          ]
+        }
+      ]
+    },
+    {
+      "model": "e5-base",
+      "hf_id": "intfloat/e5-base-v2",
+      "device": "cuda",
+      "prefixes_applied": false,
+      "query_prefix": "",
+      "passage_prefix": "",
+      "dim": 768,
+      "registry_dim": 768,
+      "max_seq_tokens_reported": 512,
+      "max_seq_tokens_registry": 512,
+      "params_millions": 109,
+      "licence": "MIT",
+      "notes": "Requires prefixes on BOTH sides. Used as the prefix-ablation subject.",
+      "load_seconds": 5.63,
+      "vectors_unit_norm": true,
+      "quality": {
+        "recall@1": 0.6,
+        "recall@3": 0.8,
+        "recall@5": 0.8833333333333333,
+        "mrr@5": 0.7180555555555556,
+        "mrr_by_difficulty": {
+          "easy": 0.7,
+          "hard": 0.6706349206349207,
+          "medium": 0.75
+        }
+      },
+      "latency_single": {
+        "samples": 30,
+        "p50_ms": 14.428,
+        "p95_ms": 22.461,
+        "mean_ms": 14.593,
+        "min_ms": 9.338
+      },
+      "throughput_by_batch": {
+        "1": {
+          "texts_per_second": 67.6,
+          "total_seconds": 0.962
+        },
+        "8": {
+          "texts_per_second": 138.3,
+          "total_seconds": 0.47
+        },
+        "32": {
+          "texts_per_second": 130.4,
+          "total_seconds": 0.498
+        },
+        "64": {
+          "texts_per_second": 115.1,
+          "total_seconds": 0.565
+        }
+      },
+      "peak_vram_mb": 738.3,
+      "rss_delta_mb": 37.7,
+      "storage_projection": {
+        "bytes_per_vector": 3072,
+        "mb_per_10k_chunks": 29.3,
+        "mb_per_100k_chunks": 293.0,
+        "gb_per_1m_chunks": 2.86
+      },
+      "per_query": [
+        {
+          "query": "why does my build of the vector extension fail on the newest postgres",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "setup-pgvector-version"
+          ],
+          "first_hit_rank": 3,
+          "top5": [
+            "setup-extension-enable",
+            "setup-pgvector-build",
+            "setup-pgvector-version",
+            "edge-email",
+            "setup-chunks-table"
+          ]
+        },
+        {
+          "query": "the CREATE EXTENSION statement says vector is not available, what did I miss",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "setup-extension-enable"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "setup-extension-enable",
+            "setup-pgvector-build",
+            "setup-pgvector-version",
+            "edge-email",
+            "setup-venv"
+          ]
+        },
+        {
+          "query": "which compiler prompt do I need to compile the extension on windows",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "setup-pgvector-build"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "setup-pgvector-build",
+            "setup-extension-enable",
+            "setup-pgvector-version",
+            "setup-venv",
+            "setup-uvicorn"
+          ]
+        },
+        {
+          "query": "how do I start the python api locally",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "setup-uvicorn"
+          ],
+          "first_hit_rank": 2,
+          "top5": [
+            "setup-venv",
+            "setup-uvicorn",
+            "setup-pgvector-build",
+            "setup-postgres-service",
+            "setup-smoke-test"
+          ]
+        },
+        {
+          "query": "commands to make an isolated python environment and install dependencies",
+          "difficulty": "easy",
+          "relevant_ids": [
+            "setup-venv"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "setup-venv",
+            "setup-pgvector-version",
+            "setup-uvicorn",
+            "setup-postgres-service",
+            "setup-extension-enable"
+          ]
+        },
+        {
+          "query": "how can I check the service responds before writing any real code",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "setup-smoke-test"
+          ],
+          "first_hit_rank": 2,
+          "top5": [
+            "setup-postgres-service",
+            "setup-smoke-test",
+            "setup-extension-enable",
+            "setup-venv",
+            "rag-cold-start"
+          ]
+        },
+        {
+          "query": "connection refused when talking to the database",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "setup-postgres-service"
+          ],
+          "first_hit_rank": 2,
+          "top5": [
+            "arch-transaction-boundary",
+            "setup-postgres-service",
+            "setup-pgvector-version",
+            "arch-ownership-checks",
+            "setup-extension-enable"
+          ]
+        },
+        {
+          "query": "what login and database name does the gateway expect by default",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "setup-role-and-db"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "setup-role-and-db",
+            "setup-base-tables",
+            "arch-cors-and-cookies",
+            "setup-chunks-table",
+            "setup-postgres-service"
+          ]
+        },
+        {
+          "query": "in what order do the two sql scripts have to be run",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "setup-chunks-table"
+          ],
+          "first_hit_rank": 2,
+          "top5": [
+            "setup-base-tables",
+            "setup-chunks-table",
+            "setup-postgres-service",
+            "schema-chats-messages",
+            "setup-extension-enable"
+          ]
+        },
+        {
+          "query": "how are database schema changes applied in this project",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "setup-base-tables"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "setup-base-tables",
+            "setup-postgres-service",
+            "setup-extension-enable",
+            "schema-dimension-placeholder",
+            "setup-pgvector-version"
+          ]
+        },
+        {
+          "query": "what stops the same chunk position being written twice for one document",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "schema-chunks-columns"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "schema-chunks-columns",
+            "rag-idempotent-ingest",
+            "rag-storage-math",
+            "setup-chunks-table",
+            "rag-context-vs-chunk"
+          ]
+        },
+        {
+          "query": "the 768 in the schema is not final, what depends on it",
+          "difficulty": "easy",
+          "relevant_ids": [
+            "schema-dimension-placeholder"
+          ],
+          "first_hit_rank": 2,
+          "top5": [
+            "edge-email",
+            "schema-dimension-placeholder",
+            "rag-storage-math",
+            "schema-chunks-columns",
+            "rag-sequence-truncation"
+          ]
+        },
+        {
+          "query": "why must the similarity index be created after loading data",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "rag-ivfflat-vs-hnsw",
+            "schema-ivfflat-index"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "schema-ivfflat-index",
+            "rag-normalization",
+            "edge-code-sql",
+            "setup-chunks-table",
+            "rag-hybrid-search"
+          ]
+        },
+        {
+          "query": "how are duplicate signups prevented",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "schema-users-table"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "schema-users-table",
+            "rag-versioning-vectors",
+            "rag-idempotent-ingest",
+            "arch-upload-validation",
+            "schema-chunks-columns"
+          ]
+        },
+        {
+          "query": "how is a conversation replayed in the right order",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "schema-chats-messages"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "schema-chats-messages",
+            "arch-ownership-checks",
+            "rag-recall-at-k",
+            "edge-ocr-noisy",
+            "arch-ai-call-fallback"
+          ]
+        },
+        {
+          "query": "which column tracks whether a file has been indexed yet",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "schema-documents-table"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "schema-documents-table",
+            "arch-upload-validation",
+            "schema-ivfflat-index",
+            "rag-storage-math",
+            "setup-chunks-table"
+          ]
+        },
+        {
+          "query": "what happens if writing the file to disk fails after the row is saved",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "arch-upload-validation"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "arch-upload-validation",
+            "rag-idempotent-ingest",
+            "rag-tables-linearized",
+            "schema-chunks-columns",
+            "schema-documents-table"
+          ]
+        },
+        {
+          "query": "can I upload a word document or a spreadsheet",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "arch-allowed-formats"
+          ],
+          "first_hit_rank": 7,
+          "top5": [
+            "arch-upload-validation",
+            "schema-documents-table",
+            "rag-storage-math",
+            "edge-code-sql",
+            "rag-context-vs-chunk"
+          ]
+        },
+        {
+          "query": "why are stored files not named after what the user called them",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "arch-local-storage"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "arch-local-storage",
+            "arch-upload-validation",
+            "schema-documents-table",
+            "rag-tables-linearized",
+            "arch-storage-provider"
+          ]
+        },
+        {
+          "query": "how long do the login credentials stay valid",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "arch-jwt-tokens"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "arch-jwt-tokens",
+            "arch-transaction-boundary",
+            "setup-role-and-db",
+            "schema-users-table",
+            "arch-auth-filter"
+          ]
+        },
+        {
+          "query": "where is the bearer token actually checked",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "arch-auth-filter"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "arch-auth-filter",
+            "arch-jwt-tokens",
+            "setup-smoke-test",
+            "rag-cost-model",
+            "schema-documents-table"
+          ]
+        },
+        {
+          "query": "can someone find out which conversations exist by guessing ids",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "arch-ownership-checks"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "arch-ownership-checks",
+            "schema-chats-messages",
+            "edge-spanish",
+            "edge-code-sql",
+            "rag-context-vs-chunk"
+          ]
+        },
+        {
+          "query": "what does the user see when the backend model is down",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "arch-ai-call-fallback"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "arch-ai-call-fallback",
+            "rag-cold-start",
+            "setup-uvicorn",
+            "arch-cors-and-cookies",
+            "frontend-screens"
+          ]
+        },
+        {
+          "query": "is it a problem that the remote call happens while the transaction is open",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "arch-transaction-boundary"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "arch-transaction-boundary",
+            "rag-cold-start",
+            "setup-postgres-service",
+            "arch-ownership-checks",
+            "setup-pgvector-version"
+          ]
+        },
+        {
+          "query": "difference between the two timeout settings on the http client",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "arch-timeout-config"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "arch-timeout-config",
+            "arch-transaction-boundary",
+            "arch-jwt-tokens",
+            "setup-uvicorn",
+            "rag-cold-start"
+          ]
+        },
+        {
+          "query": "there seem to be two different maximum upload sizes",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "arch-upload-size-limits"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "arch-upload-size-limits",
+            "edge-email",
+            "arch-upload-validation",
+            "arch-allowed-formats",
+            "rag-storage-math"
+          ]
+        },
+        {
+          "query": "how does the app recover the real client ip behind a proxy",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "arch-cors-and-cookies"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "arch-cors-and-cookies",
+            "arch-ai-call-fallback",
+            "setup-uvicorn",
+            "rag-cold-start",
+            "arch-ownership-checks"
+          ]
+        },
+        {
+          "query": "what would it take to move uploads to cloud object storage",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "arch-storage-provider"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "arch-storage-provider",
+            "arch-upload-validation",
+            "arch-allowed-formats",
+            "arch-jwt-tokens",
+            "rag-cold-start"
+          ]
+        },
+        {
+          "query": "why is each feature split into two packages",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "arch-module-layout"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "arch-module-layout",
+            "rag-reranking",
+            "rag-cold-start",
+            "frontend-screens",
+            "edge-spanish"
+          ]
+        },
+        {
+          "query": "what pages does the product have",
+          "difficulty": "easy",
+          "relevant_ids": [
+            "frontend-screens"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "frontend-screens",
+            "edge-table-linear",
+            "rag-storage-math",
+            "arch-module-layout",
+            "edge-csv-row"
+          ]
+        },
+        {
+          "query": "how can two passages with no words in common still be considered similar",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "rag-what-embeddings-are"
+          ],
+          "first_hit_rank": 4,
+          "top5": [
+            "rag-cosine-similarity",
+            "edge-ocr-noisy",
+            "rag-tables-linearized",
+            "rag-what-embeddings-are",
+            "rag-context-vs-chunk"
+          ]
+        },
+        {
+          "query": "does it matter whether I rank by dot product or euclidean distance",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "rag-cosine-similarity",
+            "rag-normalization"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "rag-cosine-similarity",
+            "rag-normalization",
+            "rag-recall-at-k",
+            "edge-email",
+            "rag-storage-math"
+          ]
+        },
+        {
+          "query": "my scores rank fine but the threshold I picked stopped working",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "rag-normalization"
+          ],
+          "first_hit_rank": 4,
+          "top5": [
+            "edge-ocr-noisy",
+            "rag-recall-at-k",
+            "rag-eval-set-design",
+            "rag-normalization",
+            "rag-hybrid-search"
+          ]
+        },
+        {
+          "query": "I forgot to add query: and passage: in front of the text, does that matter",
+          "difficulty": "easy",
+          "relevant_ids": [
+            "rag-asymmetric-prefixes"
+          ],
+          "first_hit_rank": 19,
+          "top5": [
+            "rag-context-vs-chunk",
+            "rag-cosine-similarity",
+            "rag-tables-linearized",
+            "rag-recall-at-k",
+            "edge-code-python"
+          ]
+        },
+        {
+          "query": "is a bigger vector always better",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "rag-dimension-tradeoff"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "rag-dimension-tradeoff",
+            "rag-cosine-similarity",
+            "rag-normalization",
+            "rag-context-vs-chunk",
+            "rag-storage-math"
+          ]
+        },
+        {
+          "query": "how much disk will a million chunks need",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "rag-storage-math"
+          ],
+          "first_hit_rank": 2,
+          "top5": [
+            "edge-json-blob",
+            "rag-storage-math",
+            "schema-chunks-columns",
+            "setup-chunks-table",
+            "edge-email"
+          ]
+        },
+        {
+          "query": "the right answer comes back but never at the top",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "rag-recall-at-k",
+            "rag-reranking"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "rag-recall-at-k",
+            "edge-ocr-noisy",
+            "rag-hybrid-search",
+            "rag-eval-set-design",
+            "rag-tables-linearized"
+          ]
+        },
+        {
+          "query": "searching for an exact error code returns nothing useful",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "rag-hybrid-search"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "rag-hybrid-search",
+            "arch-ownership-checks",
+            "rag-asymmetric-prefixes",
+            "rag-recall-at-k",
+            "arch-ai-call-fallback"
+          ]
+        },
+        {
+          "query": "encoding is slow, one request at a time",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "rag-batching-throughput"
+          ],
+          "first_hit_rank": 4,
+          "top5": [
+            "rag-cold-start",
+            "rag-worker-memory",
+            "rag-cost-model",
+            "rag-batching-throughput",
+            "rag-context-vs-chunk"
+          ]
+        },
+        {
+          "query": "the end of my long passages seems to be missing from the results",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "rag-sequence-truncation"
+          ],
+          "first_hit_rank": 4,
+          "top5": [
+            "rag-context-vs-chunk",
+            "edge-ocr-noisy",
+            "rag-cosine-similarity",
+            "rag-sequence-truncation",
+            "edge-chat-log"
+          ]
+        },
+        {
+          "query": "first request after deploy takes forever, later ones are fine",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "rag-cold-start"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "rag-cold-start",
+            "arch-jwt-tokens",
+            "arch-upload-size-limits",
+            "setup-uvicorn",
+            "arch-auth-filter"
+          ]
+        },
+        {
+          "query": "should I run more uvicorn workers to go faster",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "rag-worker-memory"
+          ],
+          "first_hit_rank": 2,
+          "top5": [
+            "setup-uvicorn",
+            "rag-worker-memory",
+            "edge-csv-row",
+            "edge-email",
+            "edge-chat-log"
+          ]
+        },
+        {
+          "query": "can I shrink the index without retraining anything",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "rag-quantization"
+          ],
+          "first_hit_rank": 4,
+          "top5": [
+            "rag-dimension-tradeoff",
+            "edge-ocr-noisy",
+            "rag-normalization",
+            "rag-quantization",
+            "edge-code-sql"
+          ]
+        },
+        {
+          "query": "is the top of the public leaderboard the right model for us",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "rag-mteb-caveat"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "rag-mteb-caveat",
+            "rag-recall-at-k",
+            "edge-table-linear",
+            "edge-email",
+            "rag-normalization"
+          ]
+        },
+        {
+          "query": "we have some documents in german, will the english model cope",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "edge-german",
+            "rag-multilingual-models"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "edge-german",
+            "rag-multilingual-models",
+            "rag-sequence-truncation",
+            "rag-context-vs-chunk",
+            "rag-code-embeddings"
+          ]
+        },
+        {
+          "query": "scanned pdfs give strange results after character recognition",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "edge-ocr-noisy",
+            "rag-ocr-noise"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "rag-ocr-noise",
+            "rag-context-vs-chunk",
+            "rag-storage-math",
+            "rag-tables-linearized",
+            "rag-cosine-similarity"
+          ]
+        },
+        {
+          "query": "questions about a specific cell in a spreadsheet never match",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "rag-tables-linearized"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "rag-tables-linearized",
+            "rag-context-vs-chunk",
+            "edge-table-linear",
+            "edge-ocr-noisy",
+            "edge-german"
+          ]
+        },
+        {
+          "query": "do I need a special model to search a codebase",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "rag-code-embeddings"
+          ],
+          "first_hit_rank": 9,
+          "top5": [
+            "edge-table-linear",
+            "edge-code-python",
+            "rag-hybrid-search",
+            "rag-normalization",
+            "rag-ivfflat-vs-hnsw"
+          ]
+        },
+        {
+          "query": "the model accepts 8000 tokens so can I stop splitting documents",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "rag-context-vs-chunk"
+          ],
+          "first_hit_rank": 10,
+          "top5": [
+            "rag-sequence-truncation",
+            "edge-email",
+            "edge-code-sql",
+            "edge-json-blob",
+            "edge-table-linear"
+          ]
+        },
+        {
+          "query": "is it cheaper to pay per token or run it ourselves",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "rag-cost-model"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "rag-cost-model",
+            "arch-jwt-tokens",
+            "rag-cold-start",
+            "arch-auth-filter",
+            "rag-worker-memory"
+          ]
+        },
+        {
+          "query": "we want to switch models without downtime",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "rag-versioning-vectors"
+          ],
+          "first_hit_rank": 2,
+          "top5": [
+            "rag-cold-start",
+            "rag-versioning-vectors",
+            "arch-storage-provider",
+            "edge-table-linear",
+            "edge-csv-row"
+          ]
+        },
+        {
+          "query": "the nightly job crashed halfway, is it safe to run it again",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "rag-idempotent-ingest"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "rag-idempotent-ingest",
+            "edge-chat-log",
+            "setup-postgres-service",
+            "rag-cold-start",
+            "rag-worker-memory"
+          ]
+        },
+        {
+          "query": "every model scores the same on my test questions",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "rag-eval-set-design"
+          ],
+          "first_hit_rank": 13,
+          "top5": [
+            "edge-table-linear",
+            "rag-normalization",
+            "rag-tables-linearized",
+            "edge-csv-row",
+            "rag-recall-at-k"
+          ]
+        },
+        {
+          "query": "which of the candidates has the longest input limit",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "edge-table-linear"
+          ],
+          "first_hit_rank": 8,
+          "top5": [
+            "rag-context-vs-chunk",
+            "rag-reranking",
+            "edge-email",
+            "arch-upload-size-limits",
+            "rag-mteb-caveat"
+          ]
+        },
+        {
+          "query": "what happens when the list of inputs is empty",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "edge-code-python"
+          ],
+          "first_hit_rank": 11,
+          "top5": [
+            "arch-upload-validation",
+            "rag-tables-linearized",
+            "rag-asymmetric-prefixes",
+            "rag-idempotent-ingest",
+            "edge-spanish"
+          ]
+        },
+        {
+          "query": "wrapping the distance in an expression stops the index being used",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "edge-code-sql"
+          ],
+          "first_hit_rank": 2,
+          "top5": [
+            "rag-normalization",
+            "edge-code-sql",
+            "schema-ivfflat-index",
+            "rag-cosine-similarity",
+            "rag-tables-linearized"
+          ]
+        },
+        {
+          "query": "job failed with out of memory partway through, what should we do",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "edge-chat-log",
+            "edge-json-blob"
+          ],
+          "first_hit_rank": 2,
+          "top5": [
+            "rag-idempotent-ingest",
+            "edge-chat-log",
+            "edge-json-blob",
+            "edge-email",
+            "edge-ocr-noisy"
+          ]
+        },
+        {
+          "query": "someone needs a decision on the column width this week",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "edge-email"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "edge-email",
+            "schema-dimension-placeholder",
+            "rag-storage-math",
+            "rag-tables-linearized",
+            "edge-spanish"
+          ]
+        },
+        {
+          "query": "benchmark numbers comparing processor and accelerator throughput",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "edge-csv-row"
+          ],
+          "first_hit_rank": 2,
+          "top5": [
+            "rag-worker-memory",
+            "edge-csv-row",
+            "edge-table-linear",
+            "edge-chat-log",
+            "rag-normalization"
+          ]
+        },
+        {
+          "query": "el indice aproximado agrupa los vectores en listas",
+          "difficulty": "easy",
+          "relevant_ids": [
+            "edge-spanish"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "edge-spanish",
+            "rag-storage-math",
+            "edge-csv-row",
+            "rag-normalization",
+            "rag-ivfflat-vs-hnsw"
+          ]
+        }
+      ]
+    },
+    {
+      "model": "nomic-v15",
+      "hf_id": "nomic-ai/nomic-embed-text-v1.5",
+      "device": "cuda",
+      "prefixes_applied": false,
+      "query_prefix": "",
+      "passage_prefix": "",
+      "dim": 768,
+      "registry_dim": 768,
+      "max_seq_tokens_reported": 8192,
+      "max_seq_tokens_registry": 8192,
+      "params_millions": 137,
+      "licence": "Apache-2.0",
+      "notes": "Long context and Matryoshka training, so the output can be truncated to a narrower width post hoc. Needs remote code + einops.",
+      "load_seconds": 9.13,
+      "vectors_unit_norm": true,
+      "quality": {
+        "recall@1": 0.7333333333333333,
+        "recall@3": 0.9,
+        "recall@5": 0.9333333333333333,
+        "mrr@5": 0.8075,
+        "mrr_by_difficulty": {
+          "easy": 0.5666666666666667,
+          "hard": 0.7,
+          "medium": 0.9093137254901961
+        }
+      },
+      "latency_single": {
+        "samples": 30,
+        "p50_ms": 14.429,
+        "p95_ms": 24.731,
+        "mean_ms": 15.83,
+        "min_ms": 11.744
+      },
+      "throughput_by_batch": {
+        "1": {
+          "texts_per_second": 55.0,
+          "total_seconds": 1.183
+        },
+        "8": {
+          "texts_per_second": 97.9,
+          "total_seconds": 0.664
+        },
+        "32": {
+          "texts_per_second": 92.5,
+          "total_seconds": 0.703
+        },
+        "64": {
+          "texts_per_second": 86.7,
+          "total_seconds": 0.75
+        }
+      },
+      "peak_vram_mb": 1095.2,
+      "rss_delta_mb": 270.5,
+      "storage_projection": {
+        "bytes_per_vector": 3072,
+        "mb_per_10k_chunks": 29.3,
+        "mb_per_100k_chunks": 293.0,
+        "gb_per_1m_chunks": 2.86
+      },
+      "per_query": [
+        {
+          "query": "why does my build of the vector extension fail on the newest postgres",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "setup-pgvector-version"
+          ],
+          "first_hit_rank": 3,
+          "top5": [
+            "setup-extension-enable",
+            "setup-pgvector-build",
+            "setup-pgvector-version",
+            "setup-postgres-service",
+            "arch-upload-validation"
+          ]
+        },
+        {
+          "query": "the CREATE EXTENSION statement says vector is not available, what did I miss",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "setup-extension-enable"
+          ],
+          "first_hit_rank": 2,
+          "top5": [
+            "setup-pgvector-build",
+            "setup-extension-enable",
+            "setup-pgvector-version",
+            "edge-email",
+            "schema-dimension-placeholder"
+          ]
+        },
+        {
+          "query": "which compiler prompt do I need to compile the extension on windows",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "setup-pgvector-build"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "setup-pgvector-build",
+            "setup-pgvector-version",
+            "setup-extension-enable",
+            "rag-code-embeddings",
+            "arch-local-storage"
+          ]
+        },
+        {
+          "query": "how do I start the python api locally",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "setup-uvicorn"
+          ],
+          "first_hit_rank": 3,
+          "top5": [
+            "setup-venv",
+            "setup-extension-enable",
+            "setup-uvicorn",
+            "setup-postgres-service",
+            "setup-smoke-test"
+          ]
+        },
+        {
+          "query": "commands to make an isolated python environment and install dependencies",
+          "difficulty": "easy",
+          "relevant_ids": [
+            "setup-venv"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "setup-venv",
+            "setup-extension-enable",
+            "setup-pgvector-version",
+            "setup-uvicorn",
+            "arch-local-storage"
+          ]
+        },
+        {
+          "query": "how can I check the service responds before writing any real code",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "setup-smoke-test"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "setup-smoke-test",
+            "setup-postgres-service",
+            "arch-ai-call-fallback",
+            "arch-auth-filter",
+            "arch-transaction-boundary"
+          ]
+        },
+        {
+          "query": "connection refused when talking to the database",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "setup-postgres-service"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "setup-postgres-service",
+            "arch-transaction-boundary",
+            "arch-upload-validation",
+            "setup-extension-enable",
+            "setup-pgvector-version"
+          ]
+        },
+        {
+          "query": "what login and database name does the gateway expect by default",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "setup-role-and-db"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "setup-role-and-db",
+            "setup-base-tables",
+            "frontend-screens",
+            "arch-cors-and-cookies",
+            "arch-module-layout"
+          ]
+        },
+        {
+          "query": "in what order do the two sql scripts have to be run",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "setup-chunks-table"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "setup-chunks-table",
+            "setup-base-tables",
+            "setup-extension-enable",
+            "setup-postgres-service",
+            "rag-reranking"
+          ]
+        },
+        {
+          "query": "how are database schema changes applied in this project",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "setup-base-tables"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "setup-base-tables",
+            "setup-pgvector-version",
+            "arch-storage-provider",
+            "setup-extension-enable",
+            "setup-chunks-table"
+          ]
+        },
+        {
+          "query": "what stops the same chunk position being written twice for one document",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "schema-chunks-columns"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "schema-chunks-columns",
+            "setup-chunks-table",
+            "rag-ocr-noise",
+            "rag-idempotent-ingest",
+            "rag-what-embeddings-are"
+          ]
+        },
+        {
+          "query": "the 768 in the schema is not final, what depends on it",
+          "difficulty": "easy",
+          "relevant_ids": [
+            "schema-dimension-placeholder"
+          ],
+          "first_hit_rank": 2,
+          "top5": [
+            "edge-email",
+            "schema-dimension-placeholder",
+            "setup-pgvector-version",
+            "schema-users-table",
+            "setup-postgres-service"
+          ]
+        },
+        {
+          "query": "why must the similarity index be created after loading data",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "rag-ivfflat-vs-hnsw",
+            "schema-ivfflat-index"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "schema-ivfflat-index",
+            "rag-normalization",
+            "edge-code-sql",
+            "rag-versioning-vectors",
+            "rag-cosine-similarity"
+          ]
+        },
+        {
+          "query": "how are duplicate signups prevented",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "schema-users-table"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "schema-users-table",
+            "arch-jwt-tokens",
+            "setup-role-and-db",
+            "frontend-screens",
+            "arch-upload-size-limits"
+          ]
+        },
+        {
+          "query": "how is a conversation replayed in the right order",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "schema-chats-messages"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "schema-chats-messages",
+            "rag-recall-at-k",
+            "rag-reranking",
+            "edge-ocr-noisy",
+            "rag-eval-set-design"
+          ]
+        },
+        {
+          "query": "which column tracks whether a file has been indexed yet",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "schema-documents-table"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "schema-documents-table",
+            "setup-chunks-table",
+            "arch-upload-validation",
+            "schema-ivfflat-index",
+            "rag-storage-math"
+          ]
+        },
+        {
+          "query": "what happens if writing the file to disk fails after the row is saved",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "arch-upload-validation"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "arch-upload-validation",
+            "rag-idempotent-ingest",
+            "arch-local-storage",
+            "edge-json-blob",
+            "schema-documents-table"
+          ]
+        },
+        {
+          "query": "can I upload a word document or a spreadsheet",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "arch-allowed-formats"
+          ],
+          "first_hit_rank": 3,
+          "top5": [
+            "schema-documents-table",
+            "arch-upload-validation",
+            "arch-allowed-formats",
+            "arch-local-storage",
+            "rag-cost-model"
+          ]
+        },
+        {
+          "query": "why are stored files not named after what the user called them",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "arch-local-storage"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "arch-local-storage",
+            "arch-storage-provider",
+            "arch-upload-validation",
+            "schema-documents-table",
+            "arch-ownership-checks"
+          ]
+        },
+        {
+          "query": "how long do the login credentials stay valid",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "arch-jwt-tokens"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "arch-jwt-tokens",
+            "arch-auth-filter",
+            "schema-users-table",
+            "frontend-screens",
+            "setup-role-and-db"
+          ]
+        },
+        {
+          "query": "where is the bearer token actually checked",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "arch-auth-filter"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "arch-auth-filter",
+            "arch-jwt-tokens",
+            "rag-sequence-truncation",
+            "arch-ownership-checks",
+            "arch-cors-and-cookies"
+          ]
+        },
+        {
+          "query": "can someone find out which conversations exist by guessing ids",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "arch-ownership-checks"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "arch-ownership-checks",
+            "schema-chats-messages",
+            "frontend-screens",
+            "arch-local-storage",
+            "schema-users-table"
+          ]
+        },
+        {
+          "query": "what does the user see when the backend model is down",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "arch-ai-call-fallback"
+          ],
+          "first_hit_rank": 5,
+          "top5": [
+            "setup-postgres-service",
+            "setup-smoke-test",
+            "arch-transaction-boundary",
+            "edge-csv-row",
+            "arch-ai-call-fallback"
+          ]
+        },
+        {
+          "query": "is it a problem that the remote call happens while the transaction is open",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "arch-transaction-boundary"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "arch-transaction-boundary",
+            "arch-timeout-config",
+            "arch-ownership-checks",
+            "setup-uvicorn",
+            "arch-jwt-tokens"
+          ]
+        },
+        {
+          "query": "difference between the two timeout settings on the http client",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "arch-timeout-config"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "arch-timeout-config",
+            "arch-transaction-boundary",
+            "rag-cold-start",
+            "arch-cors-and-cookies",
+            "setup-uvicorn"
+          ]
+        },
+        {
+          "query": "there seem to be two different maximum upload sizes",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "arch-upload-size-limits"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "arch-upload-size-limits",
+            "arch-upload-validation",
+            "arch-allowed-formats",
+            "rag-storage-math",
+            "rag-dimension-tradeoff"
+          ]
+        },
+        {
+          "query": "how does the app recover the real client ip behind a proxy",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "arch-cors-and-cookies"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "arch-cors-and-cookies",
+            "setup-uvicorn",
+            "setup-smoke-test",
+            "arch-jwt-tokens",
+            "arch-auth-filter"
+          ]
+        },
+        {
+          "query": "what would it take to move uploads to cloud object storage",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "arch-storage-provider"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "arch-storage-provider",
+            "arch-upload-validation",
+            "schema-documents-table",
+            "arch-allowed-formats",
+            "rag-cold-start"
+          ]
+        },
+        {
+          "query": "why is each feature split into two packages",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "arch-module-layout"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "arch-module-layout",
+            "rag-code-embeddings",
+            "rag-cost-model",
+            "frontend-screens",
+            "rag-multilingual-models"
+          ]
+        },
+        {
+          "query": "what pages does the product have",
+          "difficulty": "easy",
+          "relevant_ids": [
+            "frontend-screens"
+          ],
+          "first_hit_rank": 3,
+          "top5": [
+            "schema-documents-table",
+            "rag-storage-math",
+            "frontend-screens",
+            "edge-table-linear",
+            "schema-chats-messages"
+          ]
+        },
+        {
+          "query": "how can two passages with no words in common still be considered similar",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "rag-what-embeddings-are"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "rag-what-embeddings-are",
+            "rag-cosine-similarity",
+            "rag-eval-set-design",
+            "rag-multilingual-models",
+            "edge-ocr-noisy"
+          ]
+        },
+        {
+          "query": "does it matter whether I rank by dot product or euclidean distance",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "rag-cosine-similarity",
+            "rag-normalization"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "rag-cosine-similarity",
+            "rag-normalization",
+            "rag-recall-at-k",
+            "edge-code-sql",
+            "schema-ivfflat-index"
+          ]
+        },
+        {
+          "query": "my scores rank fine but the threshold I picked stopped working",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "rag-normalization"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "rag-normalization",
+            "rag-recall-at-k",
+            "rag-mteb-caveat",
+            "rag-eval-set-design",
+            "rag-asymmetric-prefixes"
+          ]
+        },
+        {
+          "query": "I forgot to add query: and passage: in front of the text, does that matter",
+          "difficulty": "easy",
+          "relevant_ids": [
+            "rag-asymmetric-prefixes"
+          ],
+          "first_hit_rank": 10,
+          "top5": [
+            "edge-code-python",
+            "edge-ocr-noisy",
+            "rag-tables-linearized",
+            "rag-what-embeddings-are",
+            "rag-reranking"
+          ]
+        },
+        {
+          "query": "is a bigger vector always better",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "rag-dimension-tradeoff"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "rag-dimension-tradeoff",
+            "rag-cosine-similarity",
+            "edge-email",
+            "rag-quantization",
+            "rag-normalization"
+          ]
+        },
+        {
+          "query": "how much disk will a million chunks need",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "rag-storage-math"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "rag-storage-math",
+            "edge-json-blob",
+            "edge-chat-log",
+            "setup-chunks-table",
+            "schema-chunks-columns"
+          ]
+        },
+        {
+          "query": "the right answer comes back but never at the top",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "rag-recall-at-k",
+            "rag-reranking"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "rag-recall-at-k",
+            "rag-reranking",
+            "rag-eval-set-design",
+            "rag-asymmetric-prefixes",
+            "rag-hybrid-search"
+          ]
+        },
+        {
+          "query": "searching for an exact error code returns nothing useful",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "rag-hybrid-search"
+          ],
+          "first_hit_rank": 13,
+          "top5": [
+            "rag-code-embeddings",
+            "arch-ai-call-fallback",
+            "rag-idempotent-ingest",
+            "rag-asymmetric-prefixes",
+            "edge-code-python"
+          ]
+        },
+        {
+          "query": "encoding is slow, one request at a time",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "rag-batching-throughput"
+          ],
+          "first_hit_rank": 4,
+          "top5": [
+            "rag-cold-start",
+            "rag-cost-model",
+            "rag-reranking",
+            "rag-batching-throughput",
+            "rag-sequence-truncation"
+          ]
+        },
+        {
+          "query": "the end of my long passages seems to be missing from the results",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "rag-sequence-truncation"
+          ],
+          "first_hit_rank": 2,
+          "top5": [
+            "rag-context-vs-chunk",
+            "rag-sequence-truncation",
+            "rag-asymmetric-prefixes",
+            "rag-what-embeddings-are",
+            "rag-eval-set-design"
+          ]
+        },
+        {
+          "query": "first request after deploy takes forever, later ones are fine",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "rag-cold-start"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "rag-cold-start",
+            "arch-timeout-config",
+            "arch-jwt-tokens",
+            "setup-uvicorn",
+            "setup-extension-enable"
+          ]
+        },
+        {
+          "query": "should I run more uvicorn workers to go faster",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "rag-worker-memory"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "rag-worker-memory",
+            "setup-uvicorn",
+            "rag-mteb-caveat",
+            "rag-batching-throughput",
+            "rag-ivfflat-vs-hnsw"
+          ]
+        },
+        {
+          "query": "can I shrink the index without retraining anything",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "rag-quantization"
+          ],
+          "first_hit_rank": 3,
+          "top5": [
+            "schema-ivfflat-index",
+            "rag-normalization",
+            "rag-quantization",
+            "rag-dimension-tradeoff",
+            "rag-versioning-vectors"
+          ]
+        },
+        {
+          "query": "is the top of the public leaderboard the right model for us",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "rag-mteb-caveat"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "rag-mteb-caveat",
+            "rag-recall-at-k",
+            "rag-normalization",
+            "rag-hybrid-search",
+            "rag-reranking"
+          ]
+        },
+        {
+          "query": "we have some documents in german, will the english model cope",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "edge-german",
+            "rag-multilingual-models"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "rag-multilingual-models",
+            "edge-german",
+            "rag-code-embeddings",
+            "rag-sequence-truncation",
+            "edge-table-linear"
+          ]
+        },
+        {
+          "query": "scanned pdfs give strange results after character recognition",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "edge-ocr-noisy",
+            "rag-ocr-noise"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "rag-ocr-noise",
+            "arch-allowed-formats",
+            "rag-sequence-truncation",
+            "arch-local-storage",
+            "schema-documents-table"
+          ]
+        },
+        {
+          "query": "questions about a specific cell in a spreadsheet never match",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "rag-tables-linearized"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "rag-tables-linearized",
+            "schema-dimension-placeholder",
+            "schema-ivfflat-index",
+            "rag-what-embeddings-are",
+            "rag-versioning-vectors"
+          ]
+        },
+        {
+          "query": "do I need a special model to search a codebase",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "rag-code-embeddings"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "rag-code-embeddings",
+            "rag-reranking",
+            "edge-table-linear",
+            "rag-multilingual-models",
+            "rag-versioning-vectors"
+          ]
+        },
+        {
+          "query": "the model accepts 8000 tokens so can I stop splitting documents",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "rag-context-vs-chunk"
+          ],
+          "first_hit_rank": 22,
+          "top5": [
+            "rag-sequence-truncation",
+            "arch-upload-size-limits",
+            "rag-cost-model",
+            "rag-versioning-vectors",
+            "schema-chunks-columns"
+          ]
+        },
+        {
+          "query": "is it cheaper to pay per token or run it ourselves",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "rag-cost-model"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "rag-cost-model",
+            "arch-jwt-tokens",
+            "arch-auth-filter",
+            "rag-sequence-truncation",
+            "rag-cold-start"
+          ]
+        },
+        {
+          "query": "we want to switch models without downtime",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "rag-versioning-vectors"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "rag-versioning-vectors",
+            "rag-cold-start",
+            "rag-multilingual-models",
+            "edge-chat-log",
+            "edge-email"
+          ]
+        },
+        {
+          "query": "the nightly job crashed halfway, is it safe to run it again",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "rag-idempotent-ingest"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "rag-idempotent-ingest",
+            "setup-postgres-service",
+            "setup-uvicorn",
+            "edge-chat-log",
+            "setup-pgvector-version"
+          ]
+        },
+        {
+          "query": "every model scores the same on my test questions",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "rag-eval-set-design"
+          ],
+          "first_hit_rank": 3,
+          "top5": [
+            "rag-versioning-vectors",
+            "edge-table-linear",
+            "rag-eval-set-design",
+            "rag-multilingual-models",
+            "rag-mteb-caveat"
+          ]
+        },
+        {
+          "query": "which of the candidates has the longest input limit",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "edge-table-linear"
+          ],
+          "first_hit_rank": 6,
+          "top5": [
+            "rag-context-vs-chunk",
+            "rag-reranking",
+            "arch-upload-size-limits",
+            "rag-sequence-truncation",
+            "rag-batching-throughput"
+          ]
+        },
+        {
+          "query": "what happens when the list of inputs is empty",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "edge-code-python"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "edge-code-python",
+            "arch-upload-validation",
+            "rag-sequence-truncation",
+            "rag-batching-throughput",
+            "rag-asymmetric-prefixes"
+          ]
+        },
+        {
+          "query": "wrapping the distance in an expression stops the index being used",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "edge-code-sql"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "edge-code-sql",
+            "schema-ivfflat-index",
+            "rag-normalization",
+            "rag-what-embeddings-are",
+            "rag-cosine-similarity"
+          ]
+        },
+        {
+          "query": "job failed with out of memory partway through, what should we do",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "edge-chat-log",
+            "edge-json-blob"
+          ],
+          "first_hit_rank": 2,
+          "top5": [
+            "rag-idempotent-ingest",
+            "edge-json-blob",
+            "edge-chat-log",
+            "rag-worker-memory",
+            "arch-ai-call-fallback"
+          ]
+        },
+        {
+          "query": "someone needs a decision on the column width this week",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "edge-email"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "edge-email",
+            "schema-dimension-placeholder",
+            "rag-storage-math",
+            "rag-dimension-tradeoff",
+            "rag-context-vs-chunk"
+          ]
+        },
+        {
+          "query": "benchmark numbers comparing processor and accelerator throughput",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "edge-csv-row"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "edge-csv-row",
+            "rag-worker-memory",
+            "rag-mteb-caveat",
+            "edge-table-linear",
+            "rag-ivfflat-vs-hnsw"
+          ]
+        },
+        {
+          "query": "el indice aproximado agrupa los vectores en listas",
+          "difficulty": "easy",
+          "relevant_ids": [
+            "edge-spanish"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "edge-spanish",
+            "schema-ivfflat-index",
+            "rag-quantization",
+            "rag-ivfflat-vs-hnsw",
+            "edge-code-python"
+          ]
+        }
+      ]
+    },
+    {
+      "model": "mxbai-large",
+      "hf_id": "mixedbread-ai/mxbai-embed-large-v1",
+      "device": "cuda",
+      "prefixes_applied": false,
+      "query_prefix": "",
+      "passage_prefix": "",
+      "dim": 1024,
+      "registry_dim": 1024,
+      "max_seq_tokens_reported": 512,
+      "max_seq_tokens_registry": 512,
+      "params_millions": 335,
+      "licence": "Apache-2.0",
+      "notes": "Largest model that fits 4 GB of VRAM. Tests whether the extra width and depth actually buy anything on this corpus.",
+      "load_seconds": 6.01,
+      "vectors_unit_norm": true,
+      "quality": {
+        "recall@1": 0.6666666666666666,
+        "recall@3": 0.8833333333333333,
+        "recall@5": 0.95,
+        "mrr@5": 0.7825000000000001,
+        "mrr_by_difficulty": {
+          "easy": 0.7666666666666667,
+          "hard": 0.6865079365079365,
+          "medium": 0.8441176470588235
+        }
+      },
+      "latency_single": {
+        "samples": 30,
+        "p50_ms": 18.589,
+        "p95_ms": 22.639,
+        "mean_ms": 18.843,
+        "min_ms": 15.697
+      },
+      "throughput_by_batch": {
+        "1": {
+          "texts_per_second": 42.9,
+          "total_seconds": 1.517
+        },
+        "8": {
+          "texts_per_second": 105.5,
+          "total_seconds": 0.616
+        },
+        "32": {
+          "texts_per_second": 126.4,
+          "total_seconds": 0.514
+        },
+        "64": {
+          "texts_per_second": 118.5,
+          "total_seconds": 0.548
+        }
+      },
+      "peak_vram_mb": 859.1,
+      "rss_delta_mb": 276.2,
+      "storage_projection": {
+        "bytes_per_vector": 4096,
+        "mb_per_10k_chunks": 39.1,
+        "mb_per_100k_chunks": 390.6,
+        "gb_per_1m_chunks": 3.81
+      },
+      "per_query": [
+        {
+          "query": "why does my build of the vector extension fail on the newest postgres",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "setup-pgvector-version"
+          ],
+          "first_hit_rank": 4,
+          "top5": [
+            "setup-extension-enable",
+            "setup-pgvector-build",
+            "schema-dimension-placeholder",
+            "setup-pgvector-version",
+            "edge-email"
+          ]
+        },
+        {
+          "query": "the CREATE EXTENSION statement says vector is not available, what did I miss",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "setup-extension-enable"
+          ],
+          "first_hit_rank": 2,
+          "top5": [
+            "setup-pgvector-build",
+            "setup-extension-enable",
+            "schema-dimension-placeholder",
+            "setup-pgvector-version",
+            "edge-email"
+          ]
+        },
+        {
+          "query": "which compiler prompt do I need to compile the extension on windows",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "setup-pgvector-build"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "setup-pgvector-build",
+            "setup-pgvector-version",
+            "setup-extension-enable",
+            "setup-smoke-test",
+            "setup-venv"
+          ]
+        },
+        {
+          "query": "how do I start the python api locally",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "setup-uvicorn"
+          ],
+          "first_hit_rank": 2,
+          "top5": [
+            "setup-venv",
+            "setup-uvicorn",
+            "setup-smoke-test",
+            "setup-postgres-service",
+            "arch-timeout-config"
+          ]
+        },
+        {
+          "query": "commands to make an isolated python environment and install dependencies",
+          "difficulty": "easy",
+          "relevant_ids": [
+            "setup-venv"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "setup-venv",
+            "setup-pgvector-version",
+            "setup-pgvector-build",
+            "setup-uvicorn",
+            "setup-extension-enable"
+          ]
+        },
+        {
+          "query": "how can I check the service responds before writing any real code",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "setup-smoke-test"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "setup-smoke-test",
+            "arch-ai-call-fallback",
+            "arch-ownership-checks",
+            "arch-timeout-config",
+            "arch-transaction-boundary"
+          ]
+        },
+        {
+          "query": "connection refused when talking to the database",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "setup-postgres-service"
+          ],
+          "first_hit_rank": 2,
+          "top5": [
+            "arch-transaction-boundary",
+            "setup-postgres-service",
+            "arch-ai-call-fallback",
+            "setup-pgvector-version",
+            "setup-role-and-db"
+          ]
+        },
+        {
+          "query": "what login and database name does the gateway expect by default",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "setup-role-and-db"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "setup-role-and-db",
+            "arch-cors-and-cookies",
+            "setup-base-tables",
+            "schema-users-table",
+            "setup-postgres-service"
+          ]
+        },
+        {
+          "query": "in what order do the two sql scripts have to be run",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "setup-chunks-table"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "setup-chunks-table",
+            "setup-base-tables",
+            "setup-postgres-service",
+            "setup-extension-enable",
+            "rag-idempotent-ingest"
+          ]
+        },
+        {
+          "query": "how are database schema changes applied in this project",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "setup-base-tables"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "setup-base-tables",
+            "rag-versioning-vectors",
+            "schema-dimension-placeholder",
+            "schema-users-table",
+            "arch-module-layout"
+          ]
+        },
+        {
+          "query": "what stops the same chunk position being written twice for one document",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "schema-chunks-columns"
+          ],
+          "first_hit_rank": 2,
+          "top5": [
+            "rag-idempotent-ingest",
+            "schema-chunks-columns",
+            "rag-storage-math",
+            "setup-chunks-table",
+            "rag-context-vs-chunk"
+          ]
+        },
+        {
+          "query": "the 768 in the schema is not final, what depends on it",
+          "difficulty": "easy",
+          "relevant_ids": [
+            "schema-dimension-placeholder"
+          ],
+          "first_hit_rank": 2,
+          "top5": [
+            "edge-email",
+            "schema-dimension-placeholder",
+            "setup-extension-enable",
+            "rag-versioning-vectors",
+            "setup-pgvector-version"
+          ]
+        },
+        {
+          "query": "why must the similarity index be created after loading data",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "rag-ivfflat-vs-hnsw",
+            "schema-ivfflat-index"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "schema-ivfflat-index",
+            "edge-code-sql",
+            "rag-normalization",
+            "rag-ivfflat-vs-hnsw",
+            "rag-hybrid-search"
+          ]
+        },
+        {
+          "query": "how are duplicate signups prevented",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "schema-users-table"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "schema-users-table",
+            "rag-versioning-vectors",
+            "arch-ownership-checks",
+            "rag-idempotent-ingest",
+            "frontend-screens"
+          ]
+        },
+        {
+          "query": "how is a conversation replayed in the right order",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "schema-chats-messages"
+          ],
+          "first_hit_rank": 2,
+          "top5": [
+            "rag-recall-at-k",
+            "schema-chats-messages",
+            "rag-reranking",
+            "edge-ocr-noisy",
+            "arch-ownership-checks"
+          ]
+        },
+        {
+          "query": "which column tracks whether a file has been indexed yet",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "schema-documents-table"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "schema-documents-table",
+            "setup-chunks-table",
+            "schema-ivfflat-index",
+            "edge-code-sql",
+            "rag-storage-math"
+          ]
+        },
+        {
+          "query": "what happens if writing the file to disk fails after the row is saved",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "arch-upload-validation"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "arch-upload-validation",
+            "rag-idempotent-ingest",
+            "schema-documents-table",
+            "arch-local-storage",
+            "edge-json-blob"
+          ]
+        },
+        {
+          "query": "can I upload a word document or a spreadsheet",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "arch-allowed-formats"
+          ],
+          "first_hit_rank": 2,
+          "top5": [
+            "schema-documents-table",
+            "arch-allowed-formats",
+            "arch-local-storage",
+            "arch-upload-validation",
+            "rag-storage-math"
+          ]
+        },
+        {
+          "query": "why are stored files not named after what the user called them",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "arch-local-storage"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "arch-local-storage",
+            "schema-documents-table",
+            "arch-allowed-formats",
+            "arch-ownership-checks",
+            "arch-upload-validation"
+          ]
+        },
+        {
+          "query": "how long do the login credentials stay valid",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "arch-jwt-tokens"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "arch-jwt-tokens",
+            "schema-users-table",
+            "arch-auth-filter",
+            "setup-role-and-db",
+            "frontend-screens"
+          ]
+        },
+        {
+          "query": "where is the bearer token actually checked",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "arch-auth-filter"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "arch-auth-filter",
+            "arch-jwt-tokens",
+            "arch-ownership-checks",
+            "setup-smoke-test",
+            "arch-cors-and-cookies"
+          ]
+        },
+        {
+          "query": "can someone find out which conversations exist by guessing ids",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "arch-ownership-checks"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "arch-ownership-checks",
+            "schema-chats-messages",
+            "edge-ocr-noisy",
+            "rag-reranking",
+            "rag-what-embeddings-are"
+          ]
+        },
+        {
+          "query": "what does the user see when the backend model is down",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "arch-ai-call-fallback"
+          ],
+          "first_hit_rank": 3,
+          "top5": [
+            "rag-cold-start",
+            "setup-smoke-test",
+            "arch-ai-call-fallback",
+            "rag-versioning-vectors",
+            "setup-postgres-service"
+          ]
+        },
+        {
+          "query": "is it a problem that the remote call happens while the transaction is open",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "arch-transaction-boundary"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "arch-transaction-boundary",
+            "arch-ai-call-fallback",
+            "arch-timeout-config",
+            "arch-ownership-checks",
+            "setup-postgres-service"
+          ]
+        },
+        {
+          "query": "difference between the two timeout settings on the http client",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "arch-timeout-config"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "arch-timeout-config",
+            "arch-transaction-boundary",
+            "arch-upload-size-limits",
+            "arch-ai-call-fallback",
+            "setup-smoke-test"
+          ]
+        },
+        {
+          "query": "there seem to be two different maximum upload sizes",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "arch-upload-size-limits"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "arch-upload-size-limits",
+            "arch-allowed-formats",
+            "arch-upload-validation",
+            "rag-sequence-truncation",
+            "rag-dimension-tradeoff"
+          ]
+        },
+        {
+          "query": "how does the app recover the real client ip behind a proxy",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "arch-cors-and-cookies"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "arch-cors-and-cookies",
+            "arch-ai-call-fallback",
+            "arch-ownership-checks",
+            "arch-timeout-config",
+            "arch-transaction-boundary"
+          ]
+        },
+        {
+          "query": "what would it take to move uploads to cloud object storage",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "arch-storage-provider"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "arch-storage-provider",
+            "arch-upload-validation",
+            "arch-allowed-formats",
+            "schema-documents-table",
+            "arch-upload-size-limits"
+          ]
+        },
+        {
+          "query": "why is each feature split into two packages",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "arch-module-layout"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "arch-module-layout",
+            "rag-code-embeddings",
+            "rag-dimension-tradeoff",
+            "edge-spanish",
+            "rag-normalization"
+          ]
+        },
+        {
+          "query": "what pages does the product have",
+          "difficulty": "easy",
+          "relevant_ids": [
+            "frontend-screens"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "frontend-screens",
+            "rag-storage-math",
+            "schema-documents-table",
+            "edge-german",
+            "edge-table-linear"
+          ]
+        },
+        {
+          "query": "how can two passages with no words in common still be considered similar",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "rag-what-embeddings-are"
+          ],
+          "first_hit_rank": 6,
+          "top5": [
+            "rag-cosine-similarity",
+            "edge-ocr-noisy",
+            "rag-asymmetric-prefixes",
+            "rag-hybrid-search",
+            "rag-context-vs-chunk"
+          ]
+        },
+        {
+          "query": "does it matter whether I rank by dot product or euclidean distance",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "rag-cosine-similarity",
+            "rag-normalization"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "rag-cosine-similarity",
+            "rag-normalization",
+            "edge-code-sql",
+            "rag-quantization",
+            "edge-spanish"
+          ]
+        },
+        {
+          "query": "my scores rank fine but the threshold I picked stopped working",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "rag-normalization"
+          ],
+          "first_hit_rank": 2,
+          "top5": [
+            "rag-eval-set-design",
+            "rag-normalization",
+            "rag-hybrid-search",
+            "rag-recall-at-k",
+            "rag-reranking"
+          ]
+        },
+        {
+          "query": "I forgot to add query: and passage: in front of the text, does that matter",
+          "difficulty": "easy",
+          "relevant_ids": [
+            "rag-asymmetric-prefixes"
+          ],
+          "first_hit_rank": 3,
+          "top5": [
+            "edge-ocr-noisy",
+            "rag-reranking",
+            "rag-asymmetric-prefixes",
+            "rag-hybrid-search",
+            "rag-context-vs-chunk"
+          ]
+        },
+        {
+          "query": "is a bigger vector always better",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "rag-dimension-tradeoff"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "rag-dimension-tradeoff",
+            "rag-cosine-similarity",
+            "rag-normalization",
+            "rag-quantization",
+            "rag-storage-math"
+          ]
+        },
+        {
+          "query": "how much disk will a million chunks need",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "rag-storage-math"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "rag-storage-math",
+            "edge-json-blob",
+            "edge-chat-log",
+            "arch-upload-size-limits",
+            "edge-email"
+          ]
+        },
+        {
+          "query": "the right answer comes back but never at the top",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "rag-recall-at-k",
+            "rag-reranking"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "rag-reranking",
+            "rag-recall-at-k",
+            "rag-eval-set-design",
+            "rag-hybrid-search",
+            "rag-asymmetric-prefixes"
+          ]
+        },
+        {
+          "query": "searching for an exact error code returns nothing useful",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "rag-hybrid-search"
+          ],
+          "first_hit_rank": 13,
+          "top5": [
+            "setup-smoke-test",
+            "arch-ownership-checks",
+            "setup-pgvector-version",
+            "arch-allowed-formats",
+            "setup-extension-enable"
+          ]
+        },
+        {
+          "query": "encoding is slow, one request at a time",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "rag-batching-throughput"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "rag-batching-throughput",
+            "arch-timeout-config",
+            "rag-sequence-truncation",
+            "arch-upload-size-limits",
+            "rag-cost-model"
+          ]
+        },
+        {
+          "query": "the end of my long passages seems to be missing from the results",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "rag-sequence-truncation"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "rag-sequence-truncation",
+            "rag-context-vs-chunk",
+            "edge-ocr-noisy",
+            "rag-asymmetric-prefixes",
+            "rag-reranking"
+          ]
+        },
+        {
+          "query": "first request after deploy takes forever, later ones are fine",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "rag-cold-start"
+          ],
+          "first_hit_rank": 3,
+          "top5": [
+            "arch-timeout-config",
+            "arch-upload-size-limits",
+            "rag-cold-start",
+            "setup-smoke-test",
+            "arch-transaction-boundary"
+          ]
+        },
+        {
+          "query": "should I run more uvicorn workers to go faster",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "rag-worker-memory"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "rag-worker-memory",
+            "setup-uvicorn",
+            "arch-timeout-config",
+            "rag-batching-throughput",
+            "rag-idempotent-ingest"
+          ]
+        },
+        {
+          "query": "can I shrink the index without retraining anything",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "rag-quantization"
+          ],
+          "first_hit_rank": 4,
+          "top5": [
+            "rag-dimension-tradeoff",
+            "rag-normalization",
+            "edge-code-sql",
+            "rag-quantization",
+            "rag-storage-math"
+          ]
+        },
+        {
+          "query": "is the top of the public leaderboard the right model for us",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "rag-mteb-caveat"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "rag-mteb-caveat",
+            "rag-eval-set-design",
+            "rag-recall-at-k",
+            "rag-normalization",
+            "rag-reranking"
+          ]
+        },
+        {
+          "query": "we have some documents in german, will the english model cope",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "edge-german",
+            "rag-multilingual-models"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "edge-german",
+            "rag-multilingual-models",
+            "rag-context-vs-chunk",
+            "rag-ocr-noise",
+            "rag-code-embeddings"
+          ]
+        },
+        {
+          "query": "scanned pdfs give strange results after character recognition",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "edge-ocr-noisy",
+            "rag-ocr-noise"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "rag-ocr-noise",
+            "rag-sequence-truncation",
+            "arch-allowed-formats",
+            "rag-context-vs-chunk",
+            "edge-ocr-noisy"
+          ]
+        },
+        {
+          "query": "questions about a specific cell in a spreadsheet never match",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "rag-tables-linearized"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "rag-tables-linearized",
+            "rag-idempotent-ingest",
+            "edge-code-sql",
+            "edge-ocr-noisy",
+            "rag-hybrid-search"
+          ]
+        },
+        {
+          "query": "do I need a special model to search a codebase",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "rag-code-embeddings"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "rag-code-embeddings",
+            "rag-versioning-vectors",
+            "rag-ivfflat-vs-hnsw",
+            "rag-cold-start",
+            "edge-table-linear"
+          ]
+        },
+        {
+          "query": "the model accepts 8000 tokens so can I stop splitting documents",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "rag-context-vs-chunk"
+          ],
+          "first_hit_rank": 5,
+          "top5": [
+            "rag-sequence-truncation",
+            "schema-chunks-columns",
+            "arch-upload-size-limits",
+            "rag-storage-math",
+            "rag-context-vs-chunk"
+          ]
+        },
+        {
+          "query": "is it cheaper to pay per token or run it ourselves",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "rag-cost-model"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "rag-cost-model",
+            "arch-jwt-tokens",
+            "rag-cold-start",
+            "arch-auth-filter",
+            "rag-worker-memory"
+          ]
+        },
+        {
+          "query": "we want to switch models without downtime",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "rag-versioning-vectors"
+          ],
+          "first_hit_rank": 2,
+          "top5": [
+            "rag-cold-start",
+            "rag-versioning-vectors",
+            "setup-uvicorn",
+            "arch-storage-provider",
+            "setup-base-tables"
+          ]
+        },
+        {
+          "query": "the nightly job crashed halfway, is it safe to run it again",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "rag-idempotent-ingest"
+          ],
+          "first_hit_rank": 2,
+          "top5": [
+            "edge-chat-log",
+            "rag-idempotent-ingest",
+            "setup-postgres-service",
+            "setup-pgvector-version",
+            "setup-uvicorn"
+          ]
+        },
+        {
+          "query": "every model scores the same on my test questions",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "rag-eval-set-design"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "rag-eval-set-design",
+            "rag-normalization",
+            "rag-asymmetric-prefixes",
+            "rag-reranking",
+            "rag-multilingual-models"
+          ]
+        },
+        {
+          "query": "which of the candidates has the longest input limit",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "edge-table-linear"
+          ],
+          "first_hit_rank": 4,
+          "top5": [
+            "rag-context-vs-chunk",
+            "rag-reranking",
+            "rag-sequence-truncation",
+            "edge-table-linear",
+            "rag-batching-throughput"
+          ]
+        },
+        {
+          "query": "what happens when the list of inputs is empty",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "edge-code-python"
+          ],
+          "first_hit_rank": 9,
+          "top5": [
+            "rag-sequence-truncation",
+            "rag-batching-throughput",
+            "edge-ocr-noisy",
+            "rag-idempotent-ingest",
+            "setup-smoke-test"
+          ]
+        },
+        {
+          "query": "wrapping the distance in an expression stops the index being used",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "edge-code-sql"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "edge-code-sql",
+            "rag-normalization",
+            "schema-ivfflat-index",
+            "edge-spanish",
+            "rag-cosine-similarity"
+          ]
+        },
+        {
+          "query": "job failed with out of memory partway through, what should we do",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "edge-chat-log",
+            "edge-json-blob"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "edge-json-blob",
+            "edge-chat-log",
+            "rag-idempotent-ingest",
+            "rag-worker-memory",
+            "setup-postgres-service"
+          ]
+        },
+        {
+          "query": "someone needs a decision on the column width this week",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "edge-email"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "edge-email",
+            "schema-dimension-placeholder",
+            "rag-storage-math",
+            "rag-tables-linearized",
+            "rag-context-vs-chunk"
+          ]
+        },
+        {
+          "query": "benchmark numbers comparing processor and accelerator throughput",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "edge-csv-row"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "edge-csv-row",
+            "edge-chat-log",
+            "rag-mteb-caveat",
+            "rag-worker-memory",
+            "rag-quantization"
+          ]
+        },
+        {
+          "query": "el indice aproximado agrupa los vectores en listas",
+          "difficulty": "easy",
+          "relevant_ids": [
+            "edge-spanish"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "edge-spanish",
+            "rag-normalization",
+            "rag-quantization",
+            "schema-ivfflat-index",
+            "rag-ivfflat-vs-hnsw"
+          ]
+        }
+      ]
+    },
+    {
+      "model": "me5-small",
+      "hf_id": "intfloat/multilingual-e5-small",
+      "device": "cuda",
+      "prefixes_applied": false,
+      "query_prefix": "",
+      "passage_prefix": "",
+      "dim": 384,
+      "registry_dim": 384,
+      "max_seq_tokens_reported": 512,
+      "max_seq_tokens_registry": 512,
+      "params_millions": 118,
+      "licence": "MIT",
+      "notes": "Multilingual control. The corpus carries German and Spanish passages specifically so this has something to prove.",
+      "load_seconds": 8.39,
+      "vectors_unit_norm": true,
+      "quality": {
+        "recall@1": 0.55,
+        "recall@3": 0.8166666666666667,
+        "recall@5": 0.8666666666666667,
+        "mrr@5": 0.6719444444444445,
+        "mrr_by_difficulty": {
+          "easy": 0.54,
+          "hard": 0.6246031746031746,
+          "medium": 0.7205882352941176
+        }
+      },
+      "latency_single": {
+        "samples": 30,
+        "p50_ms": 12.807,
+        "p95_ms": 23.849,
+        "mean_ms": 13.676,
+        "min_ms": 9.523
+      },
+      "throughput_by_batch": {
+        "1": {
+          "texts_per_second": 84.1,
+          "total_seconds": 0.773
+        },
+        "8": {
+          "texts_per_second": 290.5,
+          "total_seconds": 0.224
+        },
+        "32": {
+          "texts_per_second": 322.0,
+          "total_seconds": 0.202
+        },
+        "64": {
+          "texts_per_second": 290.8,
+          "total_seconds": 0.223
+        }
+      },
+      "peak_vram_mb": 641.7,
+      "rss_delta_mb": 321.5,
+      "storage_projection": {
+        "bytes_per_vector": 1536,
+        "mb_per_10k_chunks": 14.6,
+        "mb_per_100k_chunks": 146.5,
+        "gb_per_1m_chunks": 1.43
+      },
+      "per_query": [
+        {
+          "query": "why does my build of the vector extension fail on the newest postgres",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "setup-pgvector-version"
+          ],
+          "first_hit_rank": 3,
+          "top5": [
+            "setup-extension-enable",
+            "setup-pgvector-build",
+            "setup-pgvector-version",
+            "rag-versioning-vectors",
+            "setup-postgres-service"
+          ]
+        },
+        {
+          "query": "the CREATE EXTENSION statement says vector is not available, what did I miss",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "setup-extension-enable"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "setup-extension-enable",
+            "setup-pgvector-build",
+            "setup-pgvector-version",
+            "edge-json-blob",
+            "edge-email"
+          ]
+        },
+        {
+          "query": "which compiler prompt do I need to compile the extension on windows",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "setup-pgvector-build"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "setup-pgvector-build",
+            "setup-pgvector-version",
+            "setup-extension-enable",
+            "edge-email",
+            "setup-venv"
+          ]
+        },
+        {
+          "query": "how do I start the python api locally",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "setup-uvicorn"
+          ],
+          "first_hit_rank": 2,
+          "top5": [
+            "setup-venv",
+            "setup-uvicorn",
+            "setup-postgres-service",
+            "edge-csv-row",
+            "setup-role-and-db"
+          ]
+        },
+        {
+          "query": "commands to make an isolated python environment and install dependencies",
+          "difficulty": "easy",
+          "relevant_ids": [
+            "setup-venv"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "setup-venv",
+            "setup-extension-enable",
+            "setup-postgres-service",
+            "setup-role-and-db",
+            "setup-pgvector-version"
+          ]
+        },
+        {
+          "query": "how can I check the service responds before writing any real code",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "setup-smoke-test"
+          ],
+          "first_hit_rank": 3,
+          "top5": [
+            "arch-ai-call-fallback",
+            "setup-postgres-service",
+            "setup-smoke-test",
+            "arch-ownership-checks",
+            "arch-transaction-boundary"
+          ]
+        },
+        {
+          "query": "connection refused when talking to the database",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "setup-postgres-service"
+          ],
+          "first_hit_rank": 4,
+          "top5": [
+            "arch-transaction-boundary",
+            "setup-extension-enable",
+            "setup-pgvector-version",
+            "setup-postgres-service",
+            "edge-json-blob"
+          ]
+        },
+        {
+          "query": "what login and database name does the gateway expect by default",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "setup-role-and-db"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "setup-role-and-db",
+            "arch-cors-and-cookies",
+            "arch-jwt-tokens",
+            "setup-pgvector-version",
+            "setup-postgres-service"
+          ]
+        },
+        {
+          "query": "in what order do the two sql scripts have to be run",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "setup-chunks-table"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "setup-chunks-table",
+            "setup-postgres-service",
+            "setup-base-tables",
+            "setup-extension-enable",
+            "edge-code-sql"
+          ]
+        },
+        {
+          "query": "how are database schema changes applied in this project",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "setup-base-tables"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "setup-base-tables",
+            "setup-pgvector-version",
+            "schema-users-table",
+            "setup-postgres-service",
+            "setup-chunks-table"
+          ]
+        },
+        {
+          "query": "what stops the same chunk position being written twice for one document",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "schema-chunks-columns"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "schema-chunks-columns",
+            "rag-idempotent-ingest",
+            "setup-chunks-table",
+            "edge-code-sql",
+            "rag-context-vs-chunk"
+          ]
+        },
+        {
+          "query": "the 768 in the schema is not final, what depends on it",
+          "difficulty": "easy",
+          "relevant_ids": [
+            "schema-dimension-placeholder"
+          ],
+          "first_hit_rank": 2,
+          "top5": [
+            "edge-email",
+            "schema-dimension-placeholder",
+            "rag-storage-math",
+            "arch-upload-validation",
+            "rag-context-vs-chunk"
+          ]
+        },
+        {
+          "query": "why must the similarity index be created after loading data",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "rag-ivfflat-vs-hnsw",
+            "schema-ivfflat-index"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "schema-ivfflat-index",
+            "rag-normalization",
+            "rag-versioning-vectors",
+            "arch-ownership-checks",
+            "edge-code-sql"
+          ]
+        },
+        {
+          "query": "how are duplicate signups prevented",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "schema-users-table"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "schema-users-table",
+            "rag-versioning-vectors",
+            "schema-chunks-columns",
+            "rag-idempotent-ingest",
+            "arch-jwt-tokens"
+          ]
+        },
+        {
+          "query": "how is a conversation replayed in the right order",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "schema-chats-messages"
+          ],
+          "first_hit_rank": 3,
+          "top5": [
+            "rag-recall-at-k",
+            "arch-ownership-checks",
+            "schema-chats-messages",
+            "edge-ocr-noisy",
+            "rag-reranking"
+          ]
+        },
+        {
+          "query": "which column tracks whether a file has been indexed yet",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "schema-documents-table"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "schema-documents-table",
+            "setup-chunks-table",
+            "arch-upload-validation",
+            "rag-tables-linearized",
+            "schema-chunks-columns"
+          ]
+        },
+        {
+          "query": "what happens if writing the file to disk fails after the row is saved",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "arch-upload-validation"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "arch-upload-validation",
+            "rag-idempotent-ingest",
+            "schema-chunks-columns",
+            "rag-tables-linearized",
+            "arch-ai-call-fallback"
+          ]
+        },
+        {
+          "query": "can I upload a word document or a spreadsheet",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "arch-allowed-formats"
+          ],
+          "first_hit_rank": 2,
+          "top5": [
+            "arch-upload-validation",
+            "arch-allowed-formats",
+            "schema-documents-table",
+            "edge-code-sql",
+            "schema-chunks-columns"
+          ]
+        },
+        {
+          "query": "why are stored files not named after what the user called them",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "arch-local-storage"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "arch-local-storage",
+            "arch-upload-validation",
+            "schema-users-table",
+            "arch-ownership-checks",
+            "rag-tables-linearized"
+          ]
+        },
+        {
+          "query": "how long do the login credentials stay valid",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "arch-jwt-tokens"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "arch-jwt-tokens",
+            "setup-postgres-service",
+            "arch-transaction-boundary",
+            "setup-role-and-db",
+            "arch-auth-filter"
+          ]
+        },
+        {
+          "query": "where is the bearer token actually checked",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "arch-auth-filter"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "arch-auth-filter",
+            "rag-hybrid-search",
+            "arch-jwt-tokens",
+            "rag-versioning-vectors",
+            "setup-postgres-service"
+          ]
+        },
+        {
+          "query": "can someone find out which conversations exist by guessing ids",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "arch-ownership-checks"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "arch-ownership-checks",
+            "edge-code-sql",
+            "schema-chats-messages",
+            "rag-versioning-vectors",
+            "rag-context-vs-chunk"
+          ]
+        },
+        {
+          "query": "what does the user see when the backend model is down",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "arch-ai-call-fallback"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "arch-ai-call-fallback",
+            "rag-cold-start",
+            "arch-transaction-boundary",
+            "arch-cors-and-cookies",
+            "arch-upload-validation"
+          ]
+        },
+        {
+          "query": "is it a problem that the remote call happens while the transaction is open",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "arch-transaction-boundary"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "arch-transaction-boundary",
+            "arch-ownership-checks",
+            "rag-cold-start",
+            "arch-ai-call-fallback",
+            "rag-versioning-vectors"
+          ]
+        },
+        {
+          "query": "difference between the two timeout settings on the http client",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "arch-timeout-config"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "arch-timeout-config",
+            "arch-transaction-boundary",
+            "rag-cold-start",
+            "arch-cors-and-cookies",
+            "arch-jwt-tokens"
+          ]
+        },
+        {
+          "query": "there seem to be two different maximum upload sizes",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "arch-upload-size-limits"
+          ],
+          "first_hit_rank": 5,
+          "top5": [
+            "arch-allowed-formats",
+            "rag-storage-math",
+            "arch-upload-validation",
+            "rag-versioning-vectors",
+            "arch-upload-size-limits"
+          ]
+        },
+        {
+          "query": "how does the app recover the real client ip behind a proxy",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "arch-cors-and-cookies"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "arch-cors-and-cookies",
+            "setup-uvicorn",
+            "arch-ai-call-fallback",
+            "schema-chunks-columns",
+            "arch-ownership-checks"
+          ]
+        },
+        {
+          "query": "what would it take to move uploads to cloud object storage",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "arch-storage-provider"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "arch-storage-provider",
+            "arch-upload-validation",
+            "rag-versioning-vectors",
+            "arch-allowed-formats",
+            "rag-storage-math"
+          ]
+        },
+        {
+          "query": "why is each feature split into two packages",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "arch-module-layout"
+          ],
+          "first_hit_rank": 2,
+          "top5": [
+            "schema-chunks-columns",
+            "arch-module-layout",
+            "rag-tables-linearized",
+            "rag-versioning-vectors",
+            "rag-cosine-similarity"
+          ]
+        },
+        {
+          "query": "what pages does the product have",
+          "difficulty": "easy",
+          "relevant_ids": [
+            "frontend-screens"
+          ],
+          "first_hit_rank": 5,
+          "top5": [
+            "edge-email",
+            "rag-storage-math",
+            "edge-table-linear",
+            "edge-ocr-noisy",
+            "frontend-screens"
+          ]
+        },
+        {
+          "query": "how can two passages with no words in common still be considered similar",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "rag-what-embeddings-are"
+          ],
+          "first_hit_rank": 2,
+          "top5": [
+            "rag-cosine-similarity",
+            "rag-what-embeddings-are",
+            "rag-context-vs-chunk",
+            "edge-code-sql",
+            "rag-tables-linearized"
+          ]
+        },
+        {
+          "query": "does it matter whether I rank by dot product or euclidean distance",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "rag-cosine-similarity",
+            "rag-normalization"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "rag-cosine-similarity",
+            "rag-normalization",
+            "edge-code-sql",
+            "rag-versioning-vectors",
+            "rag-recall-at-k"
+          ]
+        },
+        {
+          "query": "my scores rank fine but the threshold I picked stopped working",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "rag-normalization"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "rag-normalization",
+            "rag-eval-set-design",
+            "rag-hybrid-search",
+            "edge-ocr-noisy",
+            "rag-cosine-similarity"
+          ]
+        },
+        {
+          "query": "I forgot to add query: and passage: in front of the text, does that matter",
+          "difficulty": "easy",
+          "relevant_ids": [
+            "rag-asymmetric-prefixes"
+          ],
+          "first_hit_rank": 34,
+          "top5": [
+            "rag-tables-linearized",
+            "edge-ocr-noisy",
+            "edge-code-python",
+            "arch-upload-validation",
+            "edge-chat-log"
+          ]
+        },
+        {
+          "query": "is a bigger vector always better",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "rag-dimension-tradeoff"
+          ],
+          "first_hit_rank": 6,
+          "top5": [
+            "rag-versioning-vectors",
+            "rag-cosine-similarity",
+            "rag-normalization",
+            "edge-email",
+            "rag-context-vs-chunk"
+          ]
+        },
+        {
+          "query": "how much disk will a million chunks need",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "rag-storage-math"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "rag-storage-math",
+            "edge-json-blob",
+            "schema-chunks-columns",
+            "edge-email",
+            "setup-chunks-table"
+          ]
+        },
+        {
+          "query": "the right answer comes back but never at the top",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "rag-recall-at-k",
+            "rag-reranking"
+          ],
+          "first_hit_rank": 2,
+          "top5": [
+            "edge-ocr-noisy",
+            "rag-recall-at-k",
+            "arch-ai-call-fallback",
+            "edge-chat-log",
+            "arch-auth-filter"
+          ]
+        },
+        {
+          "query": "searching for an exact error code returns nothing useful",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "rag-hybrid-search"
+          ],
+          "first_hit_rank": 2,
+          "top5": [
+            "arch-ai-call-fallback",
+            "rag-hybrid-search",
+            "rag-tables-linearized",
+            "rag-versioning-vectors",
+            "rag-idempotent-ingest"
+          ]
+        },
+        {
+          "query": "encoding is slow, one request at a time",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "rag-batching-throughput"
+          ],
+          "first_hit_rank": 7,
+          "top5": [
+            "rag-cold-start",
+            "rag-worker-memory",
+            "edge-code-python",
+            "rag-context-vs-chunk",
+            "rag-cost-model"
+          ]
+        },
+        {
+          "query": "the end of my long passages seems to be missing from the results",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "rag-sequence-truncation"
+          ],
+          "first_hit_rank": 29,
+          "top5": [
+            "edge-ocr-noisy",
+            "rag-cosine-similarity",
+            "edge-chat-log",
+            "rag-context-vs-chunk",
+            "rag-tables-linearized"
+          ]
+        },
+        {
+          "query": "first request after deploy takes forever, later ones are fine",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "rag-cold-start"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "rag-cold-start",
+            "arch-jwt-tokens",
+            "arch-auth-filter",
+            "arch-ai-call-fallback",
+            "setup-uvicorn"
+          ]
+        },
+        {
+          "query": "should I run more uvicorn workers to go faster",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "rag-worker-memory"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "rag-worker-memory",
+            "setup-uvicorn",
+            "rag-normalization",
+            "rag-idempotent-ingest",
+            "rag-cold-start"
+          ]
+        },
+        {
+          "query": "can I shrink the index without retraining anything",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "rag-quantization"
+          ],
+          "first_hit_rank": 9,
+          "top5": [
+            "rag-idempotent-ingest",
+            "schema-chunks-columns",
+            "rag-normalization",
+            "rag-tables-linearized",
+            "edge-email"
+          ]
+        },
+        {
+          "query": "is the top of the public leaderboard the right model for us",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "rag-mteb-caveat"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "rag-mteb-caveat",
+            "edge-table-linear",
+            "edge-email",
+            "rag-recall-at-k",
+            "rag-cold-start"
+          ]
+        },
+        {
+          "query": "we have some documents in german, will the english model cope",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "edge-german",
+            "rag-multilingual-models"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "rag-multilingual-models",
+            "edge-chat-log",
+            "edge-german",
+            "edge-table-linear",
+            "rag-sequence-truncation"
+          ]
+        },
+        {
+          "query": "scanned pdfs give strange results after character recognition",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "edge-ocr-noisy",
+            "rag-ocr-noise"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "rag-ocr-noise",
+            "arch-ownership-checks",
+            "edge-code-python",
+            "edge-ocr-noisy",
+            "schema-chunks-columns"
+          ]
+        },
+        {
+          "query": "questions about a specific cell in a spreadsheet never match",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "rag-tables-linearized"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "rag-tables-linearized",
+            "edge-ocr-noisy",
+            "edge-email",
+            "edge-chat-log",
+            "edge-code-python"
+          ]
+        },
+        {
+          "query": "do I need a special model to search a codebase",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "rag-code-embeddings"
+          ],
+          "first_hit_rank": 3,
+          "top5": [
+            "rag-versioning-vectors",
+            "rag-cold-start",
+            "rag-code-embeddings",
+            "rag-hybrid-search",
+            "rag-normalization"
+          ]
+        },
+        {
+          "query": "the model accepts 8000 tokens so can I stop splitting documents",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "rag-context-vs-chunk"
+          ],
+          "first_hit_rank": 8,
+          "top5": [
+            "rag-sequence-truncation",
+            "edge-email",
+            "edge-table-linear",
+            "arch-upload-validation",
+            "schema-chunks-columns"
+          ]
+        },
+        {
+          "query": "is it cheaper to pay per token or run it ourselves",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "rag-cost-model"
+          ],
+          "first_hit_rank": 3,
+          "top5": [
+            "rag-cold-start",
+            "arch-jwt-tokens",
+            "rag-cost-model",
+            "rag-hybrid-search",
+            "rag-worker-memory"
+          ]
+        },
+        {
+          "query": "we want to switch models without downtime",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "rag-versioning-vectors"
+          ],
+          "first_hit_rank": 6,
+          "top5": [
+            "rag-cold-start",
+            "edge-chat-log",
+            "edge-email",
+            "rag-normalization",
+            "edge-csv-row"
+          ]
+        },
+        {
+          "query": "the nightly job crashed halfway, is it safe to run it again",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "rag-idempotent-ingest"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "rag-idempotent-ingest",
+            "edge-chat-log",
+            "rag-versioning-vectors",
+            "rag-tables-linearized",
+            "schema-chunks-columns"
+          ]
+        },
+        {
+          "query": "every model scores the same on my test questions",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "rag-eval-set-design"
+          ],
+          "first_hit_rank": 15,
+          "top5": [
+            "rag-normalization",
+            "rag-versioning-vectors",
+            "rag-tables-linearized",
+            "edge-table-linear",
+            "edge-chat-log"
+          ]
+        },
+        {
+          "query": "which of the candidates has the longest input limit",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "edge-table-linear"
+          ],
+          "first_hit_rank": 3,
+          "top5": [
+            "rag-context-vs-chunk",
+            "edge-code-sql",
+            "edge-table-linear",
+            "rag-mteb-caveat",
+            "rag-reranking"
+          ]
+        },
+        {
+          "query": "what happens when the list of inputs is empty",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "edge-code-python"
+          ],
+          "first_hit_rank": 2,
+          "top5": [
+            "arch-upload-validation",
+            "edge-code-python",
+            "schema-chunks-columns",
+            "rag-cold-start",
+            "rag-batching-throughput"
+          ]
+        },
+        {
+          "query": "wrapping the distance in an expression stops the index being used",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "edge-code-sql"
+          ],
+          "first_hit_rank": 3,
+          "top5": [
+            "rag-normalization",
+            "rag-context-vs-chunk",
+            "edge-code-sql",
+            "rag-cosine-similarity",
+            "rag-tables-linearized"
+          ]
+        },
+        {
+          "query": "job failed with out of memory partway through, what should we do",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "edge-chat-log",
+            "edge-json-blob"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "edge-json-blob",
+            "schema-chunks-columns",
+            "rag-idempotent-ingest",
+            "edge-chat-log",
+            "arch-upload-validation"
+          ]
+        },
+        {
+          "query": "someone needs a decision on the column width this week",
+          "difficulty": "hard",
+          "relevant_ids": [
+            "edge-email"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "edge-email",
+            "rag-storage-math",
+            "rag-tables-linearized",
+            "schema-dimension-placeholder",
+            "edge-code-sql"
+          ]
+        },
+        {
+          "query": "benchmark numbers comparing processor and accelerator throughput",
+          "difficulty": "medium",
+          "relevant_ids": [
+            "edge-csv-row"
+          ],
+          "first_hit_rank": 3,
+          "top5": [
+            "edge-table-linear",
+            "rag-worker-memory",
+            "edge-csv-row",
+            "rag-hybrid-search",
+            "edge-chat-log"
+          ]
+        },
+        {
+          "query": "el indice aproximado agrupa los vectores en listas",
+          "difficulty": "easy",
+          "relevant_ids": [
+            "edge-spanish"
+          ],
+          "first_hit_rank": 1,
+          "top5": [
+            "edge-spanish",
+            "edge-code-python",
+            "edge-ocr-noisy",
+            "rag-normalization",
+            "rag-storage-math"
+          ]
+        }
+      ]
+    }
+  ],
+  "failures": []
+}

@@ -1,0 +1,13 @@
+# Benchmark-harness dependencies.
+#
+# Deliberately NOT installed into ai-service/.venv: this pulls in torch and the
+# HuggingFace stack (~2-3 GB), which the FastAPI service itself must not require.
+# See README.md in this folder for the isolated-venv setup.
+
+sentence-transformers
+torch
+transformers
+numpy
+psutil
+python-dotenv
+httpx

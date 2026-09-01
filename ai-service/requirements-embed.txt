@@ -1,0 +1,13 @@
+# Optional dependencies for the embedder POC (POST /embed).
+#
+# Deliberately separate from requirements.txt: this pulls in torch and the
+# HuggingFace stack (~2-3 GB). The service starts and serves /query without
+# it -- POST /embed returns 503 with an explanatory message instead.
+#
+#   pip install -r requirements-embed.txt
+#
+# For GPU, install torch from the CUDA index FIRST, then this file:
+#   pip install torch --index-url https://download.pytorch.org/whl/cu128
+
+sentence-transformers
+torch
