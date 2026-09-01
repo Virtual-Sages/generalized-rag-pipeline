@@ -1,6 +1,10 @@
 # AI-SERVICE
 
-Standalone Python/FastAPI service for the RAG pipeline. Right now it just exposes a dummy POST /query endpoint (boilerplate JSON response), and defines the Postgres/pgvector schema for storing document chunks and their embeddings. Real retrieval logic isn't implemented yet.
+Standalone Python/FastAPI service for the RAG pipeline. Exposes two endpoints:
+- `POST /query` — dummy RAG query (boilerplate response; real retrieval not implemented yet)
+- `POST /process` — receives a document handoff from the Orchestrator, walks the document
+  through the parsing → chunking → embedding → indexing pipeline (stubs), and reports each
+  stage transition back to the Orchestrator via `POST /api/internal/status-update`.
 
 ## 1. Run the FastAPI service
 
@@ -32,6 +36,7 @@ Keep this window open. The --reload flag restarts the server automatically as yo
 
 Run in: a second PowerShell window (the first one is busy running the server).
 
+**Query endpoint:**
 ```powershell
 Invoke-RestMethod -Uri http://localhost:8000/query -Method Post -ContentType "application/json" -Body '{"query":"test"}'
 ```
@@ -45,6 +50,14 @@ Or in Bruno: method POST, URL http://localhost:8000/query, JSON body {"query": "
   "sources": []
 }
 ```
+
+**Process endpoint:**
+```powershell
+Invoke-RestMethod -Uri http://localhost:8000/process -Method Post -ContentType "application/json" -Body '{"documentId":"<uuid>","storagePath":"resources/uploads/documents"}'
+```
+
+Expected response: `HTTP 202 Accepted` (no body). The pipeline runs in the background; watch
+the server log to see each stage reported back to the Orchestrator.
 
 ## 2. Database setup (Postgres + pgvector)
 
@@ -76,6 +89,16 @@ api-gateway/src/main/java/com/genrag/config/db/schema_init.sql
 ```
 
 Verify: users, chats, messages and documents should appear under genrag > Schemas > public > Tables (right-click Tables, Refresh).
+
+**Existing database?** If you already ran `schema_init.sql` before this change, run the
+migration to swap the old four-value CHECK constraint to the full 18-status set:
+
+```
+api-gateway/src/main/java/com/genrag/config/db/migration_001_document_statuses.sql
+```
+
+Run the pre-flight SELECT at the top of that file first, review the output, then execute the
+whole script (F5). Safe to run on an empty table — the UPDATEs are no-ops.
 
 ### 2.4 Install the pgvector extension
 

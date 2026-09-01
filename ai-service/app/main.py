@@ -6,6 +6,7 @@ from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
 
 from app.api.routes.query import router as query_router
+from app.api.routes.document import router as document_router
 from app.core.config import get_settings
 from app.facades.implementations.dynamic_ai_facade import DynamicAIFacade
 from app.llm.resolver import ProviderResolver
@@ -64,3 +65,4 @@ async def on_unexpected_error(request: Request, exc: Exception) -> JSONResponse:
 
 
 app.include_router(query_router)
+app.include_router(document_router)

@@ -1,0 +1,34 @@
+stateDiagram-v2
+    [*] --> Uploading: User uploads via API Gateway
+
+    Uploading --> Uploaded: Stored successfully
+    Uploading --> Uploading_failed: Upload to storage failed
+
+    Uploaded --> Ready_for_processing: FastAPI acknowledges storage access
+    Uploaded --> Access_failed: Cannot read storage path
+
+    Ready_for_processing --> Parsing: FastAPI begins processing
+
+    Parsing --> Parsed
+    Parsing --> Parsing_failed
+    Parsed --> Chunking
+
+    Chunking --> Chunked
+    Chunking --> Chunking_failed
+    Chunked --> Embedding
+
+    Embedding --> Embedded
+    Embedding --> Embedding_failed
+    Embedded --> Indexing
+
+    Indexing --> Indexed
+    Indexing --> Indexing_failed
+    Indexed --> Processed: All stages complete
+
+    Processed --> [*]
+    Uploading_failed --> [*]
+    Access_failed --> [*]
+    Parsing_failed --> [*]
+    Chunking_failed --> [*]
+    Embedding_failed --> [*]
+    Indexing_failed --> [*]
