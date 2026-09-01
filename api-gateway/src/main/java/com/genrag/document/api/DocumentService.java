@@ -34,4 +34,23 @@ public interface DocumentService {
      * @return the document resource
      */
     Resource download(String id, UUID userId);
+
+    /**
+     * Updates the pipeline status of a document.
+     *
+     * <p>Only internal statuses (those returned by
+     * {@link DocumentStatus#getInternalStatuses()}) are accepted.
+     * {@code FAILED} is user-visible only and will be rejected.
+     *
+     * <p>The write is additionally guarded by the state machine on
+     * {@link DocumentStatus}: a status the document's current status cannot
+     * legally transition to is silently ignored rather than rejected, so a
+     * late or out-of-order report cannot corrupt the pipeline's record.
+     *
+     * @param documentId the document to update
+     * @param status     the new internal status
+     * @throws IllegalArgumentException if the document does not exist or
+     *                                  if {@code status} is not an internal status
+     */
+    void updateStatus(UUID documentId, DocumentStatus status);
 }

@@ -11,6 +11,10 @@ public class DocumentMapper {
     /**
      * Converts a {@link DocumentEntity} to a {@link DocumentItem} DTO.
      *
+     * <p>The entity's fine-grained internal status is projected down to one of
+     * the three user-visible statuses. This is the only guard keeping internal
+     * statuses off the API, so the projection must not be bypassed here.
+     *
      * @param document the document entity to convert
      * @return the corresponding document DTO
      */
@@ -20,7 +24,7 @@ public class DocumentMapper {
             document.getFileName(),
             document.getContentType(),
             document.getSizeBytes(),
-            document.getStatus(),
+            document.getStatus().toUserVisibleStatus(),
             document.getCreatedAt()
         );
     }
