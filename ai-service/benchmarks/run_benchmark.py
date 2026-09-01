@@ -202,6 +202,8 @@ def _free_memory():
             torch.cuda.empty_cache()
             torch.cuda.reset_peak_memory_stats()
     except Exception:
+        # This is best-effort cleanup only; missing CUDA support or runtime
+        # issues must not abort the benchmark run.
         pass
 
 
@@ -372,6 +374,8 @@ def environment() -> dict:
         import sentence_transformers
         env["sentence_transformers"] = sentence_transformers.__version__
     except Exception:
+        # Environment capture is intentionally best-effort; an absent optional
+        # dependency should not fail the whole benchmark run.
         pass
 
     return env

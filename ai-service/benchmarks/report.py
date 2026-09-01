@@ -173,17 +173,14 @@ def ablation_table(base: dict, noprefix: dict) -> str:
 def hardest_queries(runs: list[dict], limit: int = 8) -> str:
     """Queries no model placed in its top 5 -- these are eval-set bugs or genuinely hard."""
     misses: dict[str, int] = {}
-    total_models = len({r["model"] for r in runs})
     for r in runs:
         for pq in r["per_query"]:
             if pq["first_hit_rank"] is None or pq["first_hit_rank"] > 5:
                 misses[pq["query"]] = misses.get(pq["query"], 0) + 1
 
-    # Each model appears once per device; normalise by that.
-    per_model = {q: c for q, c in misses.items()}
     rows = [
         [f"_{q}_", f"{c} of {len(runs)} runs"]
-        for q, c in sorted(per_model.items(), key=lambda kv: -kv[1])[:limit]
+        for q, c in sorted(misses.items(), key=lambda kv: -kv[1])[:limit]
     ]
     if not rows:
         return "_Every labelled query was answered within the top 5 by every model._"
@@ -236,9 +233,12 @@ def main() -> int:
     if args.ablation:
         noprefix = load("results-noprefix.json")
         if noprefix is None:
-            parts += ["### Prefix ablation", "",
-                      "_results-noprefix.json not found; run "
-                      "`python run_benchmark.py --no-prefix` first._", ""]
+            parts += [
+                "### Prefix ablation",
+                "",
+                "_results-noprefix.json not found; run `python run_benchmark.py --no-prefix` first._",
+                "",
+            ]
         else:
             parts += ["### Prefix ablation", "",
                       ablation_table(base, noprefix), ""]
