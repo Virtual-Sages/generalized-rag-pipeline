@@ -1,0 +1,39 @@
+# This config will be validated at startup,
+# so incase we miss a variable or misspell something then application will throw an error instead of failing while running
+
+# There is a reason why we keep vendors and profiles seperate and that is
+# because multiple profiles even though they might be using different models,
+# they may still use the same vendors.
+# For example: we can use openrouter (vendor) for using models like kimi k3, opus, deepseek etc.
+# where each model might be part of different profiles.
+# opus 5 (heavy), kimi k3 (test), deepseek v4 flash (fast) etc.
+
+# Vendors
+vendors:
+  groq:
+    wire_protocol: openai_compat
+    base_url: https://api.groq.com/openai/v1
+    api_key: ${GROQ_API_KEY}
+    timeout_seconds: 60
+    
+  openrouter:
+    wire_protocol: openai_compat
+    base_url: https://openrouter.ai/api/v1
+    api_key: ${OPENROUTER_API_KEY}
+    timeout_seconds: 60
+
+# Profiles
+profiles:
+  default:
+    vendor: openrouter
+    model: meta-llama/llama-3.3-70b-instruct
+    temperature: 0.5
+    max_output_tokens: 10000
+
+  fast:
+    vendor: openrouter
+    model: meta-llama/llama-3.1-8b-instruct
+    temperature: 0.3
+    max_output_tokens: 1024
+
+# We will come up with a naming convention for profiles to make sure profile names are less ambigous
