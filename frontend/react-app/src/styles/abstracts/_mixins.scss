@@ -1,0 +1,47 @@
+// =============================================================================
+// Shared layout effects.
+// =============================================================================
+@use 'variables' as *;
+
+// A soft scrim over the bottom edge of a scrolling region, so content fades out
+// instead of being sliced off flat by whatever sits beneath it. Apply to the
+// ::before of the *non-scrolling* element below the scroller (the footer, the
+// chat composer) — painted there, it holds still while content moves under it.
+//
+// `$opacity` stops just short of 1 so the last rows still ghost through rather
+// than being wiped flat — the fade should read as content passing *under* the
+// footer. It no longer has to stay low to protect the border; $offset does that
+// (see below), so this is free to run high enough to actually be visible.
+//
+// The far stop is `rgba($background, 0)` rather than `transparent`: the two are
+// equivalent in browsers that interpolate premultiplied, but the explicit form
+// can't smear grey through the midpoint anywhere that doesn't.
+//
+// Pass $offset the host's top border width. `bottom` resolves against the
+// *padding* box, whose top edge sits below the border — so a bare `100%` parks
+// the scrim's most opaque pixels directly on top of the border and washes it
+// out (80% $background over $outline-variant renders about #edeff4). Offsetting
+// by the border width lifts the scrim clear of it.
+@mixin scroll-fade($height: 30px, $opacity: 0.9, $offset: 0px) {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: calc(100% + #{$offset});
+  height: $height;
+  pointer-events: none; // Rows underneath stay clickable.
+  background: linear-gradient(to top, rgba($background, $opacity), rgba($background, 0));
+}
+
+// Thin, transparent-track scrollbar. Beyond looking lighter, the transparent
+// track is what lets scroll-fade sit over a scroller's edge without visibly
+// washing the scrollbar — a default Windows track and its arrow buttons tint
+// under the scrim, a transparent one has nothing to tint.
+@mixin thin-scrollbar {
+  scrollbar-width: thin;                          // Firefox
+  scrollbar-color: $surface-variant transparent;  // thumb / track
+
+  &::-webkit-scrollbar { width: 6px; }
+  &::-webkit-scrollbar-track { background: transparent; }
+  &::-webkit-scrollbar-thumb { background: $surface-variant; border-radius: 10px; }
+}

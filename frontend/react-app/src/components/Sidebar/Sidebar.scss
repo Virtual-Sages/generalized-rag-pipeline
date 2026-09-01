@@ -6,11 +6,13 @@
   display: flex;
   flex-direction: row;
   position: fixed;
-  bottom: 0;
+  // Stacked directly on top of the footer, which owns the very bottom of the
+  // viewport on mobile — not at bottom: 0.
+  bottom: $footer-height;
   left: 0;
   top: auto;
   width: 100%;
-  height: 72px;
+  height: $mobile-nav-height;
   background-color: $surface-container-lowest;
   border-top: 1px solid $outline-variant;
   border-right: none;
@@ -23,10 +25,10 @@
   /* 2. Tablet State: Collapsed Vertical Sidebar (Icon-only) */
   @include respond-to($tablet) {
     flex-direction: column;
-    top: 64px;
+    top: $header-height;
     bottom: auto;
-    width: 80px;
-    height: calc(100vh - 64px);
+    width: $sidebar-width-collapsed;
+    height: calc(100vh - #{$header-height});
     border-top: none;
     border-right: 1px solid $outline-variant;
     padding: 24px 8px;
@@ -59,10 +61,7 @@
     overflow-x: hidden;
   }
 
-  // Custom Scrollbar styles
-  &::-webkit-scrollbar { width: 6px; }
-  &::-webkit-scrollbar-track { background: transparent; }
-  &::-webkit-scrollbar-thumb { background: $surface-variant; border-radius: 10px; }
+  @include thin-scrollbar;
 }
 
 // Global base for buttons and links
