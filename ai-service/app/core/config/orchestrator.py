@@ -1,8 +1,9 @@
 """
-app/core/config.py
+Where the Orchestrator (API Gateway) lives and where it puts uploaded files.
 
-Central configuration for the AI Service, read from environment variables
-(or their defaults). Add new variables here; keep secrets out of source.
+These used to sit in app/core/config.py, which collided with this package -
+Python resolves the package, so the module became unreachable and every
+`from app.core.config import STORAGE_LOCATION` failed at import time.
 """
 
 import os

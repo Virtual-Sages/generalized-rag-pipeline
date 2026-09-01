@@ -25,14 +25,14 @@ vendors:
 # Profiles
 profiles:
   default:
-    vendor: groq
-    model: llama-3.3-70b-versatile
+    vendor: openrouter
+    model: meta-llama/llama-3.3-70b-instruct
     temperature: 0.5
-    max_output_tokens: 2048
+    max_output_tokens: 10000
 
   fast:
-    vendor: groq
-    model: llama-3.1-8b-instant
+    vendor: openrouter
+    model: meta-llama/llama-3.1-8b-instruct
     temperature: 0.3
     max_output_tokens: 1024
 

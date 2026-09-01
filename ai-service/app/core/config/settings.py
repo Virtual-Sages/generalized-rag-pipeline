@@ -20,8 +20,10 @@ class Settings(BaseSettings):
     env: str = "development"
     internal_api_key: SecretStr
     max_prompt_chars: int = 8_000
-    request_timeout_seconds: int = 60
-    max_retry_budget_seconds: int = 60
+    # Must stay above every vendor's timeout_seconds and above
+    # max_retry_budget_seconds, see _check_config_is_consistent
+    request_timeout_seconds: int = 90
+    max_retry_budget_seconds: int = 30
     default_profile: str = "default"
     vendors: dict[str, VendorConfig] = {}
     profiles: dict[str, ModelProfile] = {}

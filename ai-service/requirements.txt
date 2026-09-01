@@ -1,6 +1,7 @@
 fastapi
 uvicorn[standard]
 httpx
+pydantic-settings
 pyyaml
 openai>=1.40
 pytest
