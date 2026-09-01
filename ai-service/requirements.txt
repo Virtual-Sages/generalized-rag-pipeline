@@ -1,2 +1,7 @@
 fastapi
 uvicorn[standard]
+pyyaml
+openai>=1.40
+pytest
+pytest-asyncio
+httpx
